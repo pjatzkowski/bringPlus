@@ -1,0 +1,270 @@
+{
+  "app": "bring+",
+  "version": 1,
+  "updatedAt": "2026-10-18T09:00:00Z",
+  "categories": [
+    {
+      "id": "obst",
+      "name": "Obst & Gemüse",
+      "icon": "🍎"
+    },
+    {
+      "id": "kuehl",
+      "name": "Milch & Kühlregal",
+      "icon": "🥛"
+    },
+    {
+      "id": "frueh",
+      "name": "Frühstück & Brot",
+      "icon": "🥣"
+    },
+    {
+      "id": "vorrat",
+      "name": "Vorrat",
+      "icon": "🍝"
+    },
+    {
+      "id": "getraenk",
+      "name": "Getränke & Snacks",
+      "icon": "🧃"
+    },
+    {
+      "id": "haushalt",
+      "name": "Haushalt & Drogerie",
+      "icon": "🧻"
+    },
+    {
+      "id": "camping",
+      "name": "Camping & Unterwegs",
+      "icon": "⛺"
+    }
+  ],
+  "lists": [
+    {
+      "id": "woche-mit-kindern",
+      "name": "Woche mit Kindern",
+      "emoji": "👨‍👩‍👧",
+      "items": [
+        {
+          "id": "w3q6uv7",
+          "name": "Tomätchen",
+          "spec": "",
+          "cat": "obst"
+        },
+        {
+          "id": "omzb9n9",
+          "name": "Äpfel",
+          "spec": "Elstar oder Pink Lady",
+          "cat": "obst"
+        },
+        {
+          "id": "6q3epzy",
+          "name": "Bananen",
+          "spec": "",
+          "cat": "obst"
+        },
+        {
+          "id": "5tb2ybx",
+          "name": "Gurke",
+          "spec": "",
+          "cat": "obst"
+        },
+        {
+          "id": "8edxgnp",
+          "name": "Milch",
+          "spec": "normal",
+          "cat": "kuehl"
+        },
+        {
+          "id": "yp6npz6",
+          "name": "Hafermilch",
+          "spec": "Oatly",
+          "cat": "kuehl"
+        },
+        {
+          "id": "eby3xyu",
+          "name": "Joghurt",
+          "spec": "",
+          "cat": "kuehl"
+        },
+        {
+          "id": "p7met5w",
+          "name": "Käse",
+          "spec": "",
+          "cat": "kuehl"
+        },
+        {
+          "id": "2zlp51e",
+          "name": "Müsli",
+          "spec": "",
+          "cat": "frueh"
+        },
+        {
+          "id": "y16ne0d",
+          "name": "Toastbrot",
+          "spec": "",
+          "cat": "frueh"
+        },
+        {
+          "id": "50dfwim",
+          "name": "Toilettenpapier",
+          "spec": "",
+          "cat": "haushalt"
+        }
+      ]
+    },
+    {
+      "id": "woche-ohne-kinder",
+      "name": "Woche ohne Kinder",
+      "emoji": "🥂",
+      "items": [
+        {
+          "id": "oqs6wzl",
+          "name": "Tomätchen",
+          "spec": "",
+          "cat": "obst"
+        },
+        {
+          "id": "te8wvim",
+          "name": "Äpfel",
+          "spec": "Elstar oder Pink Lady",
+          "cat": "obst"
+        },
+        {
+          "id": "sqepvpt",
+          "name": "Salat",
+          "spec": "",
+          "cat": "obst"
+        },
+        {
+          "id": "jrrumyu",
+          "name": "Hafermilch",
+          "spec": "Oatly",
+          "cat": "kuehl"
+        },
+        {
+          "id": "3fvysyk",
+          "name": "Müsli",
+          "spec": "",
+          "cat": "frueh"
+        },
+        {
+          "id": "nb3siq7",
+          "name": "Brot",
+          "spec": "Vollkorn",
+          "cat": "frueh"
+        },
+        {
+          "id": "zap6gou",
+          "name": "Kaffee",
+          "spec": "Bohnen",
+          "cat": "vorrat"
+        },
+        {
+          "id": "guic7ws",
+          "name": "Toilettenpapier",
+          "spec": "",
+          "cat": "haushalt"
+        }
+      ]
+    },
+    {
+      "id": "lange-fahrt",
+      "name": "Lange Fahrt",
+      "emoji": "🚗",
+      "items": [
+        {
+          "id": "9b3juq9",
+          "name": "Äpfel",
+          "spec": "",
+          "cat": "obst"
+        },
+        {
+          "id": "xp0uuqx",
+          "name": "Wasser",
+          "spec": "still",
+          "cat": "getraenk"
+        },
+        {
+          "id": "ix3qpad",
+          "name": "Brezeln",
+          "spec": "",
+          "cat": "getraenk"
+        },
+        {
+          "id": "bklc9qb",
+          "name": "Müsliriegel",
+          "spec": "",
+          "cat": "getraenk"
+        },
+        {
+          "id": "unm2v9x",
+          "name": "Taschentücher",
+          "spec": "",
+          "cat": "haushalt"
+        }
+      ]
+    },
+    {
+      "id": "camping-urlaub",
+      "name": "Camping-Urlaub",
+      "emoji": "⛺",
+      "items": [
+        {
+          "id": "nmhd6o9",
+          "name": "Milch",
+          "spec": "H-Milch",
+          "cat": "kuehl"
+        },
+        {
+          "id": "4io4m08",
+          "name": "Müsli",
+          "spec": "",
+          "cat": "frueh"
+        },
+        {
+          "id": "etf4ce1",
+          "name": "Brötchen",
+          "spec": "",
+          "cat": "frueh"
+        },
+        {
+          "id": "6zzi18t",
+          "name": "Nudeln",
+          "spec": "",
+          "cat": "vorrat"
+        },
+        {
+          "id": "myh1wvh",
+          "name": "Tomatensoße",
+          "spec": "",
+          "cat": "vorrat"
+        },
+        {
+          "id": "yd8kin6",
+          "name": "Grillwürstchen",
+          "spec": "",
+          "cat": "kuehl"
+        },
+        {
+          "id": "23z0rks",
+          "name": "Gaskartusche",
+          "spec": "",
+          "cat": "camping"
+        },
+        {
+          "id": "1bcfsmy",
+          "name": "Müllbeutel",
+          "spec": "",
+          "cat": "haushalt"
+        },
+        {
+          "id": "fb65cpb",
+          "name": "Toilettenpapier",
+          "spec": "",
+          "cat": "haushalt"
+        }
+      ]
+    }
+  ]
+}
