@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2bb383"/>
+      <stop offset="1" stop-color="#136b4c"/>
+    </linearGradient>
+    <linearGradient id="bag" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffaf0"/>
+      <stop offset="1" stop-color="#f1e7d3"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="420" cy="92" r="150" fill="#ffffff" opacity="0.07"/>
+  <!-- Henkel -->
+  <path d="M190 200 V160 a66 66 0 0 1 132 0 V200" fill="none" stroke="#fffaf0" stroke-width="26" stroke-linecap="round"/>
+  <!-- Tasche -->
+  <path d="M128 196 h256 l-18 196 a36 36 0 0 1 -36 32 H182 a36 36 0 0 1 -36 -32 Z" fill="url(#bag)"/>
+  <!-- Blatt -->
+  <path d="M236 288 c0 -40 30 -62 66 -62 c0 40 -28 62 -66 62 Z" fill="#2bb383"/>
+  <path d="M236 288 c14 -18 30 -34 54 -48" stroke="#136b4c" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- Plus-Badge -->
+  <circle cx="370" cy="372" r="78" fill="#ff7a59" stroke="#136b4c" stroke-width="14"/>
+  <path d="M370 332 V412 M330 372 H410" stroke="#ffffff" stroke-width="22" stroke-linecap="round"/>
+</svg>

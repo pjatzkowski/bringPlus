@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>bring+</title>
+<meta name="theme-color" content="#1a8a63">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="bring+">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='112' fill='%231a8a63'/%3E%3Cpath d='M190 200V160a66 66 0 0 1 132 0V200' fill='none' stroke='%23fffaf0' stroke-width='26' stroke-linecap='round'/%3E%3Cpath d='M128 196h256l-18 196a36 36 0 0 1-36 32H182a36 36 0 0 1-36-32Z' fill='%23fffaf0'/%3E%3Ccircle cx='370' cy='372' r='78' fill='%23ff7a59' stroke='%23136b4c' stroke-width='14'/%3E%3Cpath d='M370 332V412M330 372H410' stroke='%23fff' stroke-width='22' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f5f2ea; --card:#ffffff; --ink:#1c2924; --muted:#6b7a73; --line:#e6e0d3;
+  --accent:#1a8a63; --accent-ink:#ffffff; --accent-soft:#e1f2ea; --coral:#ff7a59; --danger:#c8452f;
+  --shadow:0 1px 2px rgba(28,41,36,.06),0 6px 18px rgba(28,41,36,.06);
+  --r:16px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#121a17; --card:#1b2622; --ink:#e9efe9; --muted:#93a39b; --line:#2a3833;
+    --accent:#34b886; --accent-ink:#0d1a15; --accent-soft:#1f3a2f; --coral:#ff8a6b; --danger:#ff7a63;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 6px 18px rgba(0,0,0,.25);
+  }
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink)}
+body{font:16px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;min-height:100vh;
+  padding:env(safe-area-inset-top) env(safe-area-inset-right) calc(env(safe-area-inset-bottom) + 96px) env(safe-area-inset-left)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:680px;margin:0 auto;padding:0 16px}
+
+/* Kopf */
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+header.top .wrap{display:flex;align-items:center;gap:10px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px;letter-spacing:-.02em}
+.brand img{width:34px;height:34px;border-radius:9px}
+.brand b{color:var(--coral)}
+.spacer{flex:1}
+.iconbtn{width:42px;height:42px;border-radius:12px;border:0;background:transparent;display:grid;place-items:center;font-size:20px}
+.iconbtn:active{background:var(--line)}
+.title-edit{font-weight:750;font-size:20px;border:0;background:transparent;padding:6px 4px;min-width:0;flex:1;border-radius:8px}
+.title-edit:focus{outline:2px solid var(--accent);background:var(--card)}
+
+/* Karten der Listen */
+.hint{color:var(--muted);font-size:14px;margin:6px 2px 14px}
+.lists{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.lcard{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;text-align:left;border:0;display:flex;flex-direction:column;gap:6px;min-height:118px}
+.lcard .emo{font-size:30px;line-height:1}
+.lcard .nm{font-weight:700;font-size:16px}
+.lcard .ct{color:var(--muted);font-size:13px}
+.lcard.add{border:2px dashed var(--line);background:transparent;box-shadow:none;align-items:center;justify-content:center;color:var(--muted);font-weight:600}
+
+/* Liste */
+.actions{display:flex;gap:8px;margin:4px 0 14px;flex-wrap:wrap}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:650;background:var(--card);box-shadow:var(--shadow);display:inline-flex;align-items:center;gap:8px}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.grow{flex:1;justify-content:center}
+.btn.danger{color:var(--danger)}
+.btn:active{transform:scale(.98)}
+.cat{margin:18px 0 6px}
+.cat h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 4px 8px;display:flex;gap:6px;align-items:center}
+.items{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);width:100%;border-left:0;border-right:0;border-bottom:0;background:transparent;text-align:left}
+.item:first-child{border-top:0}
+.item:active{background:var(--accent-soft)}
+.item .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+.item .txt{flex:1;min-width:0}
+.item .n{font-weight:600}
+.item .s{color:var(--muted);font-size:14px}
+.item .chev{color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:40px 10px}
+.stale{background:#fff3d6;color:#6a4a00;border-radius:12px;padding:10px 12px;font-size:14px;margin:0 0 12px}
+@media (prefers-color-scheme: dark){.stale{background:#3a3016;color:#f4dc9a}}
+
+.fab{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));width:60px;height:60px;border-radius:20px;border:0;background:var(--coral);color:#fff;font-size:32px;font-weight:300;box-shadow:0 8px 24px rgba(255,122,89,.45);z-index:6}
+
+/* Bottom-Sheet */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:20;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:21;background:var(--bg);border-radius:22px 22px 0 0;max-height:88vh;overflow:auto;
+  transform:translateY(105%);transition:transform .25s ease;padding:8px 0 calc(20px + env(safe-area-inset-bottom))}
+.sheet.on{transform:none}
+.sheet .grab{width:40px;height:5px;border-radius:3px;background:var(--line);margin:4px auto 12px}
+.sheet h2{font-size:19px;margin:0 0 14px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:13px;color:var(--muted);font-weight:600}
+.field input,.field select,.field textarea{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+.row{display:flex;gap:8px}
+.menu{display:flex;flex-direction:column;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;margin-bottom:14px}
+.menu button{border:0;border-top:1px solid var(--line);background:transparent;text-align:left;padding:14px 16px;display:flex;gap:12px;align-items:center}
+.menu button:first-child{border-top:0}
+.menu button:active{background:var(--accent-soft)}
+.menu button.danger{color:var(--danger)}
+.menu small{display:block;color:var(--muted);font-size:13px}
+.catrow{display:flex;gap:8px;align-items:center;padding:8px 10px;border-top:1px solid var(--line)}
+.catrow:first-child{border-top:0}
+.catrow input{flex:1;border:1px solid transparent;background:transparent;border-radius:8px;padding:8px}
+.catrow input.ic{flex:0 0 48px;text-align:center}
+.catrow input:focus{border-color:var(--accent);background:var(--bg);outline:0}
+.catrow .iconbtn{width:34px;height:34px;font-size:16px}
+.sec{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:18px 4px 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:6px 10px;font-size:20px}
+.chips button.on{border-color:var(--accent);background:var(--accent-soft)}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);
+  padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;transition:all .2s;z-index:40;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.banner{background:var(--accent-soft);border-radius:12px;padding:12px;margin:0 0 14px;font-size:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.banner .btn{padding:8px 12px}
+.muted{color:var(--muted);font-size:14px}
+code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 5px;font-size:13px;word-break:break-all}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap" id="topbar"></div></header>
+<main class="wrap" id="main"></main>
+<div id="fabslot"></div>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet"><div class="wrap"><div class="grab"></div><div id="sheetBody"></div></div></div>
+<div class="toast" id="toast"></div>
+<input type="file" id="fileIn" accept="application/json,.json" hidden>
+
+<script>
+/* =========================================================
+   bring+ – Einkaufslisten-Vorlagen mit Bring!-Export
+   Daten liegen im Browser (localStorage). Austausch per JSON.
+   ========================================================= */
+const STORE = 'bringplus.data.v1';
+const LOCAL = 'bringplus.local.v1';
+const ICON = 'apple-touch-icon.png';
+const BRING_DEEPLINK = 'https://api.getbring.com/rest/bringrecipes/deeplink?source=web&url=';
+
+const SEED = {
+  app: 'bring+', version: 1, updatedAt: '2026-10-18T09:00:00Z',
+  categories: [
+    {id:'obst',     name:'Obst & Gemüse',          icon:'🍎'},
+    {id:'kuehl',    name:'Milch & Kühlregal',      icon:'🥛'},
+    {id:'frueh',    name:'Frühstück & Brot',       icon:'🥣'},
+    {id:'vorrat',   name:'Vorrat',                 icon:'🍝'},
+    {id:'getraenk', name:'Getränke & Snacks',      icon:'🧃'},
+    {id:'haushalt', name:'Haushalt & Drogerie',    icon:'🧻'},
+    {id:'camping',  name:'Camping & Unterwegs',    icon:'⛺'}
+  ],
+  lists: [
+    {id:'woche-mit-kindern', name:'Woche mit Kindern', emoji:'👨‍👩‍👧', items:[
+      ['Tomätchen','','obst'],['Äpfel','Elstar oder Pink Lady','obst'],['Bananen','','obst'],['Gurke','','obst'],
+      ['Milch','normal','kuehl'],['Hafermilch','Oatly','kuehl'],['Joghurt','','kuehl'],['Käse','','kuehl'],
+      ['Müsli','','frueh'],['Toastbrot','','frueh'],['Toilettenpapier','','haushalt']]},
+    {id:'woche-ohne-kinder', name:'Woche ohne Kinder', emoji:'🥂', items:[
+      ['Tomätchen','','obst'],['Äpfel','Elstar oder Pink Lady','obst'],['Salat','','obst'],
+      ['Hafermilch','Oatly','kuehl'],['Müsli','','frueh'],['Brot','Vollkorn','frueh'],
+      ['Kaffee','Bohnen','vorrat'],['Toilettenpapier','','haushalt']]},
+    {id:'lange-fahrt', name:'Lange Fahrt', emoji:'🚗', items:[
+      ['Äpfel','','obst'],['Wasser','still','getraenk'],['Brezeln','','getraenk'],
+      ['Müsliriegel','','getraenk'],['Taschentücher','','haushalt']]},
+    {id:'camping-urlaub', name:'Camping-Urlaub', emoji:'⛺', items:[
+      ['Milch','H-Milch','kuehl'],['Müsli','','frueh'],['Brötchen','','frueh'],['Nudeln','','vorrat'],
+      ['Tomatensoße','','vorrat'],['Grillwürstchen','','kuehl'],['Gaskartusche','','camping'],
+      ['Müllbeutel','','haushalt'],['Toilettenpapier','','haushalt']]}
+  ]
+};
+
+/* ---------- Hilfen ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = () => Math.random().toString(36).slice(2, 9);
+const slug = s => (s||'liste').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+  .normalize('NFKD').replace(/[^\w\s-]/g,'').trim().replace(/[\s_]+/g,'-').replace(/-+/g,'-').slice(0,40) || 'liste';
+const EMOJIS = ['🛒','👨‍👩‍👧','🥂','🚗','⛺','🏖️','🎄','🎉','🍝','🥗','🏠','🧺','⛷️','🚲','🐶','🍼'];
+const ICONS = ['🍎','🥦','🥛','🧀','🥣','🍞','🍝','🥫','🧃','🍫','🧻','🧴','⛺','🍖','🐟','❄️','🧂','🍷','🐶','📦'];
+
+function normalize(d){
+  d.categories = (d.categories||[]).map(c => ({id:c.id||uid(), name:c.name||'Kategorie', icon:c.icon||'📦'}));
+  d.lists = (d.lists||[]).map(l => ({
+    id: l.id || slug(l.name)+'-'+uid().slice(0,3), name: l.name||'Liste', emoji: l.emoji||'🛒',
+    items: (l.items||[]).map(it => Array.isArray(it)
+      ? {id:uid(), name:it[0], spec:it[1]||'', cat:it[2]||''}
+      : {id:it.id||uid(), name:it.name||'', spec:it.spec||'', cat:it.cat||''}).filter(it=>it.name)
+  }));
+  d.app = 'bring+'; d.version = 1; d.updatedAt = d.updatedAt || new Date().toISOString();
+  return d;
+}
+let data, local;
+try { data = JSON.parse(localStorage.getItem(STORE)); } catch(e) {}
+data = normalize(data && data.lists ? data : JSON.parse(JSON.stringify(SEED)));
+try { local = JSON.parse(localStorage.getItem(LOCAL)) || {}; } catch(e) { local = {}; }
+local.published = local.published || {};
+
+function save(touch = true){
+  if (touch) data.updatedAt = new Date().toISOString();
+  try { localStorage.setItem(STORE, JSON.stringify(data)); } catch(e) { toast('Speichern fehlgeschlagen'); }
+}
+function saveLocal(){ try { localStorage.setItem(LOCAL, JSON.stringify(local)); } catch(e) {} }
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2400); }
+const catById = id => data.categories.find(c=>c.id===id);
+const listById = id => data.lists.find(l=>l.id===id);
+const itemLine = it => it.spec ? `${it.name} (${it.spec})` : it.name;
+
+/* ---------- Bring!-Export ---------- */
+function hostedBase(){
+  if (local.baseUrl) return local.baseUrl.replace(/\/?$/,'/');
+  if (location.protocol === 'https:') return location.href.replace(/[#?].*$/,'').replace(/[^/]*$/,'');
+  return '';
+}
+function listHash(l){
+  const s = l.name + '|' + l.items.map(itemLine).join('|');
+  let h = 0; for (let i=0;i<s.length;i++) h = (h*31 + s.charCodeAt(i)) | 0;
+  return String(h);
+}
+function sortedItems(l){
+  const order = data.categories.map(c=>c.id);
+  return [...l.items].sort((a,b)=>{
+    const ia = order.indexOf(a.cat), ib = order.indexOf(b.cat);
+    return (ia<0?999:ia) - (ib<0?999:ib);
+  });
+}
+function bringPageHtml(l, base){
+  const items = sortedItems(l);
+  const ld = {
+    '@context':'https://schema.org', '@type':'Recipe',
+    name: l.name, author:{'@type':'Person', name:'bring+'},
+    description: 'Einkaufsvorlage aus bring+: ' + l.name,
+    image: base ? base + 'icon-512.png' : undefined,
+    recipeYield: '1',
+    recipeIngredient: items.map(itemLine)
+  };
+  const groups = data.categories.map(c => ({c, its: items.filter(i=>i.cat===c.id)})).filter(g=>g.its.length);
+  const rest = items.filter(i=>!catById(i.cat));
+  if (rest.length) groups.push({c:{icon:'📦',name:'Sonstiges'}, its:rest});
+  return `<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(l.name)} – bring+</title>
+<script type="application/ld+json">${JSON.stringify(ld).replace(/</g,'\\u003c')}<\/script>
+<style>body{font:16px/1.5 system-ui,sans-serif;max-width:560px;margin:24px auto;padding:0 16px;background:#f5f2ea;color:#1c2924}
+h1{margin:0 0 4px}h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#6b7a73;margin:20px 0 6px}
+ul{background:#fff;border-radius:14px;padding:8px 8px 8px 30px;margin:0}li{padding:4px 0}small{color:#6b7a73}</style>
+</head><body>
+<h1>${esc(l.emoji)} ${esc(l.name)}</h1><p><small>Einkaufsvorlage aus bring+ · ${items.length} Artikel</small></p>
+${groups.map(g=>`<h2>${esc(g.c.icon)} ${esc(g.c.name)}</h2><ul>${g.its.map(i=>`<li>${esc(i.name)}${i.spec?` <small>${esc(i.spec)}</small>`:''}</li>`).join('')}</ul>`).join('\n')}
+</body></html>`;
+}
+function openInBring(l){
+  const base = hostedBase();
+  if (!base){ return showBringHelp(l); }
+  const url = base + 'listen/' + l.id + '.html';
+  if (local.published[l.id] && local.published[l.id] !== listHash(l)) {
+    if (!confirm('Diese Liste wurde geändert, seit das Paket zuletzt erstellt wurde. Bring importiert den Stand, der online liegt.\n\nTrotzdem öffnen?')) return;
+  }
+  location.href = BRING_DEEPLINK + encodeURIComponent(url);
+}
+async function shareText(l){
+  const lines = sortedItems(l).map(itemLine);
+  const text = lines.join('\n');
+  if (navigator.share) {
+    try { await navigator.share({title: l.name, text}); return; } catch(e) { if (e.name==='AbortError') return; }
+  }
+  try { await navigator.clipboard.writeText(text); toast('Liste kopiert ('+lines.length+' Artikel)'); }
+  catch(e) { prompt('Zum Kopieren:', lines.join(', ')); }
+}
+
+/* ---------- ZIP (ohne Bibliothek, unkomprimiert) ---------- */
+const CRC = (()=>{ const t=new Uint32Array(256); for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0;} return t; })();
+const crc32 = b => { let c=0xFFFFFFFF; for (let i=0;i<b.length;i++) c=CRC[(c^b[i])&255]^(c>>>8); return (c^0xFFFFFFFF)>>>0; };
+function makeZip(files){
+  const enc = new TextEncoder(), parts = [], central = []; let off = 0;
+  for (const f of files){
+    const name = enc.encode(f.name), body = enc.encode(f.text), crc = crc32(body);
+    const h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0,0x04034b50,true); h.setUint16(4,20,true); h.setUint16(6,0x0800,true); h.setUint16(8,0,true);
+    h.setUint16(10,0,true); h.setUint16(12,0x21,true); h.setUint32(14,crc,true);
+    h.setUint32(18,body.length,true); h.setUint32(22,body.length,true); h.setUint16(26,name.length,true); h.setUint16(28,0,true);
+    parts.push(h, name, body);
+    const c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0,0x02014b50,true); c.setUint16(4,20,true); c.setUint16(6,20,true); c.setUint16(8,0x0800,true);
+    c.setUint16(10,0,true); c.setUint16(12,0,true); c.setUint16(14,0x21,true); c.setUint32(16,crc,true);
+    c.setUint32(20,body.length,true); c.setUint32(24,body.length,true); c.setUint16(28,name.length,true);
+    c.setUint32(42,off,true);
+    central.push(c, name);
+    off += 30 + name.length + body.length;
+  }
+  const csize = central.reduce((s,p)=>s+p.byteLength,0);
+  const e = new DataView(new ArrayBuffer(22));
+  e.setUint32(0,0x06054b50,true); e.setUint16(8,files.length,true); e.setUint16(10,files.length,true);
+  e.setUint32(12,csize,true); e.setUint32(16,off,true);
+  return new Blob([...parts, ...central, e], {type:'application/zip'});
+}
+function download(blob, name){
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();}, 500);
+}
+function exportJson(){
+  download(new Blob([JSON.stringify(data, null, 2)], {type:'application/json'}), 'daten.json');
+  toast('daten.json gespeichert');
+}
+function exportPackage(){
+  const base = hostedBase();
+  const files = [{name:'daten.json', text: JSON.stringify(data, null, 2)}];
+  for (const l of data.lists){ files.push({name:'listen/'+l.id+'.html', text: bringPageHtml(l, base)}); local.published[l.id] = listHash(l); }
+  saveLocal();
+  download(makeZip(files), 'bringplus-veroeffentlichen.zip');
+  toast('Paket erstellt – Inhalt in den Web-Ordner kopieren');
+}
+function importJson(file){
+  const r = new FileReader();
+  r.onload = () => {
+    try {
+      const d = JSON.parse(r.result);
+      if (!d.lists) throw new Error('keine Listen');
+      if (!confirm('Alle Listen durch den Inhalt von „'+file.name+'“ ersetzen?')) return;
+      data = normalize(d); save(false); closeSheet(); route(); toast('Daten importiert');
+    } catch(e) { alert('Datei konnte nicht gelesen werden: ' + e.message); }
+  };
+  r.readAsText(file);
+}
+$('#fileIn').addEventListener('change', e => { if (e.target.files[0]) importJson(e.target.files[0]); e.target.value=''; });
+
+/* Neuere daten.json auf dem Server? (nur wenn gehostet) */
+let remoteNewer = null;
+async function checkRemote(){
+  if (location.protocol !== 'https:') return;
+  try {
+    const r = await fetch('daten.json?ts=' + Date.now(), {cache:'no-store'});
+    if (!r.ok) return;
+    const d = await r.json();
+    if (d.updatedAt && d.updatedAt > data.updatedAt && d.updatedAt !== local.ignoredRemote) { remoteNewer = d; route(); }
+  } catch(e) {}
+}
+function loadRemote(){ data = normalize(remoteNewer); remoteNewer = null; save(false); route(); toast('Listen vom Server geladen'); }
+function ignoreRemote(){ local.ignoredRemote = remoteNewer.updatedAt; saveLocal(); remoteNewer = null; route(); }
+
+/* ---------- Sheet ---------- */
+function openSheet(html, onMount){
+  $('#sheetBody').innerHTML = html; $('#scrim').classList.add('on'); $('#sheet').classList.add('on');
+  $('#sheet').scrollTop = 0; onMount && onMount();
+}
+function closeSheet(){ $('#scrim').classList.remove('on'); $('#sheet').classList.remove('on'); }
+$('#scrim').addEventListener('click', closeSheet);
+
+/* ---------- Ansichten ---------- */
+function route(){
+  const m = location.hash.match(/^#\/liste\/(.+)$/);
+  const l = m && listById(decodeURIComponent(m[1]));
+  if (location.hash === '#/einstellungen') return viewSettings();
+  if (l) return viewList(l);
+  viewHome();
+}
+window.addEventListener('hashchange', () => { closeSheet(); route(); });
+
+function viewHome(){
+  $('#topbar').innerHTML = `<div class="brand"><img src="${ICON}" alt="" onerror="this.style.display='none'"><span>bring<b>+</b></span></div>
+    <div class="spacer"></div><button class="iconbtn" aria-label="Einstellungen" onclick="location.hash='#/einstellungen'">⚙️</button>`;
+  const banner = remoteNewer ? `<div class="banner">☁️ Neuere Listen auf dem Server (${new Date(remoteNewer.updatedAt).toLocaleString('de-DE')}).
+     <button class="btn primary" onclick="loadRemote()">Laden</button><button class="btn" onclick="ignoreRemote()">Ignorieren</button></div>` : '';
+  $('#main').innerHTML = `${banner}<p class="hint">Wähle ein Szenario und schick die Liste an Bring.</p>
+    <div class="lists">
+      ${data.lists.map(l => `<button class="lcard" onclick="location.hash='#/liste/${encodeURIComponent(l.id)}'">
+        <span class="emo">${esc(l.emoji)}</span><span class="nm">${esc(l.name)}</span>
+        <span class="ct">${l.items.length} Artikel</span></button>`).join('')}
+      <button class="lcard add" onclick="newList()">＋ Neue Liste</button>
+    </div>`;
+  $('#fabslot').innerHTML = '';
+}
+
+function viewList(l){
+  $('#topbar').innerHTML = `<button class="iconbtn" aria-label="Zurück" onclick="location.hash=''">←</button>
+    <input class="title-edit" value="${esc(l.name)}" aria-label="Listenname"
+      onchange="renameList('${l.id}', this.value)" onkeydown="if(event.key==='Enter')this.blur()">
+    <button class="iconbtn" aria-label="Listen-Menü" onclick="listMenu('${l.id}')">⋯</button>`;
+  const stale = local.published[l.id] && local.published[l.id] !== listHash(l) && hostedBase();
+  const groups = data.categories.map(c => ({c, its: l.items.filter(i=>i.cat===c.id)})).filter(g=>g.its.length);
+  const rest = l.items.filter(i=>!catById(i.cat));
+  if (rest.length) groups.push({c:{icon:'📦', name:'Ohne Kategorie'}, its:rest});
+  $('#main').innerHTML = `
+    <div class="actions">
+      <button class="btn primary grow" onclick="openInBring(listById('${l.id}'))">🛒 In Bring importieren</button>
+      <button class="btn" onclick="shareText(listById('${l.id}'))" aria-label="Als Text teilen">📋 Text</button>
+    </div>
+    ${stale ? `<div class="stale">Geändert seit dem letzten Veröffentlichen – Paket neu erstellen und hochladen, damit Bring den neuen Stand bekommt.</div>` : ''}
+    ${groups.length ? groups.map(g => `<section class="cat"><h3>${esc(g.c.icon)} ${esc(g.c.name)}</h3><div class="items">
+      ${g.its.map(it => `<button class="item" onclick="editItem('${l.id}','${it.id}')"><span class="dot"></span>
+        <span class="txt"><span class="n">${esc(it.name)}</span>${it.spec?`<br><span class="s">${esc(it.spec)}</span>`:''}</span>
+        <span class="chev">›</span></button>`).join('')}
+    </div></section>`).join('') : `<div class="empty">Noch keine Artikel.<br>Tippe auf ＋, um den ersten hinzuzufügen.</div>`}`;
+  $('#fabslot').innerHTML = `<button class="fab" aria-label="Artikel hinzufügen" onclick="editItem('${l.id}')">＋</button>`;
+}
+
+function viewSettings(){
+  $('#topbar').innerHTML = `<button class="iconbtn" aria-label="Zurück" onclick="location.hash=''">←</button>
+    <div class="brand" style="font-size:20px">Einstellungen</div>`;
+  const base = hostedBase();
+  $('#main').innerHTML = `
+    <div class="sec">Kategorien</div>
+    <div class="menu" id="catList">${data.categories.map((c,i) => `<div class="catrow">
+      <input class="ic" value="${esc(c.icon)}" aria-label="Symbol" onchange="setCat('${c.id}','icon',this.value)">
+      <input value="${esc(c.name)}" aria-label="Kategoriename" onchange="setCat('${c.id}','name',this.value)">
+      <button class="iconbtn" aria-label="Nach oben" onclick="moveCat(${i},-1)" ${i===0?'disabled style="opacity:.3"':''}>↑</button>
+      <button class="iconbtn" aria-label="Löschen" onclick="delCat('${c.id}')">🗑</button></div>`).join('')}</div>
+    <button class="btn" onclick="addCat()">＋ Kategorie</button>
+
+    <div class="sec">Daten zwischen Handy & Computer</div>
+    <div class="menu">
+      <button onclick="exportJson()">⬇️ <span>Listen exportieren<small>Speichert daten.json – am PC öffnen, bearbeiten, wieder importieren</small></span></button>
+      <button onclick="$('#fileIn').click()">⬆️ <span>Listen importieren<small>daten.json laden (ersetzt alle Listen)</small></span></button>
+    </div>
+
+    <div class="sec">Bring-Import per Klick</div>
+    <div class="menu">
+      <button onclick="exportPackage()">📦 <span>Veröffentlichungs-Paket erstellen<small>ZIP mit daten.json + einer Bring-Seite pro Liste</small></span></button>
+    </div>
+    <div class="field"><label for="baseIn">Web-Adresse der App (leer = automatisch)</label>
+      <input id="baseIn" placeholder="https://name.github.io/bringplus/" value="${esc(local.baseUrl||'')}"
+        onchange="local.baseUrl=this.value.trim();saveLocal();viewSettings()"></div>
+    <p class="muted">${base ? `Bring lädt Listen von <code>${esc(base)}listen/…</code>` :
+      'Die App läuft gerade lokal. Für den Bring-Import muss sie (bzw. das Paket) unter einer öffentlichen https-Adresse liegen, z. B. GitHub Pages.'}</p>
+
+    <div class="sec">Sonstiges</div>
+    <div class="menu">
+      <button class="danger" onclick="resetAll()">↺ <span>Auf Grundbefüllung zurücksetzen</span></button>
+    </div>
+    <p class="muted">Stand der Listen: ${new Date(data.updatedAt).toLocaleString('de-DE')}</p>`;
+  $('#fabslot').innerHTML = '';
+}
+
+/* ---------- Aktionen: Listen ---------- */
+function newList(){
+  openSheet(`<h2>Neue Liste</h2>
+    <div class="field"><label>Name</label><input id="nlName" placeholder="z. B. Skiurlaub"></div>
+    <div class="field"><label>Symbol</label><div class="chips" id="nlEmo">${EMOJIS.map((e,i)=>`<button type="button" class="${i?'':'on'}">${e}</button>`).join('')}</div></div>
+    <div class="field"><label>Artikel übernehmen aus</label><select id="nlFrom"><option value="">– leer starten –</option>
+      ${data.lists.map(l=>`<option value="${l.id}">${esc(l.emoji)} ${esc(l.name)}</option>`).join('')}</select></div>
+    <div class="row"><button class="btn grow" onclick="closeSheet()">Abbrechen</button><button class="btn primary grow" id="nlOk">Anlegen</button></div>`,
+  () => {
+    let emo = EMOJIS[0];
+    $('#nlEmo').onclick = e => { if (e.target.tagName!=='BUTTON') return; emo = e.target.textContent;
+      [...$('#nlEmo').children].forEach(b=>b.classList.toggle('on', b===e.target)); };
+    $('#nlName').focus();
+    $('#nlOk').onclick = () => {
+      const name = $('#nlName').value.trim(); if (!name) return $('#nlName').focus();
+      let id = slug(name); while (listById(id)) id = slug(name) + '-' + uid().slice(0,3);
+      const src = listById($('#nlFrom').value);
+      data.lists.push({id, name, emoji: emo, items: src ? src.items.map(i=>({...i, id:uid()})) : []});
+      save(); closeSheet(); location.hash = '#/liste/' + encodeURIComponent(id);
+    };
+  });
+}
+function renameList(id, name){ const l = listById(id); if (l && name.trim()) { l.name = name.trim(); save(); } }
+function listMenu(id){
+  const l = listById(id);
+  openSheet(`<h2>${esc(l.emoji)} ${esc(l.name)}</h2>
+    <div class="field"><label>Symbol</label><div class="chips" id="lmEmo">${EMOJIS.map(e=>`<button type="button" class="${e===l.emoji?'on':''}">${e}</button>`).join('')}</div></div>
+    <div class="menu">
+      <button onclick="dupList('${id}')">⧉ <span>Liste duplizieren</span></button>
+      <button onclick="download(new Blob([bringPageHtml(listById('${id}'), hostedBase())],{type:'text/html'}),'${id}.html')">🌐 <span>Bring-Seite dieser Liste herunterladen<small>gehört nach listen/${esc(id)}.html</small></span></button>
+      <button class="danger" onclick="delList('${id}')">🗑 <span>Liste löschen</span></button>
+    </div>`, () => {
+    $('#lmEmo').onclick = e => { if (e.target.tagName!=='BUTTON') return; l.emoji = e.target.textContent; save();
+      [...$('#lmEmo').children].forEach(b=>b.classList.toggle('on', b===e.target)); };
+  });
+}
+function dupList(id){
+  const l = listById(id); let nid = l.id + '-kopie'; while (listById(nid)) nid = l.id + '-' + uid().slice(0,3);
+  data.lists.splice(data.lists.indexOf(l)+1, 0, {id:nid, name:l.name+' (Kopie)', emoji:l.emoji, items:l.items.map(i=>({...i,id:uid()}))});
+  save(); closeSheet(); location.hash = '#/liste/' + encodeURIComponent(nid);
+}
+function delList(id){
+  const l = listById(id); if (!confirm('Liste „'+l.name+'“ löschen?')) return;
+  data.lists = data.lists.filter(x=>x!==l); save(); closeSheet(); location.hash = '';
+}
+
+/* ---------- Aktionen: Artikel ---------- */
+function editItem(listId, itemId){
+  const l = listById(listId), it = l.items.find(i=>i.id===itemId);
+  const lastCat = local.lastCat && catById(local.lastCat) ? local.lastCat : (data.categories[0]||{}).id;
+  openSheet(`<h2>${it ? 'Artikel bearbeiten' : 'Artikel hinzufügen'}</h2>
+    <div class="field"><label>Artikel</label><input id="iName" value="${esc(it?.name)}" placeholder="z. B. Äpfel" autocomplete="off"></div>
+    <div class="field"><label>Spezifikation (optional)</label><input id="iSpec" value="${esc(it?.spec)}" placeholder="z. B. Elstar oder Pink Lady" autocomplete="off"></div>
+    <div class="field"><label>Kategorie</label><select id="iCat">${data.categories.map(c=>`<option value="${c.id}" ${(it?it.cat:lastCat)===c.id?'selected':''}>${esc(c.icon)} ${esc(c.name)}</option>`).join('')}</select></div>
+    <div class="row">${it ? `<button class="btn danger" id="iDel">Löschen</button>` : `<button class="btn" id="iMore">＋ Weiterer</button>`}
+      <button class="btn primary grow" id="iOk">Speichern</button></div>`,
+  () => {
+    if (!it) $('#iName').focus();
+    const commit = () => {
+      const name = $('#iName').value.trim(); if (!name) { $('#iName').focus(); return false; }
+      const vals = {name, spec: $('#iSpec').value.trim(), cat: $('#iCat').value};
+      local.lastCat = vals.cat; saveLocal();
+      if (it) Object.assign(it, vals); else l.items.push({id:uid(), ...vals});
+      save(); viewList(l); return true;
+    };
+    $('#iOk').onclick = () => { if (commit()) closeSheet(); };
+    $('#iSpec').onkeydown = $('#iName').onkeydown = e => { if (e.key==='Enter') { e.preventDefault(); if (commit()) it ? closeSheet() : editItem(listId); } };
+    if (it) $('#iDel').onclick = () => { l.items = l.items.filter(x=>x!==it); save(); closeSheet(); viewList(l); toast('„'+it.name+'“ gelöscht'); };
+    else $('#iMore').onclick = () => { if (commit()) { toast('Hinzugefügt'); editItem(listId); } };
+  });
+}
+
+/* ---------- Aktionen: Kategorien ---------- */
+function setCat(id, k, v){ const c = catById(id); if (c && v.trim()) { c[k] = v.trim(); save(); } }
+function moveCat(i, d){ const a = data.categories, j = i + d; if (j<0||j>=a.length) return; [a[i],a[j]]=[a[j],a[i]]; save(); viewSettings(); }
+function addCat(){
+  const name = prompt('Name der neuen Kategorie:'); if (!name || !name.trim()) return;
+  data.categories.push({id: slug(name)+'-'+uid().slice(0,3), name: name.trim(), icon: ICONS[data.categories.length % ICONS.length]});
+  save(); viewSettings();
+}
+function delCat(id){
+  const c = catById(id), n = data.lists.reduce((s,l)=>s+l.items.filter(i=>i.cat===id).length, 0);
+  if (!confirm(`Kategorie „${c.name}“ löschen?` + (n ? `\n${n} Artikel landen dann unter „Ohne Kategorie“.` : ''))) return;
+  data.categories = data.categories.filter(x=>x!==c); save(); viewSettings();
+}
+function resetAll(){
+  if (!confirm('Alle Listen und Kategorien auf die Grundbefüllung zurücksetzen? Eigene Änderungen gehen verloren.')) return;
+  data = normalize(JSON.parse(JSON.stringify(SEED))); save(); location.hash = ''; route(); toast('Zurückgesetzt');
+}
+
+function showBringHelp(l){
+  openSheet(`<h2>Bring-Import einrichten</h2>
+    <p>Bring übernimmt Listen per Klick nur von einer <b>öffentlichen Web-Adresse</b> (wie bei Rezepten). Diese App läuft gerade als lokale Datei – dafür fehlt die Adresse.</p>
+    <p class="muted">Einmalig: Ordner der App auf GitHub Pages (kostenlos) legen, dann unter ⚙️ das Veröffentlichungs-Paket erstellen und hochladen. Die Anleitung steht in LIESMICH.md.</p>
+    <div class="menu"><button onclick="closeSheet();shareText(listById('${l.id}'))">📋 <span>Stattdessen als Text teilen/kopieren<small>Ein Artikel pro Zeile</small></span></button></div>
+    <button class="btn grow" style="width:100%;justify-content:center" onclick="closeSheet()">Schließen</button>`);
+}
+
+/* ---------- Start ---------- */
+if (!localStorage.getItem(STORE)) save(false);
+route();
+checkRemote();
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
