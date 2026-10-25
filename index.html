@@ -134,7 +134,8 @@ code{background:var(--card);border:1px solid var(--line);border-radius:6px;paddi
 const STORE = 'bringplus.data.v1';
 const LOCAL = 'bringplus.local.v1';
 const ICON = 'apple-touch-icon.png';
-const BRING_DEEPLINK = 'https://api.getbring.com/rest/bringrecipes/deeplink?source=web&url=';
+const DEFAULT_BASE = 'https://pjatzkowski.github.io/bringPlus/';
+const BRING_DEEPLINK ='https://api.getbring.com/rest/bringrecipes/deeplink?source=web&url=';
 
 const SEED = {
   app: 'bring+', version: 1, updatedAt: '2026-10-18T09:00:00Z',
@@ -222,13 +223,21 @@ function sortedItems(l){
 }
 function bringPageHtml(l, base){
   const items = sortedItems(l);
+  const img = (base || DEFAULT_BASE) + 'icon-512.png';
+  const pageUrl = (base || DEFAULT_BASE) + 'listen/' + l.id + '.html';
   const ld = {
     '@context':'https://schema.org', '@type':'Recipe',
-    name: l.name, author:{'@type':'Person', name:'bring+'},
+    name: l.name, url: pageUrl,
+    author:{'@type':'Person', name:'bring+'},
+    publisher:{'@type':'Organization', name:'bring+'},
     description: 'Einkaufsvorlage aus bring+: ' + l.name,
-    image: base ? base + 'icon-512.png' : undefined,
+    image: [img],
+    datePublished: (data.updatedAt||'').slice(0,10),
+    recipeCategory: 'Einkaufsliste',
     recipeYield: '1',
-    recipeIngredient: items.map(itemLine)
+    prepTime: 'PT5M', totalTime: 'PT5M',
+    recipeIngredient: items.map(itemLine),
+    recipeInstructions: [{'@type':'HowToStep', text:'Alle Artikel einkaufen.'}]
   };
   const groups = data.categories.map(c => ({c, its: items.filter(i=>i.cat===c.id)})).filter(g=>g.its.length);
   const rest = items.filter(i=>!catById(i.cat));
@@ -236,23 +245,49 @@ function bringPageHtml(l, base){
   return `<!doctype html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${esc(l.name)} – bring+</title>
+<meta name="description" content="Einkaufsvorlage aus bring+: ${esc(l.name)}">
+<meta property="og:title" content="${esc(l.name)}"><meta property="og:type" content="article">
+<meta property="og:image" content="${esc(img)}"><meta property="og:url" content="${esc(pageUrl)}">
+<link rel="canonical" href="${esc(pageUrl)}">
 <script type="application/ld+json">${JSON.stringify(ld).replace(/</g,'\\u003c')}<\/script>
 <style>body{font:16px/1.5 system-ui,sans-serif;max-width:560px;margin:24px auto;padding:0 16px;background:#f5f2ea;color:#1c2924}
 h1{margin:0 0 4px}h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:#6b7a73;margin:20px 0 6px}
 ul{background:#fff;border-radius:14px;padding:8px 8px 8px 30px;margin:0}li{padding:4px 0}small{color:#6b7a73}</style>
-</head><body>
+</head><body><article>
 <h1>${esc(l.emoji)} ${esc(l.name)}</h1><p><small>Einkaufsvorlage aus bring+ · ${items.length} Artikel</small></p>
+<img src="${esc(img)}" alt="" width="64" height="64" style="border-radius:14px">
 ${groups.map(g=>`<h2>${esc(g.c.icon)} ${esc(g.c.name)}</h2><ul>${g.its.map(i=>`<li>${esc(i.name)}${i.spec?` <small>${esc(i.spec)}</small>`:''}</li>`).join('')}</ul>`).join('\n')}
-</body></html>`;
+</article></body></html>`;
 }
-function openInBring(l){
+async function openInBring(l){
   const base = hostedBase();
   if (!base){ return showBringHelp(l); }
   const url = base + 'listen/' + l.id + '.html';
-  if (local.published[l.id] && local.published[l.id] !== listHash(l)) {
-    if (!confirm('Diese Liste wurde geändert, seit das Paket zuletzt erstellt wurde. Bring importiert den Stand, der online liegt.\n\nTrotzdem öffnen?')) return;
-  }
-  location.href = BRING_DEEPLINK + encodeURIComponent(url);
+  // Prüfen, ob die Bring-Seite dieser Liste online liegt und aktuell ist
+  try {
+    const r = await fetch(url + '?ts=' + Date.now(), {cache:'no-store'});
+    if (!r.ok) return showNotOnline(l, url, 'missing');
+    const online = await r.text();
+    const want = sortedItems(l).map(itemLine);
+    const m = online.match(/"recipeIngredient":(\[[^\]]*\])/);
+    const have = m ? JSON.parse(m[1]) : null;
+    if (!online.includes('"image"')) return showNotOnline(l, url, 'old');
+    if (!have || JSON.stringify(have) !== JSON.stringify(want)) {
+      if (!confirm('Online liegt ein älterer Stand dieser Liste (' + (have ? have.length : 0) + ' statt ' + want.length + ' Artikel). Bring importiert den Online-Stand.\n\nTrotzdem öffnen? (Sonst: ⚙️ → Paket erstellen und hochladen)')) return;
+    }
+  } catch(e) { /* offline o. Ä. – trotzdem versuchen */ }
+  location.href = BRING_DEEPLINK + encodeURIComponent(url) + '&baseQuantity=1&requestedQuantity=1';
+}
+function showNotOnline(l, url, why){
+  openSheet(`<h2>Liste noch nicht bei Bring abrufbar</h2>
+    <p>${why==='missing'
+      ? 'Für „'+esc(l.name)+'“ gibt es online noch keine Bring-Seite. Das passiert bei neuen oder umbenannten Listen.'
+      : 'Online liegt noch die alte Version der Bring-Seiten, die Bring nicht als Rezept erkennt.'}</p>
+    <p class="muted">So geht’s: ⚙️ → <b>Veröffentlichungs-Paket erstellen</b> → Zip entpacken → auf GitHub <b>„Add file → Upload files“</b>, <code>daten.json</code> und den Ordner <code>listen</code> hineinziehen → <b>Commit changes</b>. Nach ca. 1 Minute klappt der Import.</p>
+    <p class="muted">Erwartete Adresse: <code>${esc(url)}</code></p>
+    <div class="menu"><button onclick="closeSheet();exportPackage()">📦 <span>Paket jetzt erstellen</span></button>
+      <button onclick="closeSheet();shareText(listById('${l.id}'))">📋 <span>Stattdessen als Text teilen/kopieren</span></button></div>
+    <button class="btn" style="width:100%;justify-content:center" onclick="closeSheet()">Schließen</button>`);
 }
 async function shareText(l){
   const lines = sortedItems(l).map(itemLine);
