@@ -1295,8 +1295,33 @@
    "url": "https://biancazapatka.com/de/lasagne-bolognese-vegan/",
    "vegan": true,
    "veggie": true
+  },
+  {
+   "added": 1795260624042,
+   "cooked": 0,
+   "course": "haupt",
+   "desc": "Ein köstliches Rezept für Pulled Pilz-Burger mit Backkartoffeln. Fertig in 90 Minuten. Für 2 Portionen. Besonders raffiniert.",
+   "id": "pulled-pilz-burger-mit-ofenkar-kk0w",
+   "image": "https://image.essen-und-trinken.de/11950282/t/fI/v10/w1440/r1.7778/-/pulled-pilz-burger-vegan-jpg--63975-.jpg",
+   "ingredients": [],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [
+    "herbst"
+   ],
+   "servings": 0,
+   "source": "ESSEN-UND-TRINKEN.de",
+   "steps": "",
+   "time": 0,
+   "title": "Pulled Pilz-Burger mit Ofenkartoffeln",
+   "u": 1795260624042,
+   "url": "https://www.essen-und-trinken.de/rezepte/88180-rzpt-pulled-pilz-burger-mit-ofenkartoffeln",
+   "vegan": false,
+   "veggie": false
   }
  ],
- "updatedAt": 1795260604179,
+ "updatedAt": 1795260626884,
  "version": 2
 }
