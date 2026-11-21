@@ -213,6 +213,83 @@
    ],
    "items": [
     {
+     "cat": "obst",
+     "id": "je65ne1",
+     "name": "Tomätchen",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "obst",
+     "id": "2r7548s",
+     "name": "Äpfel",
+     "spec": "Elstar oder Pink Lady",
+     "u": 1
+    },
+    {
+     "cat": "obst",
+     "id": "zuepaes",
+     "name": "Bananen",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "obst",
+     "id": "b6gw1no",
+     "name": "Gurke",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "kuehl",
+     "id": "mo8etov",
+     "name": "Milch",
+     "spec": "normal",
+     "u": 1
+    },
+    {
+     "cat": "kuehl",
+     "id": "lpkyqh9",
+     "name": "Hafermilch",
+     "spec": "Oatly",
+     "u": 1
+    },
+    {
+     "cat": "kuehl",
+     "id": "9vqb4jr",
+     "name": "Joghurt",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "kuehl",
+     "id": "apntyq8",
+     "name": "Käse",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "frueh",
+     "id": "sx615k6",
+     "name": "Müsli",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "frueh",
+     "id": "q4p2snf",
+     "name": "Toastbrot",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "haushalt",
+     "id": "6eywha7",
+     "name": "Toilettenpapier",
+     "spec": "",
+     "u": 1
+    },
+    {
      "cat": "kuehl",
      "id": "8jeb59r",
      "name": "Milch",
@@ -450,6 +527,62 @@
    ],
    "items": [
     {
+     "cat": "obst",
+     "id": "7nt7u0z",
+     "name": "Tomätchen",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "obst",
+     "id": "eece8cs",
+     "name": "Äpfel",
+     "spec": "Elstar oder Pink Lady",
+     "u": 1
+    },
+    {
+     "cat": "obst",
+     "id": "klnyd9k",
+     "name": "Salat",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "kuehl",
+     "id": "01v8w8l",
+     "name": "Hafermilch",
+     "spec": "Oatly",
+     "u": 1
+    },
+    {
+     "cat": "frueh",
+     "id": "62bygs6",
+     "name": "Müsli",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "frueh",
+     "id": "cizbl3n",
+     "name": "Brot",
+     "spec": "Vollkorn",
+     "u": 1
+    },
+    {
+     "cat": "vorrat",
+     "id": "rld6q7c",
+     "name": "Kaffee",
+     "spec": "Bohnen",
+     "u": 1
+    },
+    {
+     "cat": "haushalt",
+     "id": "jn579gt",
+     "name": "Toilettenpapier",
+     "spec": "",
+     "u": 1
+    },
+    {
      "cat": "frueh",
      "id": "p0pfyoe",
      "name": "Brot",
@@ -553,6 +686,41 @@
    "items": [
     {
      "cat": "obst",
+     "id": "9brk0dh",
+     "name": "Äpfel",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "getraenk",
+     "id": "r95z1kw",
+     "name": "Wasser",
+     "spec": "still",
+     "u": 1
+    },
+    {
+     "cat": "getraenk",
+     "id": "k1picfk",
+     "name": "Brezeln",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "getraenk",
+     "id": "ol8cka0",
+     "name": "Müsliriegel",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "haushalt",
+     "id": "311rci7",
+     "name": "Taschentücher",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "obst",
      "id": "kdt5ol9",
      "name": "Äpfel",
      "spec": "",
@@ -653,6 +821,69 @@
    "id": "camping-urlaub",
    "includes": [],
    "items": [
+    {
+     "cat": "kuehl",
+     "id": "eq73fhg",
+     "name": "Milch",
+     "spec": "H-Milch",
+     "u": 1
+    },
+    {
+     "cat": "frueh",
+     "id": "k2ot3ct",
+     "name": "Müsli",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "frueh",
+     "id": "rrv4don",
+     "name": "Brötchen",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "vorrat",
+     "id": "1ws08vo",
+     "name": "Nudeln",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "vorrat",
+     "id": "1aodupx",
+     "name": "Tomatensoße",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "kuehl",
+     "id": "jmed1le",
+     "name": "Grillwürstchen",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "camping",
+     "id": "dxpk8vp",
+     "name": "Gaskartusche",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "haushalt",
+     "id": "6po56dy",
+     "name": "Müllbeutel",
+     "spec": "",
+     "u": 1
+    },
+    {
+     "cat": "haushalt",
+     "id": "dvccan4",
+     "name": "Toilettenpapier",
+     "spec": "",
+     "u": 1
+    },
     {
      "cat": "kuehl",
      "id": "smfhb88",
@@ -1066,6 +1297,6 @@
    "veggie": true
   }
  ],
- "updatedAt": 1795260395996,
+ "updatedAt": 1795260497100,
  "version": 2
 }
