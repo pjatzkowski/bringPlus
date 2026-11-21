@@ -707,7 +707,7 @@ function viewPrint(r){
         <section><h2>Zubereitung</h2>${steps.length ? stepHtml : '<p class="pmeta">Siehe Originalrezept.</p>'}</section>
       </div>` : loading ? '' : `<div class="pmissing noprint">${web ? 'Die Rezeptdaten ließen sich von dieser Seite nicht automatisch laden.' : 'Für dieses Rezept sind noch keine Zutaten hinterlegt.'}
         Text der Rezeptseite bzw. Caption kopieren und hier einfügen – Zutaten und Zubereitung werden erkannt:
-        <div class="row" style="margin-top:8px"><button class="btn small" onclick="pasteIntoPrint(${jsq(r.id)})">📋 Text einfügen</button><button class="btn small" onclick="editRecipe(${jsq(r.id)})">✏️ Bearbeiten</button></div></div>`}
+        <div class="row" style="margin-top:8px"><button class="btn small" onclick="pasteIntoPrint(${jsq(r.id)})">📋 Text einfügen</button><button class="btn small" onclick="editRecipe(${jsq(r.id)})">📷 Screenshot / ✏️ Bearbeiten</button></div></div>`}
       ${r.note ? `<div class="pnote">📝 ${esc(r.note)}</div>` : ''}
       <div class="pfoot">${r.url ? 'Original: ' + esc(r.url) + ' · ' : ''}aus dem bring+-Rezeptbuch · gedruckt am ${new Date().toLocaleDateString('de-DE')}</div>
     </article>
@@ -777,7 +777,7 @@ function parseCaption(text){
     ing = lines.filter(({t}) => t && t.length < 70 && qty.test(t) && !/^\d+[.)]\s/.test(t)).map(({t}) => t);
   }
   const first = lines.find(({t}) => t && !head.test(t) && !/^#/.test(t) && !qty.test(t));
-  const title = first ? first.t.replace(/[\s\p{Extended_Pictographic}\uFE0F\u200d:!.]+$/u, '').slice(0, 80) : '';
+  const title = first ? first.t.replace(/^@?[a-z0-9_]+[._][a-z0-9_.]+\s+/i, '').replace(/[\s\p{Extended_Pictographic}\uFE0F\u200d:!.]+$/u, '').slice(0, 80) : '';
   return {ingredients: [...new Set(ing.map(x => x.replace(/\s+/g, ' ').trim()).filter(x => x.length > 1))],
     steps: steps.join('\n').trim(), servings: servingsM ? +servingsM[1] : 0, title};
 }
@@ -1506,7 +1506,7 @@ function showRecipe(id){
     ${r.desc ? `<p style="margin:0 0 12px">${esc(r.desc)}</p>` : ''}
     ${r.note ? `<div class="banner">📝 ${esc(r.note)}</div>` : ''}
     ${r.ingredients.length ? `<div class="flabel">Zutaten${r.servings ? ' für ' + r.servings : ''}</div><ul class="inglist">${r.ingredients.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>` :
-      /instagram\.com/.test(r.url) ? `<div class="banner">🧾 Noch keine Zutaten – <a href="#" onclick="event.preventDefault();editRecipe(${jsq(r.id)})">Caption einfügen</a>, dann gehen sie per Klick nach Bring.</div>` : ''}
+      /instagram\.com/.test(r.url) ? `<div class="banner">🧾 Noch keine Zutaten – <a href="#" onclick="event.preventDefault();editRecipe(${jsq(r.id)})">Screenshot der Caption einlesen</a>, dann gehen sie per Klick nach Bring.</div>` : ''}
     ${r.steps ? `<details style="margin-bottom:14px"><summary class="flabel" style="cursor:pointer">Zubereitung</summary><div class="steps-text" style="margin-top:8px">${esc(r.steps)}</div></details>` : ''}
     <div class="flabel">Deine Bewertung${me() ? ' (' + esc(me()) + ')' : ''}</div>
     <div class="rate" id="rRate">${[1,2,3,4,5].map(i=>`<button class="${i<=mine?'on':''}" data-s="${i}" aria-label="${i} Sterne">★</button>`).join('')}</div>
@@ -1529,7 +1529,74 @@ function showRecipe(id){
 function cooked(id){ const r = recipeById(id); r.cooked++; r.lastCooked = now(); touch(r); save(); toast('Guten Appetit! 🍽️'); showRecipe(id); viewRecipes(); }
 function delRecipe(id){ const r = recipeById(id); if (!confirm(`„${r.title}“ aus dem Rezeptbuch löschen?`)) return;
   data.recipes = data.recipes.filter(x=>x!==r); tomb('recipe', id); save(); closeSheet(); viewRecipes(); }
+/* Instagram liefert die vollständige Caption oft nur auf der Einbettungsseite (…/embed/captioned/) */
+async function fetchInstaCaption(url){
+  const m = url.match(/instagram\.com\/(?:[\w.]+\/)?(?:p|reel|reels|tv)\/([\w-]+)/); if (!m) throw new Error('kein Instagram-Beitrag');
+  const embed = `https://www.instagram.com/p/${m[1]}/embed/captioned/`;
+  const rule = (n, sel, attr) => `&data.${n}.selector=${encodeURIComponent(sel)}&data.${n}.attr=${attr}`;
+  const r = await fetch(PREVIEW_API + encodeURIComponent(embed) + '&meta=false' + rule('cap', '.Caption', 'html') + rule('img', '.EmbeddedMediaImage', 'src'));
+  if (!r.ok) throw new Error('Caption nicht abrufbar');
+  const j = await r.json(); if (j.status !== 'success') throw new Error('Caption nicht abrufbar');
+  let html = String(j.data?.cap || '');
+  html = html.replace(/<a[^>]*CaptionUsername[^>]*>.*?<\/a>/is, '').replace(/<div[^>]*CaptionComments[^>]*>.*$/is, '')
+    .replace(/<br\s*\/?>/gi, '\n').replace(/<\/(p|div)>/gi, '\n');
+  _tx.innerHTML = html.replace(/<[^>]+>/g, '');
+  const caption = _tx.value.replace(/\n{3,}/g, '\n\n').replace(/(View all|Alle) \d+ (comments|Kommentare)( ansehen)?\s*$/i, '').trim();
+  return {caption, image: j.data?.img || ''};
+}
+/* Texterkennung (OCR) für Screenshots – läuft komplett im Browser, Bild verlässt das Gerät nicht */
+const OCR_LIB = 'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js';
+function loadScript(src){ return new Promise((res, rej) => { if (window.Tesseract) return res();
+  const sc = document.createElement('script'); sc.src = src; sc.onload = res; sc.onerror = () => rej(new Error('Texterkennung konnte nicht geladen werden (Internet?)')); document.head.appendChild(sc); }); }
+function prepForOcr(file){
+  return new Promise((res, rej) => {
+    const img = new Image(), u = URL.createObjectURL(file);
+    img.onload = () => {
+      const k = img.naturalWidth < 1100 ? 2 : 1, c = document.createElement('canvas');
+      c.width = img.naturalWidth * k; c.height = img.naturalHeight * k;
+      const g = c.getContext('2d'); g.imageSmoothingQuality = 'high'; g.drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+      const d = g.getImageData(0, 0, c.width, c.height), a = d.data; let sum = 0;
+      for (let i = 0; i < a.length; i += 4) { const y = .299*a[i] + .587*a[i+1] + .114*a[i+2]; a[i] = a[i+1] = a[i+2] = y; sum += y; }
+      if (sum / (a.length/4) < 110) for (let i = 0; i < a.length; i += 4) a[i] = a[i+1] = a[i+2] = 255 - a[i];   // Dunkelmodus → invertieren
+      g.putImageData(d, 0, 0); res(c);
+    };
+    img.onerror = () => { URL.revokeObjectURL(u); rej(new Error('Bild konnte nicht gelesen werden')); };
+    img.src = u;
+  });
+}
+async function ocrImages(files, onProgress){
+  await loadScript(OCR_LIB);
+  let cur = 0;
+  const worker = await Tesseract.createWorker('deu', 1, {logger: m => { if (m.status === 'recognizing text') onProgress?.(Math.round(((cur + m.progress) / files.length) * 100));
+    else if (/load|initializ/.test(m.status)) onProgress?.(-1); }});
+  const texts = [];
+  try { for (cur = 0; cur < files.length; cur++) { const { data } = await worker.recognize(await prepForOcr(files[cur])); texts.push(data.text); } }
+  finally { await worker.terminate(); }
+  // Instagram-Oberfläche und Überlappungen mehrerer Screenshots entfernen
+  const noise = /^(\d{1,2}[:.]\d{2}\b.*|.*\b(gefällt|likes?|antworten|reply|übersetzung anzeigen|see translation|kommentar hinzufügen|add a comment|alle \d+ kommentare|view all|originalton|original audio|gesponsert|sponsored|folgen|follow|following|abonniert|bearbeitet|edited)\b.*|mehr|more|… ?mehr|vor \d+ \w+|\d+ (std|min|tage?|wochen?)\.?)$/i;
+  const seen = new Set(), out = [];
+  for (const line of texts.join('\n').split('\n')) {
+    let t = line.replace(/^[^\p{L}\p{N}½¼¾⅓#]+/u, '').replace(/^[a-zA-Z]\s(?=\d)/, '').trim();
+    if (!t) { if (out[out.length-1] !== '') out.push(''); continue; }
+    if (noise.test(t) || t.length < 2) continue;
+    const k = t.toLowerCase(); if (seen.has(k)) continue; seen.add(k); out.push(t);
+  }
+  return out.join('\n').trim();
+}
+
 async function fetchPreview(url){
+  if (/instagram\.com/.test(url)) {
+    const [pv, ec] = await Promise.allSettled([fetchPreviewRaw(url), fetchInstaCaption(url)]);
+    const p = pv.status === 'fulfilled' ? pv.value : {title:'', image:'', desc:'', caption:'', insta:true, source:'Instagram'};
+    const e = ec.status === 'fulfilled' ? ec.value : null;
+    if (e && e.caption.length > (p.caption||'').replace(/…$/, '').length) p.caption = e.caption;
+    if (!p.image && e?.image) p.image = e.image;
+    if (pv.status !== 'fulfilled' && !e?.caption) throw new Error('Instagram blockiert den Abruf');
+    return p;
+  }
+  return fetchPreviewRaw(url);
+}
+async function fetchPreviewRaw(url){
   const r = await fetch(PREVIEW_API + encodeURIComponent(url)); if (!r.ok) throw new Error('Vorschau nicht verfügbar');
   const j = await r.json(); if (j.status !== 'success') throw new Error('Vorschau nicht verfügbar');
   const d = j.data || {};
@@ -1560,7 +1627,8 @@ function editRecipe(id, preset = {}){
     <div class="field"><label>Link zum Rezept</label>
       <div class="row"><input id="rUrl" type="url" inputmode="url" placeholder="https://…" value="${esc(v.url)}" style="flex:1">
       <button type="button" class="btn" id="rPaste" title="Aus Zwischenablage einfügen">📋</button></div>
-      <span class="muted" id="rStatus"></span></div>
+      <span class="muted" id="rStatus"></span>
+      <button type="button" class="btn primary" id="rShotTop" hidden style="justify-content:center">📷 Screenshot(s) der Caption wählen</button></div>
     <div class="photoBox" id="rImgBox"></div>
     <div class="field"><label>Überschrift</label><input id="rTitle" value="${esc(v.title)}" placeholder="z. B. Vegane Lasagne"></div>
     <div class="field"><label>Eigenschaften</label><div class="chips txt" id="rFlags">
@@ -1569,9 +1637,12 @@ function editRecipe(id, preset = {}){
     <div class="field"><label>Jahreszeit (keine = ganzjährig)</label><div class="chips txt" id="rSeas">${SEASONS.map(s=>`<button type="button" data-k="${s.id}" class="${v.seasons.includes(s.id)?'on':''}">${s.icon} ${s.name}</button>`).join('')}</div></div>
     <div class="row"><div class="field"><label>Gang</label><select id="rCourse"><option value="">–</option>${COURSES.map(c=>`<option value="${c.id}" ${v.course===c.id?'selected':''}>${c.name}</option>`).join('')}</select></div>
       <div class="field"><label>Zeit (Minuten)</label><input id="rTime" type="number" inputmode="numeric" min="0" step="5" value="${v.time||''}" placeholder="z. B. 45"></div></div>
-    <div class="field"><label>Zutaten – eine pro Zeile <span style="font-weight:500">(für Instagram: ganze Caption hier einfügen)</span></label>
+    <div class="field"><label>Zutaten – eine pro Zeile <span style="font-weight:500">(Instagram: Screenshot lesen oder Caption einfügen)</span></label>
       <textarea id="rIng" rows="5" placeholder="200 g Spaghetti&#10;1 Dose Tomaten&#10;…">${esc(v.ingredients.join('\n'))}</textarea>
-      <div class="row"><button type="button" class="btn grow small" id="rCapPaste">📋 Caption einfügen</button><button type="button" class="btn grow small" id="rCapParse">✨ Zutaten erkennen</button></div></div>
+      <div class="row" style="flex-wrap:wrap"><button type="button" class="btn grow small" id="rShotBtn">📷 Screenshot(s) lesen</button>
+        <button type="button" class="btn grow small" id="rCapPaste">📋 Text einfügen</button><button type="button" class="btn grow small" id="rCapParse">✨ Zutaten erkennen</button></div>
+      <input type="file" id="rShot" accept="image/*" multiple hidden>
+      <span class="muted" id="rOcrStatus" style="font-size:13px"></span></div>
     <div class="row"><div class="field"><label>Portionen</label><input id="rServ" type="number" inputmode="numeric" min="0" value="${v.servings||''}" placeholder="z. B. 4"></div><div class="field"></div></div>
     <details style="margin-bottom:14px" ${v.steps ? '' : ''}><summary class="muted" style="cursor:pointer">Zubereitung (optional)</summary>
       <div class="field" style="margin-top:10px"><textarea id="rSteps" rows="5">${esc(v.steps)}</textarea></div></details>
@@ -1602,12 +1673,12 @@ function editRecipe(id, preset = {}){
         const g = guessTags(url + ' ' + p.title + ' ' + p.desc);
         if (!r) { if (g.vegan) $('#rFlags [data-k=vegan]').classList.add('on'); if (g.veggie) $('#rFlags [data-k=veggie]').classList.add('on');
           g.seasons.forEach(s => $(`#rSeas [data-k=${s}]`).classList.add('on')); if (g.course && !$('#rCourse').value) $('#rCourse').value = g.course; }
-        if (!dup) $('#rStatus').textContent = p.insta ? (p.caption ? '✓ Instagram-Beitrag – Zutaten aus der Caption erkannt, bitte prüfen' : 'Instagram-Beitrag: Caption kopieren und unten bei „Zutaten“ einfügen') : '✓ Vorschau geladen – bitte kurz prüfen';
+        if (!dup) $('#rStatus').textContent = p.insta ? (p.caption ? '✓ Instagram-Beitrag – Zutaten aus der Caption erkannt, bitte prüfen' : 'Instagram gibt die Caption nicht heraus – einfach Screenshot(s) der Caption auswählen, die Zutaten werden ausgelesen:') : '✓ Vorschau geladen – bitte kurz prüfen';
       } catch(e) {
         if (!$('#rTitle').value.trim()) { const g = new URL(url).pathname.split('/').filter(Boolean).pop() || ''; $('#rTitle').value = decodeURIComponent(g).replace(/[-_]+/g,' ').replace(/\.\w+$/,'').replace(/^\w/, c=>c.toUpperCase()); }
         const g = guessTags(url); if (!r && g.vegan) { $('#rFlags [data-k=vegan]').classList.add('on'); $('#rFlags [data-k=veggie]').classList.add('on'); }
         if (/instagram\.com/.test(url)) { v.source = 'Instagram'; $('#rTitle').value = r ? $('#rTitle').value : ''; }
-        if (!dup) $('#rStatus').textContent = /instagram\.com/.test(url) ? 'Instagram-Beitrag: Caption kopieren und unten bei „Zutaten“ einfügen – Überschrift wird daraus vorgeschlagen.' : 'Keine automatische Vorschau – Überschrift bitte selbst eintragen, Bild optional.';
+        if (!dup) $('#rStatus').textContent = /instagram\.com/.test(url) ? 'Instagram gibt die Caption nicht heraus – einfach Screenshot(s) der Caption auswählen, die Zutaten werden ausgelesen:' : 'Keine automatische Vorschau – Überschrift bitte selbst eintragen, Bild optional.';
       }
     };
     const applyParse = quiet => {
@@ -1624,6 +1695,26 @@ function editRecipe(id, preset = {}){
       if (!quiet) toast(c.ingredients.length + ' Zutaten erkannt – bitte kurz prüfen');
     };
     $('#rCapParse').onclick = () => applyParse(false);
+    $('#rShotBtn').onclick = () => $('#rShot').click();
+    $('#rShotTop').onclick = () => $('#rShot').click();
+    new MutationObserver(() => { const t = $('#rStatus')?.textContent || ''; if ($('#rShotTop')) $('#rShotTop').hidden = !/Screenshot\(s\) der Caption/.test(t); }).observe($('#rStatus'), {childList:true, characterData:true, subtree:true});
+    $('#rShot').onchange = async e => {
+      const files = [...e.target.files]; e.target.value = ''; if (!files.length) return;
+      const st = $('#rOcrStatus'), btn = $('#rShotBtn'); btn.disabled = true;
+      st.textContent = '⏳ Texterkennung wird geladen … (beim ersten Mal einige Sekunden)';
+      try {
+        const text = await ocrImages(files, pct => { st.textContent = pct < 0 ? '⏳ Texterkennung wird vorbereitet …' : `⏳ Lese ${files.length > 1 ? files.length + ' Screenshots' : 'Screenshot'} … ${pct} %`; });
+        if (!text) throw new Error('Kein Text erkannt');
+        const before = $('#rIng').value.trim();
+        $('#rIng').value = (before && !confirm('Vorhandene Zutaten durch den erkannten Text ersetzen?\n(Abbrechen = anhängen)') ? before + '\n' : '') + text;
+        st.textContent = '✓ Text erkannt – Zutaten bitte kurz prüfen (Texterkennung kann sich vertun)';
+        $('#rStatus').textContent = '✓ Zutaten aus dem Screenshot übernommen'; $('#rIng').scrollIntoView({block:'center', behavior:'smooth'});
+        applyParse(true);
+        if (!parseCaption(text).ingredients.length) st.textContent = 'Text erkannt, aber keine Zutatenliste gefunden – bitte im Feld oben nachbessern.';
+        if (!img && files[0] && /instagram/.test($('#rUrl').value)) { /* Bild bleibt leer – eigenes Foto empfohlen */ }
+      } catch(err) { st.textContent = '⚠️ ' + err.message; }
+      finally { btn.disabled = false; }
+    };
     $('#rIng').onpaste = () => setTimeout(() => { const t = $('#rIng').value; if (t.split('\n').length > 3 && /zutaten|ingredients|#|\p{Extended_Pictographic}/iu.test(t)) applyParse(false); }, 50);
     $('#rCapPaste').onclick = async () => { try { const t = await navigator.clipboard.readText(); if (!t.trim()) return toast('Zwischenablage ist leer');
       const u = (t.match(/https?:\/\/\S+/)||[])[0]; if (u && t.trim() === u) { $('#rUrl').value = u; return load(); }

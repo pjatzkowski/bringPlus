@@ -56,8 +56,9 @@ Eigene Packlisten: ＋ Neue Liste → Art „🧳 Packliste“.
   ★ 4+, noch nie gekocht, Gang. Sortierung nach Bewertung, neu, A–Z, häufig gekocht, Zeit.
 - **🛒 Zutaten in Bring** übergibt das Rezept direkt an Bring (klappt bei den meisten Rezeptseiten).
 - **✅ Heute gekocht** zählt mit.
-- **Instagram-Rezepte:** Link einfügen – bring+ versucht die Caption automatisch zu lesen. Klappt das nicht:
-  Caption kopieren, ins Feld „Zutaten“ einfügen, **✨ Zutaten erkennen**. Zutaten, Portionen, Zubereitung und
+- **Instagram-Rezepte:** Link einfügen – bring+ versucht die Caption automatisch über den Link zu lesen.
+  Klappt das nicht: **📷 Screenshot(s) der Caption wählen** (auch mehrere, wenn die Caption lang ist).
+  Die Texterkennung läuft im Browser auf dem Gerät; beim ersten Mal lädt sie einmalig ein Sprachpaket (einige MB). Zutaten, Portionen, Zubereitung und
   Überschrift werden erkannt (bitte kurz prüfen). „🛒 Zutaten in Bring“ funktioniert danach wie bei Webseiten.
   Instagram-Bilder verschwinden nach einiger Zeit – am besten einen Screenshot als eigenes Foto hinterlegen.
 - **Android:** im Browser „Teilen → bring+“ legt ein Rezept direkt an.

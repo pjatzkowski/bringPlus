@@ -1,5 +1,5 @@
 // bring+ – einfacher Offline-Cache: erst Netz, sonst Cache
-const CACHE = 'bringplus-v6';
+const CACHE = 'bringplus-v7';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
