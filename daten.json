@@ -1274,7 +1274,15 @@
    "excludes": [],
    "id": "test3",
    "includes": [],
-   "items": [],
+   "items": [
+    {
+     "cat": "kuehl",
+     "id": "wcp98xx",
+     "name": "Liebe",
+     "spec": "",
+     "u": 1795273816807
+    }
+   ],
    "kind": "list",
    "name": "Test3",
    "u": 1795273804948
@@ -1356,6 +1364,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795273807772,
+ "updatedAt": 1795273819652,
  "version": 2
 }
