@@ -1273,7 +1273,15 @@
    "excludes": [],
    "id": "testliste",
    "includes": [],
-   "items": [],
+   "items": [
+    {
+     "cat": "kuehl",
+     "id": "84elj8s",
+     "name": "Möhren",
+     "spec": "",
+     "u": 1795273577491
+    }
+   ],
    "kind": "list",
    "name": "Testliste",
    "u": 1795273564871
@@ -1355,6 +1363,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795273567654,
+ "updatedAt": 1795273580548,
  "version": 2
 }
