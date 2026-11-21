@@ -106,6 +106,7 @@
   "item:y8ps5g3": 1794068104272,
   "item:yng8htr": 1794068104272,
   "item:zb7drdz": 1794068104272,
+  "list:test3": 1795273840986,
   "list:testliste": 1795273601323
  },
  "listOrderU": 1795273804948,
@@ -1268,24 +1269,6 @@
    "kind": "pack",
    "name": "Dienstreise",
    "u": 1795219200000
-  },
-  {
-   "emoji": "🛒",
-   "excludes": [],
-   "id": "test3",
-   "includes": [],
-   "items": [
-    {
-     "cat": "kuehl",
-     "id": "wcp98xx",
-     "name": "Liebe",
-     "spec": "",
-     "u": 1795273816807
-    }
-   ],
-   "kind": "list",
-   "name": "Test3",
-   "u": 1795273804948
   }
  ],
  "recipes": [
@@ -1364,6 +1347,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795273835557,
+ "updatedAt": 1795273842999,
  "version": 2
 }
