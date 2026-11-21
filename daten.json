@@ -108,7 +108,7 @@
   "item:zb7drdz": 1794068104272,
   "list:testliste": 1795273601323
  },
- "listOrderU": 1795273564871,
+ "listOrderU": 1795273804948,
  "lists": [
   {
    "emoji": "🧺",
@@ -1268,6 +1268,16 @@
    "kind": "pack",
    "name": "Dienstreise",
    "u": 1795219200000
+  },
+  {
+   "emoji": "🛒",
+   "excludes": [],
+   "id": "test3",
+   "includes": [],
+   "items": [],
+   "kind": "list",
+   "name": "Test3",
+   "u": 1795273804948
   }
  ],
  "recipes": [
@@ -1346,6 +1356,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795273794278,
+ "updatedAt": 1795273807772,
  "version": 2
 }
