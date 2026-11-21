@@ -1345,8 +1345,47 @@
    "url": "https://www.instagram.com/reel/DQUri0SEza7/?gwpx=emU0OWJhd3BldHJs",
    "vegan": false,
    "veggie": false
+  },
+  {
+   "added": 1795277885404,
+   "cooked": 0,
+   "course": "salat",
+   "desc": "",
+   "id": "rezept-24100-big-mac-nudelsala-wd90",
+   "image": "fotos/r-rezept-24100-big-mac-nudelsala-wd90.jpg",
+   "ingredients": [
+    "2 Packungen Veganes Hack (ins. 360g)",
+    "1 TL Olivenöl",
+    "1 Zwiebel",
+    "1/2 TL Paprikapulver, edelsüß",
+    "1/2 TL Knoblauchpulver",
+    "300 g Nudeln",
+    "200 g Gewürzgurken",
+    "1 Eisbergsalat",
+    "250 g Kirschtomaten",
+    "400 g Seidentofu",
+    "2 EL Senf",
+    "80 ml Gewürzgurkenwasser",
+    "5 EL Ketchup",
+    "3/4 TL Salz",
+    "Etwas Chiliöl"
+   ],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [],
+   "servings": 3,
+   "source": "Instagram · @Tobias Seitle",
+   "steps": "Nudeln nach Packungsanleitung zubereiten. Anschließend Zwiebel würfeln und zusammen mit dem Hack in einer Pfanne mit dem Olivenöl anbraten und mit Paprika- und Knoblauchpulver würzen. Währenddessen Eiserbergsalat und Tomaten und Gewürzgurken klein schneiden. Für die Sauce alle Zutaten miteinander vermengen. Alle Zutaten in eine große Schüssel geben und miteinander vermengen.\nNährwerte pro Portion (insgesamt sind es 3 Portionen):\n659 kcal\n46 g Protein\n87 g Kohlenhydrate\n14 g Ballaststoffe\n11 g Fett",
+   "time": 0,
+   "title": "Rezept 24/100 - „Big Mac“ Nudelsalat",
+   "u": 1795277889598,
+   "url": "https://www.instagram.com/reel/DZC_bStNvFk/?cnvx=ZGd0MXhpaTdwbGE3",
+   "vegan": true,
+   "veggie": true
   }
  ],
- "updatedAt": 1795274540184,
+ "updatedAt": 1795277889879,
  "version": 2
 }
