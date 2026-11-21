@@ -105,7 +105,8 @@
   "item:xv3vy7n": 1794068104272,
   "item:y8ps5g3": 1794068104272,
   "item:yng8htr": 1794068104272,
-  "item:zb7drdz": 1794068104272
+  "item:zb7drdz": 1794068104272,
+  "list:testliste": 1795273601323
  },
  "listOrderU": 1795273564871,
  "lists": [
@@ -1267,24 +1268,6 @@
    "kind": "pack",
    "name": "Dienstreise",
    "u": 1795219200000
-  },
-  {
-   "emoji": "🛒",
-   "excludes": [],
-   "id": "testliste",
-   "includes": [],
-   "items": [
-    {
-     "cat": "kuehl",
-     "id": "84elj8s",
-     "name": "Möhren",
-     "spec": "",
-     "u": 1795273577491
-    }
-   ],
-   "kind": "list",
-   "name": "Testliste",
-   "u": 1795273564871
   }
  ],
  "recipes": [
@@ -1363,6 +1346,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795273591020,
+ "updatedAt": 1795273604179,
  "version": 2
 }
