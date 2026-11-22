@@ -102,16 +102,24 @@
  "deleted": {
   "item:08sv55w": 1794068104272,
   "item:0dlopmn": 1794068104272,
+  "item:1by1ygg": 1795374312303,
+  "item:3bn5qit": 1795374312303,
+  "item:3snnoxx": 1795374312303,
   "item:3zn31nd": 1794068104272,
+  "item:4n0vs5e": 1795374312303,
   "item:7sb0i1d": 1794068104272,
   "item:a4qc7eg": 1794068104272,
+  "item:a7ly1jq": 1795374312303,
   "item:b17ikd9": 1794068104272,
+  "item:bck9zqd": 1795374312303,
+  "item:c9b7m3k": 1795374312303,
   "item:eohwcos": 1794068104272,
   "item:glus9rl": 1794068104272,
   "item:gnyhjw3": 1794068104272,
   "item:hhawuri": 1794068104272,
   "item:hmp8e7z": 1794068104272,
   "item:hwphimb": 1794068104272,
+  "item:i9sjk9r": 1795374312303,
   "item:if8gs10": 1794068104272,
   "item:kc8q7wi": 1794068104272,
   "item:kw5y2xd": 1794068104272,
@@ -120,6 +128,8 @@
   "item:rj7516s": 1794068104272,
   "item:ss0lj49": 1794068104272,
   "item:t426dcv": 1794068104272,
+  "item:x3u5ffw": 1795374312303,
+  "item:xoomof5": 1795374312303,
   "item:xv3vy7n": 1794068104272,
   "item:y8ps5g3": 1794068104272,
   "item:yng8htr": 1794068104272,
@@ -1294,88 +1304,7 @@
    "excludes": [],
    "id": "einkaufszettel",
    "includes": [],
-   "items": [
-    {
-     "cat": "haushalt",
-     "done": 1795374301018,
-     "id": "a7ly1jq",
-     "name": "Müllbeutel",
-     "spec": "25 und 35 Liter",
-     "u": 1795374301018
-    },
-    {
-     "cat": "aufschnitt",
-     "done": 1795374304768,
-     "id": "bck9zqd",
-     "name": "Schinken Spicker",
-     "spec": "vegan",
-     "u": 1795374304768
-    },
-    {
-     "cat": "haushalt",
-     "done": 1795374300500,
-     "id": "i9sjk9r",
-     "name": "Shampoo",
-     "spec": "",
-     "u": 1795374300500
-    },
-    {
-     "cat": "kuehl",
-     "done": 1795374307034,
-     "id": "3snnoxx",
-     "name": "Ofenkäse",
-     "spec": "",
-     "u": 1795374307034
-    },
-    {
-     "cat": "obst",
-     "done": 1795374297086,
-     "id": "c9b7m3k",
-     "name": "Salat",
-     "spec": "",
-     "u": 1795374297086
-    },
-    {
-     "cat": "frueh",
-     "done": 1795374303869,
-     "id": "x3u5ffw",
-     "name": "Müsli",
-     "spec": "",
-     "u": 1795374303869
-    },
-    {
-     "cat": "vorrat",
-     "done": 1795374302529,
-     "id": "4n0vs5e",
-     "name": "Kaffee",
-     "spec": "Bohnen",
-     "u": 1795374302529
-    },
-    {
-     "cat": "haushalt",
-     "done": 1795374299901,
-     "id": "1by1ygg",
-     "name": "Toilettenpapier",
-     "spec": "",
-     "u": 1795374299901
-    },
-    {
-     "cat": "kuehl",
-     "done": 1795374306468,
-     "id": "3bn5qit",
-     "name": "Butter",
-     "spec": "vegan",
-     "u": 1795374306468
-    },
-    {
-     "cat": "getraenk",
-     "done": 1795374301915,
-     "id": "xoomof5",
-     "name": "Nüsse",
-     "spec": "Nussmix",
-     "u": 1795374301915
-    }
-   ],
+   "items": [],
    "kind": "cart",
    "name": "Einkaufszettel",
    "u": 1795305600000
@@ -2164,6 +2093,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795374309418,
+ "updatedAt": 1795374312534,
  "version": 2
 }
