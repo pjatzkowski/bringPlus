@@ -2120,7 +2120,7 @@
   {
    "added": 1795374557563,
    "cooked": 0,
-   "course": "",
+   "course": "snack",
    "desc": "",
    "id": "chefkochde-w9hi",
    "image": "fotos/r-chefkochde-w9hi.jpg",
@@ -2135,12 +2135,12 @@
    "steps": "",
    "time": 0,
    "title": "Rote Beete Carpaccio",
-   "u": 1795374646723,
+   "u": 1795374703624,
    "url": "https://www.chefkoch.de/rezepte/2229471357211459/Rote-Bete-Carpaccio.html",
-   "vegan": false,
-   "veggie": false
+   "vegan": true,
+   "veggie": true
   }
  ],
- "updatedAt": 1795374647036,
+ "updatedAt": 1795374706520,
  "version": 2
 }
