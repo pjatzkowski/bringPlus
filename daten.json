@@ -2116,8 +2116,31 @@
    "url": "https://www.chefkoch.de/rezepte/955491201155012/Hokkaido-Kuerbissuppe.html",
    "vegan": false,
    "veggie": true
+  },
+  {
+   "added": 1795374557563,
+   "cooked": 0,
+   "course": "",
+   "desc": "",
+   "id": "chefkochde-w9hi",
+   "image": "",
+   "ingredients": [],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [],
+   "servings": 0,
+   "source": "chefkoch.de",
+   "steps": "",
+   "time": 0,
+   "title": "chefkoch.de",
+   "u": 1795374557563,
+   "url": "https://www.chefkoch.de/rezepte/2229471357211459/Rote-Bete-Carpaccio.html",
+   "vegan": false,
+   "veggie": false
   }
  ],
- "updatedAt": 1795374470358,
+ "updatedAt": 1795374560335,
  "version": 2
 }
