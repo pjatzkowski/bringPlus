@@ -2091,8 +2091,33 @@
    "url": "https://www.instagram.com/reel/DQUri0SEza7/?gwpx=emU0OWJhd3BldHJs",
    "vegan": false,
    "veggie": false
+  },
+  {
+   "added": 1795374467444,
+   "cooked": 0,
+   "course": "suppe",
+   "desc": "Hokkaido-Kürbissuppe - einfach und vegetarisch. Über 795 Bewertungen und für sehr gut befunden. Mit ► Portionsrechner ► Kochbuch ► Video-Tipps!",
+   "id": "hokkaido-kuerbissuppe-schnell--2nsa",
+   "image": "https://img.chefkoch-cdn.de/rezepte/955491201155012/bilder/1609469/crop-960x540/hokkaido-kuerbissuppe.jpg",
+   "ingredients": [],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [
+    "herbst"
+   ],
+   "servings": 0,
+   "source": "Chefkoch",
+   "steps": "",
+   "time": 0,
+   "title": "Hokkaido-Kürbissuppe - schnell & einfach",
+   "u": 1795374467444,
+   "url": "https://www.chefkoch.de/rezepte/955491201155012/Hokkaido-Kuerbissuppe.html",
+   "vegan": false,
+   "veggie": true
   }
  ],
- "updatedAt": 1795374312534,
+ "updatedAt": 1795374470358,
  "version": 2
 }
