@@ -1294,7 +1294,78 @@
    "excludes": [],
    "id": "einkaufszettel",
    "includes": [],
-   "items": [],
+   "items": [
+    {
+     "cat": "haushalt",
+     "id": "a7ly1jq",
+     "name": "Müllbeutel",
+     "spec": "25 und 35 Liter",
+     "u": 1795374293635
+    },
+    {
+     "cat": "aufschnitt",
+     "id": "bck9zqd",
+     "name": "Schinken Spicker",
+     "spec": "vegan",
+     "u": 1795374293635
+    },
+    {
+     "cat": "haushalt",
+     "id": "i9sjk9r",
+     "name": "Shampoo",
+     "spec": "",
+     "u": 1795374293635
+    },
+    {
+     "cat": "kuehl",
+     "id": "3snnoxx",
+     "name": "Ofenkäse",
+     "spec": "",
+     "u": 1795374293635
+    },
+    {
+     "cat": "obst",
+     "id": "c9b7m3k",
+     "name": "Salat",
+     "spec": "",
+     "u": 1795374293635
+    },
+    {
+     "cat": "frueh",
+     "id": "x3u5ffw",
+     "name": "Müsli",
+     "spec": "",
+     "u": 1795374293635
+    },
+    {
+     "cat": "vorrat",
+     "id": "4n0vs5e",
+     "name": "Kaffee",
+     "spec": "Bohnen",
+     "u": 1795374293635
+    },
+    {
+     "cat": "haushalt",
+     "id": "1by1ygg",
+     "name": "Toilettenpapier",
+     "spec": "",
+     "u": 1795374293635
+    },
+    {
+     "cat": "kuehl",
+     "id": "3bn5qit",
+     "name": "Butter",
+     "spec": "vegan",
+     "u": 1795374293635
+    },
+    {
+     "cat": "getraenk",
+     "id": "xoomof5",
+     "name": "Nüsse",
+     "spec": "Nussmix",
+     "u": 1795374293635
+    }
+   ],
    "kind": "cart",
    "name": "Einkaufszettel",
    "u": 1795305600000
@@ -2083,6 +2154,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795372376898,
+ "updatedAt": 1795374296469,
  "version": 2
 }
