@@ -1,1406 +1,676 @@
 {
  "app": "bring+",
- "catOrderU": 1794068104272,
+ "version": 2,
+ "updatedAt": 1794068104272,
  "categories": [
   {
-   "icon": "🍎",
    "id": "obst",
    "name": "Obst & Gemüse",
+   "icon": "🍎",
    "u": 1794068104272
   },
   {
-   "icon": "🥛",
    "id": "kuehl",
    "name": "Milchprodukte",
+   "icon": "🥛",
    "u": 1794068104272
   },
   {
-   "icon": "🥓",
    "id": "aufschnitt",
    "name": "Aufschnitt & Fleischersatz",
+   "icon": "🥓",
    "u": 1794068104272
   },
   {
-   "icon": "🥣",
    "id": "frueh",
    "name": "Frühstück & Brot",
+   "icon": "🥣",
    "u": 1794068104272
   },
   {
-   "icon": "🍝",
    "id": "vorrat",
    "name": "Vorrat",
+   "icon": "🍝",
    "u": 1794068104272
   },
   {
-   "icon": "🥶",
    "id": "tiefkuehl-u9u",
    "name": "Tiefkühl",
+   "icon": "🥶",
    "u": 1794068104272
   },
   {
-   "icon": "🧃",
    "id": "getraenk",
    "name": "Getränke & Snacks",
+   "icon": "🧃",
    "u": 1794068104272
   },
   {
-   "icon": "🧻",
    "id": "haushalt",
    "name": "Haushalt & Drogerie",
+   "icon": "🧻",
    "u": 1794068104272
   },
   {
-   "icon": "⛺",
    "id": "camping",
    "name": "Camping & Unterwegs",
+   "icon": "⛺",
    "u": 1794068104272
-  },
-  {
-   "icon": "🪥",
-   "id": "kultur",
-   "name": "Kulturbeutel",
-   "u": 1795219200000
-  },
-  {
-   "icon": "👔",
-   "id": "kleidung",
-   "name": "Kleidung",
-   "u": 1795219200000
-  },
-  {
-   "icon": "🔌",
-   "id": "technik",
-   "name": "Technik",
-   "u": 1795219200000
-  },
-  {
-   "icon": "🪪",
-   "id": "dokumente",
-   "name": "Dokumente & Geld",
-   "u": 1795219200000
   }
  ],
- "deleted": {
-  "item:08sv55w": 1794068104272,
-  "item:0dlopmn": 1794068104272,
-  "item:3zn31nd": 1794068104272,
-  "item:7sb0i1d": 1794068104272,
-  "item:a4qc7eg": 1794068104272,
-  "item:b17ikd9": 1794068104272,
-  "item:eohwcos": 1794068104272,
-  "item:glus9rl": 1794068104272,
-  "item:gnyhjw3": 1794068104272,
-  "item:hhawuri": 1794068104272,
-  "item:hmp8e7z": 1794068104272,
-  "item:hwphimb": 1794068104272,
-  "item:if8gs10": 1794068104272,
-  "item:kc8q7wi": 1794068104272,
-  "item:kw5y2xd": 1794068104272,
-  "item:l1y5qs2": 1794068104272,
-  "item:m9b8apt": 1794068104272,
-  "item:rj7516s": 1794068104272,
-  "item:ss0lj49": 1794068104272,
-  "item:t426dcv": 1794068104272,
-  "item:xv3vy7n": 1794068104272,
-  "item:y8ps5g3": 1794068104272,
-  "item:yng8htr": 1794068104272,
-  "item:zb7drdz": 1794068104272,
-  "list:test3": 1795273840986,
-  "list:testliste": 1795273601323,
-  "recipe:instagramcom-7d4t": 1795277956078
- },
- "listOrderU": 1795273804948,
  "lists": [
   {
-   "emoji": "🧺",
-   "excludes": [],
    "id": "woche-basis",
+   "name": "Wocheneinkauf (Basis)",
+   "emoji": "🧺",
+   "kind": "base",
    "includes": [],
+   "excludes": [],
+   "u": 1794068104272,
    "items": [
     {
-     "cat": "obst",
      "id": "mpd0wwz",
      "name": "Tomätchen",
      "spec": "",
+     "cat": "obst",
      "u": 1794068104272
     },
     {
-     "cat": "obst",
      "id": "txz0wkp",
      "name": "Äpfel",
      "spec": "Elstar oder Pink Lady",
+     "cat": "obst",
      "u": 1794068104272
     },
     {
-     "cat": "kuehl",
      "id": "1vkuze6",
      "name": "Hafermilch",
      "spec": "Oatly",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "kuehl",
      "id": "kxn643y",
      "name": "Butter",
      "spec": "vegan",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "kuehl",
      "id": "gw4z3l0",
      "name": "Käse",
      "spec": "Gouda",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "frueh",
      "id": "5uc15jt",
      "name": "Müsli",
      "spec": "",
+     "cat": "frueh",
      "u": 1794068104272
     },
     {
-     "cat": "frueh",
      "id": "9ypy5sg",
      "name": "Aufbackbrötchen",
      "spec": "",
+     "cat": "frueh",
      "u": 1794068104272
     },
     {
-     "cat": "vorrat",
      "id": "oer4xdh",
      "name": "Gewürzgurken",
      "spec": "",
+     "cat": "vorrat",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "3maoas6",
      "name": "Nüsse",
      "spec": "Nussmix",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "cmnnn6q",
      "name": "Maiswaffeln",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "y9hrv9r",
      "name": "Sprudel",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "dw9zpvf",
      "name": "Toilettenpapier",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     }
-   ],
-   "kind": "base",
-   "name": "Wocheneinkauf (Basis)",
-   "u": 1794068104272
+   ]
   },
   {
-   "emoji": "👨‍👩‍👧",
-   "excludes": [],
    "id": "woche-mit-kindern",
+   "name": "Woche mit Kindern",
+   "emoji": "👨‍👩‍👧",
+   "kind": "list",
    "includes": [
     "woche-basis"
    ],
+   "excludes": [],
+   "u": 1794068104272,
    "items": [
     {
-     "cat": "kuehl",
      "id": "8jeb59r",
      "name": "Milch",
      "spec": "normal",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "kuehl",
      "id": "ppwq35m",
      "name": "Joghurt",
      "spec": "vegan, Vanille (Alpro)",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "kuehl",
      "id": "fxlnmbq",
      "name": "Käse",
      "spec": "vegan",
-     "u": 1794068104272
-    },
-    {
-     "cat": "frueh",
-     "id": "9jel4vf",
-     "name": "Toastbrot",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
      "cat": "kuehl",
+     "u": 1794068104272
+    },
+    {
      "id": "2r9znah",
      "name": "Käse",
      "spec": "Leerdammer",
-     "u": 1794068104272
-    },
-    {
-     "cat": "obst",
-     "id": "h2kcsci",
-     "name": "Möhren",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "vorrat",
-     "id": "sme14cg",
-     "name": "Schwarze Bohnen",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "vorrat",
-     "id": "i12zp6s",
-     "name": "Kichererbsen",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "vorrat",
-     "id": "vepm72v",
-     "name": "Tomatensuppe",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "obst",
-     "id": "9oy9at6",
-     "name": "Kiwi",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
      "cat": "kuehl",
+     "u": 1794068104272
+    },
+    {
      "id": "bc9kwlh",
      "name": "Käse",
      "spec": "zarte Scheiben",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
-     "id": "oe80dih",
-     "name": "Orangensaft",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "getraenk",
-     "id": "y44fhsn",
-     "name": "Apfelsaft",
-     "spec": "naturtrüb",
-     "u": 1794068104272
-    },
-    {
-     "cat": "vorrat",
-     "id": "jptm1b6",
-     "name": "Chili sin Carne",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "tiefkuehl-u9u",
-     "id": "bqo6um0",
-     "name": "Laugenstangen",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "tiefkuehl-u9u",
-     "id": "2kpv5mj",
-     "name": "Pizza",
-     "spec": "vegan",
-     "u": 1794068104272
-    },
-    {
-     "cat": "vorrat",
-     "id": "ikyf74n",
-     "name": "Tomatenmark",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "tiefkuehl-u9u",
-     "id": "4s3j2x6",
-     "name": "Piccolinis",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "tiefkuehl-u9u",
-     "id": "0jta1rq",
-     "name": "Pommes",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "aufschnitt",
      "id": "8tx10bl",
      "name": "Salami",
      "spec": "",
+     "cat": "aufschnitt",
      "u": 1794068104272
     },
     {
-     "cat": "aufschnitt",
      "id": "smdy0b0",
      "name": "Frikadellen",
      "spec": "vegan",
+     "cat": "aufschnitt",
      "u": 1794068104272
     },
     {
-     "cat": "obst",
-     "id": "w3q6uv7",
-     "name": "Tomätchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "omzb9n9",
-     "name": "Äpfel",
-     "spec": "Elstar oder Pink Lady",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "6q3epzy",
-     "name": "Bananen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "5tb2ybx",
-     "name": "Gurke",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "8edxgnp",
-     "name": "Milch",
-     "spec": "normal",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "yp6npz6",
-     "name": "Hafermilch",
-     "spec": "Oatly",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "eby3xyu",
-     "name": "Joghurt",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "p7met5w",
-     "name": "Käse",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "2zlp51e",
-     "name": "Müsli",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "y16ne0d",
+     "id": "9jel4vf",
      "name": "Toastbrot",
      "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "50dfwim",
-     "name": "Toilettenpapier",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "je65ne1",
-     "name": "Tomätchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "2r7548s",
-     "name": "Äpfel",
-     "spec": "Elstar oder Pink Lady",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "zuepaes",
-     "name": "Bananen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "b6gw1no",
-     "name": "Gurke",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "mo8etov",
-     "name": "Milch",
-     "spec": "normal",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "lpkyqh9",
-     "name": "Hafermilch",
-     "spec": "Oatly",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "9vqb4jr",
-     "name": "Joghurt",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "apntyq8",
-     "name": "Käse",
-     "spec": "",
-     "u": 1
-    },
-    {
      "cat": "frueh",
-     "id": "sx615k6",
-     "name": "Müsli",
-     "spec": "",
-     "u": 1
+     "u": 1794068104272
     },
     {
-     "cat": "frueh",
-     "id": "q4p2snf",
-     "name": "Toastbrot",
+     "id": "h2kcsci",
+     "name": "Möhren",
      "spec": "",
-     "u": 1
+     "cat": "obst",
+     "u": 1794068104272
     },
     {
-     "cat": "haushalt",
-     "id": "6eywha7",
-     "name": "Toilettenpapier",
+     "id": "9oy9at6",
+     "name": "Kiwi",
      "spec": "",
-     "u": 1
+     "cat": "obst",
+     "u": 1794068104272
+    },
+    {
+     "id": "sme14cg",
+     "name": "Schwarze Bohnen",
+     "spec": "",
+     "cat": "vorrat",
+     "u": 1794068104272
+    },
+    {
+     "id": "i12zp6s",
+     "name": "Kichererbsen",
+     "spec": "",
+     "cat": "vorrat",
+     "u": 1794068104272
+    },
+    {
+     "id": "vepm72v",
+     "name": "Tomatensuppe",
+     "spec": "",
+     "cat": "vorrat",
+     "u": 1794068104272
+    },
+    {
+     "id": "ikyf74n",
+     "name": "Tomatenmark",
+     "spec": "",
+     "cat": "vorrat",
+     "u": 1794068104272
+    },
+    {
+     "id": "jptm1b6",
+     "name": "Chili sin Carne",
+     "spec": "",
+     "cat": "vorrat",
+     "u": 1794068104272
+    },
+    {
+     "id": "bqo6um0",
+     "name": "Laugenstangen",
+     "spec": "",
+     "cat": "tiefkuehl-u9u",
+     "u": 1794068104272
+    },
+    {
+     "id": "2kpv5mj",
+     "name": "Pizza",
+     "spec": "vegan",
+     "cat": "tiefkuehl-u9u",
+     "u": 1794068104272
+    },
+    {
+     "id": "4s3j2x6",
+     "name": "Piccolinis",
+     "spec": "",
+     "cat": "tiefkuehl-u9u",
+     "u": 1794068104272
+    },
+    {
+     "id": "0jta1rq",
+     "name": "Pommes",
+     "spec": "",
+     "cat": "tiefkuehl-u9u",
+     "u": 1794068104272
+    },
+    {
+     "id": "oe80dih",
+     "name": "Orangensaft",
+     "spec": "",
+     "cat": "getraenk",
+     "u": 1794068104272
+    },
+    {
+     "id": "y44fhsn",
+     "name": "Apfelsaft",
+     "spec": "naturtrüb",
+     "cat": "getraenk",
+     "u": 1794068104272
     }
-   ],
-   "kind": "list",
-   "name": "Woche mit Kindern",
-   "u": 1794068104272
+   ]
   },
   {
-   "emoji": "🥂",
-   "excludes": [],
    "id": "woche-ohne-kinder",
+   "name": "Woche ohne Kinder",
+   "emoji": "🥂",
+   "kind": "list",
    "includes": [
     "woche-basis"
    ],
+   "excludes": [],
+   "u": 1794068104272,
    "items": [
     {
-     "cat": "frueh",
      "id": "p0pfyoe",
      "name": "Brot",
      "spec": "Vollkorn",
+     "cat": "frueh",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
-     "id": "8mz68bz",
-     "name": "Müllbeutel",
-     "spec": "25 und 35 Liter",
-     "u": 1794068104272
-    },
-    {
-     "cat": "aufschnitt",
      "id": "weagf3d",
      "name": "Schinken Spicker",
      "spec": "vegan",
+     "cat": "aufschnitt",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
-     "id": "iiesb8z",
-     "name": "Shampoo",
-     "spec": "",
-     "u": 1794068104272
-    },
-    {
-     "cat": "kuehl",
      "id": "tchj6n3",
      "name": "Ofenkäse",
      "spec": "",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "obst",
-     "id": "oqs6wzl",
-     "name": "Tomätchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "te8wvim",
-     "name": "Äpfel",
-     "spec": "Elstar oder Pink Lady",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "sqepvpt",
-     "name": "Salat",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "jrrumyu",
-     "name": "Hafermilch",
-     "spec": "Oatly",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "3fvysyk",
-     "name": "Müsli",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "nb3siq7",
-     "name": "Brot",
-     "spec": "Vollkorn",
-     "u": 1
-    },
-    {
-     "cat": "vorrat",
-     "id": "zap6gou",
-     "name": "Kaffee",
-     "spec": "Bohnen",
-     "u": 1
-    },
-    {
+     "id": "8mz68bz",
+     "name": "Müllbeutel",
+     "spec": "25 und 35 Liter",
      "cat": "haushalt",
-     "id": "guic7ws",
-     "name": "Toilettenpapier",
+     "u": 1794068104272
+    },
+    {
+     "id": "iiesb8z",
+     "name": "Shampoo",
      "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "7nt7u0z",
-     "name": "Tomätchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "eece8cs",
-     "name": "Äpfel",
-     "spec": "Elstar oder Pink Lady",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "klnyd9k",
-     "name": "Salat",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "01v8w8l",
-     "name": "Hafermilch",
-     "spec": "Oatly",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "62bygs6",
-     "name": "Müsli",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "cizbl3n",
-     "name": "Brot",
-     "spec": "Vollkorn",
-     "u": 1
-    },
-    {
-     "cat": "vorrat",
-     "id": "rld6q7c",
-     "name": "Kaffee",
-     "spec": "Bohnen",
-     "u": 1
-    },
-    {
      "cat": "haushalt",
-     "id": "jn579gt",
-     "name": "Toilettenpapier",
-     "spec": "",
-     "u": 1
+     "u": 1794068104272
     }
-   ],
-   "kind": "list",
-   "name": "Woche ohne Kinder",
-   "u": 1794068104272
+   ]
   },
   {
-   "emoji": "🚗",
-   "excludes": [],
    "id": "lange-fahrt",
+   "name": "Lange Fahrt",
+   "emoji": "🚗",
+   "kind": "list",
    "includes": [],
+   "excludes": [],
+   "u": 1794068104272,
    "items": [
     {
-     "cat": "obst",
      "id": "kdt5ol9",
      "name": "Äpfel",
      "spec": "",
+     "cat": "obst",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "s1rhzsa",
      "name": "Wasser",
      "spec": "still",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "gcdff4h",
      "name": "Brezeln",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "nawrj31",
      "name": "Müsliriegel",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "2ud7dmw",
      "name": "Taschentücher",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "by130lb",
      "name": "NicNacs",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "dxdvjwu",
      "name": "Monster",
      "spec": "Energydrink",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "7b4r9je",
      "name": "Kaugummi",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
-    },
-    {
-     "cat": "obst",
-     "id": "9b3juq9",
-     "name": "Äpfel",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "getraenk",
-     "id": "xp0uuqx",
-     "name": "Wasser",
-     "spec": "still",
-     "u": 1
-    },
-    {
-     "cat": "getraenk",
-     "id": "ix3qpad",
-     "name": "Brezeln",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "getraenk",
-     "id": "bklc9qb",
-     "name": "Müsliriegel",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "unm2v9x",
-     "name": "Taschentücher",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "obst",
-     "id": "9brk0dh",
-     "name": "Äpfel",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "getraenk",
-     "id": "r95z1kw",
-     "name": "Wasser",
-     "spec": "still",
-     "u": 1
-    },
-    {
-     "cat": "getraenk",
-     "id": "k1picfk",
-     "name": "Brezeln",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "getraenk",
-     "id": "ol8cka0",
-     "name": "Müsliriegel",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "311rci7",
-     "name": "Taschentücher",
-     "spec": "",
-     "u": 1
     }
-   ],
-   "kind": "list",
-   "name": "Lange Fahrt",
-   "u": 1794068104272
+   ]
   },
   {
-   "emoji": "⛺",
-   "excludes": [],
    "id": "camping-urlaub",
+   "name": "Camping-Urlaub",
+   "emoji": "⛺",
+   "kind": "list",
    "includes": [],
+   "excludes": [],
+   "u": 1794068104272,
    "items": [
     {
-     "cat": "kuehl",
      "id": "smfhb88",
      "name": "Milch",
      "spec": "H-Milch",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "frueh",
      "id": "yge6hek",
      "name": "Müsli",
      "spec": "",
+     "cat": "frueh",
      "u": 1794068104272
     },
     {
-     "cat": "frueh",
      "id": "oa1f2ij",
      "name": "Brötchen",
      "spec": "",
+     "cat": "frueh",
      "u": 1794068104272
     },
     {
-     "cat": "vorrat",
      "id": "hiorzpx",
      "name": "Nudeln",
      "spec": "",
+     "cat": "vorrat",
      "u": 1794068104272
     },
     {
-     "cat": "vorrat",
      "id": "hv2ccf1",
      "name": "Tomatensoße",
      "spec": "",
+     "cat": "vorrat",
      "u": 1794068104272
     },
     {
-     "cat": "aufschnitt",
      "id": "ivjq10c",
      "name": "Grillwürstchen",
      "spec": "",
+     "cat": "aufschnitt",
      "u": 1794068104272
     },
     {
-     "cat": "camping",
      "id": "5xr0f1q",
      "name": "Gaskartusche",
      "spec": "",
+     "cat": "camping",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "7ru42dc",
      "name": "Müllbeutel",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "o2m487p",
      "name": "Toilettenpapier",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "frueh",
      "id": "k9vg7j5",
      "name": "Kaffee",
      "spec": "gemahlen",
+     "cat": "frueh",
      "u": 1794068104272
     },
     {
-     "cat": "kuehl",
      "id": "pch96pm",
      "name": "Käsefondue",
      "spec": "",
+     "cat": "kuehl",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "wyag6rw",
      "name": "Spülschwamm",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "5qtv5ad",
      "name": "Spülhandtuch",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "islg4t9",
      "name": "Handtücher",
      "spec": "zum Abtrocknen",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "obst",
      "id": "75ll4is",
      "name": "Äpfel",
      "spec": "Pink Lady",
+     "cat": "obst",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "h9syday",
      "name": "Spülmittel",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "4fxpsks",
      "name": "Rotwein",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "z2fmlbt",
      "name": "Limo",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "rw5hrhi",
      "name": "Bier",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
     },
     {
-     "cat": "getraenk",
      "id": "kkzg0tx",
      "name": "Maiswaffeln",
      "spec": "",
+     "cat": "getraenk",
      "u": 1794068104272
-    },
-    {
-     "cat": "kuehl",
-     "id": "nmhd6o9",
-     "name": "Milch",
-     "spec": "H-Milch",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "4io4m08",
-     "name": "Müsli",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "etf4ce1",
-     "name": "Brötchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "vorrat",
-     "id": "6zzi18t",
-     "name": "Nudeln",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "vorrat",
-     "id": "myh1wvh",
-     "name": "Tomatensoße",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "yd8kin6",
-     "name": "Grillwürstchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "camping",
-     "id": "23z0rks",
-     "name": "Gaskartusche",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "1bcfsmy",
-     "name": "Müllbeutel",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "fb65cpb",
-     "name": "Toilettenpapier",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "eq73fhg",
-     "name": "Milch",
-     "spec": "H-Milch",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "k2ot3ct",
-     "name": "Müsli",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "frueh",
-     "id": "rrv4don",
-     "name": "Brötchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "vorrat",
-     "id": "1ws08vo",
-     "name": "Nudeln",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "vorrat",
-     "id": "1aodupx",
-     "name": "Tomatensoße",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "kuehl",
-     "id": "jmed1le",
-     "name": "Grillwürstchen",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "camping",
-     "id": "dxpk8vp",
-     "name": "Gaskartusche",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "6po56dy",
-     "name": "Müllbeutel",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "dvccan4",
-     "name": "Toilettenpapier",
-     "spec": "",
-     "u": 1
     }
-   ],
-   "kind": "list",
-   "name": "Camping-Urlaub",
-   "u": 1794068104272
+   ]
   },
   {
-   "emoji": "🧽",
-   "excludes": [],
    "id": "haushalt",
+   "name": "Haushalt",
+   "emoji": "🧽",
+   "kind": "list",
    "includes": [],
+   "excludes": [],
+   "u": 1794068104272,
    "items": [
     {
-     "cat": "haushalt",
      "id": "bhiq1so",
      "name": "Toilettenpapier",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "uef9owo",
      "name": "Spülmittel",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "jigead9",
      "name": "Waschmittel",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     },
     {
-     "cat": "haushalt",
      "id": "4f97ycx",
      "name": "Spülmaschinentabs",
      "spec": "",
+     "cat": "haushalt",
      "u": 1794068104272
     }
-   ],
-   "kind": "list",
-   "name": "Haushalt",
-   "u": 1794068104272
-  },
-  {
-   "emoji": "💼",
-   "excludes": [],
-   "id": "dienstreise",
-   "includes": [],
-   "items": [
-    {
-     "cat": "kultur",
-     "id": "dr-zahnbuerste",
-     "name": "Zahnbürste",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-zahnpasta",
-     "name": "Zahnpasta",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-gesichtscreme",
-     "name": "Gesichtscreme",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-haarwachs",
-     "name": "Haarwachs",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-deo",
-     "name": "Deo",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-rasierschaum",
-     "name": "Rasierschaum",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-rasierer",
-     "name": "Rasierer",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-duschgel",
-     "name": "Duschgel & Shampoo",
-     "spec": "falls das Hotel keins hat",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kultur",
-     "id": "dr-apotheke",
-     "name": "Reiseapotheke",
-     "spec": "Kopfschmerztabletten, Pflaster",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kleidung",
-     "id": "dr-unterwaesche",
-     "name": "Unterwäsche & Socken",
-     "spec": "pro Nacht 1 + 1 Reserve",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kleidung",
-     "id": "dr-hemden",
-     "name": "Hemden / Oberteile",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "kleidung",
-     "id": "dr-schlafsachen",
-     "name": "Schlafsachen",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "technik",
-     "id": "dr-laptop",
-     "name": "Laptop + Netzteil",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "technik",
-     "id": "dr-ladekabel",
-     "name": "Handy-Ladekabel",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "technik",
-     "id": "dr-kopfhoerer",
-     "name": "Kopfhörer",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "dokumente",
-     "id": "dr-ausweis",
-     "name": "Personalausweis",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "dokumente",
-     "id": "dr-tickets",
-     "name": "Tickets / BahnCard",
-     "spec": "",
-     "u": 1795219200000
-    },
-    {
-     "cat": "dokumente",
-     "id": "dr-geldbeutel",
-     "name": "Geldbeutel",
-     "spec": "",
-     "u": 1795219200000
-    }
-   ],
-   "kind": "pack",
-   "name": "Dienstreise",
-   "u": 1795219200000
+   ]
   }
  ],
  "recipes": [
   {
-   "added": 1794068104272,
-   "cooked": 0,
-   "course": "haupt",
-   "desc": "Klassische italienische Lasagne mit veganer Bolognese und cremiger Béchamel.",
    "id": "lasagne-bolognese-vegan",
+   "url": "https://biancazapatka.com/de/lasagne-bolognese-vegan/",
+   "title": "Lasagne Bolognese (vegan)",
    "image": "https://biancazapatka.com/wp-content/uploads/2021/11/bolognese-lasagne.jpg",
-   "ingredients": [],
+   "desc": "Klassische italienische Lasagne mit veganer Bolognese und cremiger Béchamel.",
+   "source": "biancazapatka.com",
+   "vegan": true,
+   "veggie": true,
    "kids": true,
-   "lastCooked": null,
-   "note": "",
-   "ratings": {},
    "seasons": [
     "herbst",
     "winter"
    ],
-   "servings": 0,
-   "source": "biancazapatka.com",
-   "steps": "",
-   "time": 75,
-   "title": "Lasagne Bolognese (vegan)",
-   "u": 1794068104272,
-   "url": "https://biancazapatka.com/de/lasagne-bolognese-vegan/",
-   "vegan": true,
-   "veggie": true
-  },
-  {
-   "added": 1795260624042,
-   "cooked": 0,
    "course": "haupt",
-   "desc": "Ein köstliches Rezept für Pulled Pilz-Burger mit Backkartoffeln. Fertig in 90 Minuten. Für 2 Portionen. Besonders raffiniert.",
-   "id": "pulled-pilz-burger-mit-ofenkar-kk0w",
-   "image": "https://image.essen-und-trinken.de/11950282/t/fI/v10/w1440/r1.7778/-/pulled-pilz-burger-vegan-jpg--63975-.jpg",
-   "ingredients": [],
-   "kids": false,
-   "lastCooked": null,
-   "note": "",
+   "time": 75,
    "ratings": {},
-   "seasons": [
-    "herbst"
-   ],
-   "servings": 0,
-   "source": "ESSEN-UND-TRINKEN.de",
-   "steps": "",
-   "time": 0,
-   "title": "Pulled Pilz-Burger mit Ofenkartoffeln",
-   "u": 1795260624042,
-   "url": "https://www.essen-und-trinken.de/rezepte/88180-rzpt-pulled-pilz-burger-mit-ofenkartoffeln",
-   "vegan": false,
-   "veggie": false
-  },
-  {
-   "added": 1795277885404,
+   "note": "",
    "cooked": 0,
-   "course": "salat",
-   "desc": "",
-   "id": "rezept-24100-big-mac-nudelsala-wd90",
-   "image": "fotos/r-rezept-24100-big-mac-nudelsala-wd90.jpg",
-   "ingredients": [
-    "2 Packungen Veganes Hack (ins. 360g)",
-    "1 TL Olivenöl",
-    "1 Zwiebel",
-    "1/2 TL Paprikapulver, edelsüß",
-    "1/2 TL Knoblauchpulver",
-    "300 g Nudeln",
-    "200 g Gewürzgurken",
-    "1 Eisbergsalat",
-    "250 g Kirschtomaten",
-    "400 g Seidentofu",
-    "2 EL Senf",
-    "80 ml Gewürzgurkenwasser",
-    "5 EL Ketchup",
-    "3/4 TL Salz",
-    "Etwas Chiliöl"
-   ],
-   "kids": false,
    "lastCooked": null,
-   "note": "",
-   "ratings": {},
-   "seasons": [],
-   "servings": 3,
-   "source": "Instagram · @Tobias Seitle",
-   "steps": "Nudeln nach Packungsanleitung zubereiten. Anschließend Zwiebel würfeln und zusammen mit dem Hack in einer Pfanne mit dem Olivenöl anbraten und mit Paprika- und Knoblauchpulver würzen. Währenddessen Eiserbergsalat und Tomaten und Gewürzgurken klein schneiden. Für die Sauce alle Zutaten miteinander vermengen. Alle Zutaten in eine große Schüssel geben und miteinander vermengen.\nNährwerte pro Portion (insgesamt sind es 3 Portionen):\n659 kcal\n46 g Protein\n87 g Kohlenhydrate\n14 g Ballaststoffe\n11 g Fett",
-   "time": 0,
-   "title": "Rezept 24/100 - „Big Mac“ Nudelsalat",
-   "u": 1795277889598,
-   "url": "https://www.instagram.com/reel/DZC_bStNvFk/?cnvx=ZGd0MXhpaTdwbGE3",
-   "vegan": true,
-   "veggie": true
-  },
-  {
-   "added": 1795277976572,
-   "cooked": 0,
-   "course": "",
-   "desc": "",
-   "id": "instagramcom-4y1g",
-   "image": "fotos/r-instagramcom-4y1g.jpg",
-   "ingredients": [
-    "One-pan creamy pesto pasta 🍝🌿",
-    "What you’ll need:",
-    "🍝 Tagliatelle or fettuccine",
-    "🍅 Cherry tomatoes",
-    "🌱 Spinach & basil",
-    "🧄 Garlic",
-    "🥛 Oat cream + veggie stock",
-    "🥄 Green pesto",
-    "🧂 Italian seasoning, salt, pepper, chili flakes (optional)",
-    "Layer everything in one pan, pour in the liquids, and let it cook until the pasta is tender and coated in a silky, creamy pesto sauce. Simple, quick, and full of flavor 🙌",
-    "𝐅𝐔𝐋𝐋 𝐑𝐄𝐂𝐈𝐏𝐄 𝐎𝐍 𝐌𝐘 𝐁𝐋𝐎𝐆",
-    "𝐃𝐫𝐯𝐞𝐠𝐚𝐧𝐛𝐥𝐨𝐠 𝐝𝐨𝐭 𝐜𝐨𝐦 (𝐋𝐈𝐍𝐊 𝐈𝐍 𝐌𝐘 𝐁𝐈𝐎)",
-    "#veganmeal #veggierecipes #pasta #quickrecipes #vegan #veggie #veganrecipes #onepotmeal #pastalover #pastapasta #pastarecipe #tomatopasta #easyrecipes #healthy #quickrecipe #veganlunch #veganfood #veganrecipe #pasta🍝 #easyrecipe #healthyfoods #quickrecipe #vegetarianrecipes #easyfood #vegancomfortfood #vegetarian #lazyvegan #easyrecipes #easyveganmeals #vegandinner"
-   ],
-   "kids": false,
-   "lastCooked": null,
-   "note": "",
-   "ratings": {},
-   "seasons": [],
-   "servings": 0,
-   "source": "Instagram · @Ahmad Noori",
-   "steps": "",
-   "time": 0,
-   "title": "One-Pan Creamy Pesto Pasta",
-   "u": 1795278032769,
-   "url": "https://www.instagram.com/reel/DQUri0SEza7/?gwpx=emU0OWJhd3BldHJs",
-   "vegan": false,
-   "veggie": false
+   "added": 1794068104272,
+   "u": 1794068104272
   }
  ],
- "updatedAt": 1795278035611,
- "version": 2
+ "deleted": {
+  "item:t426dcv": 1794068104272,
+  "item:y8ps5g3": 1794068104272,
+  "item:ss0lj49": 1794068104272,
+  "item:b17ikd9": 1794068104272,
+  "item:m9b8apt": 1794068104272,
+  "item:hwphimb": 1794068104272,
+  "item:rj7516s": 1794068104272,
+  "item:3zn31nd": 1794068104272,
+  "item:l1y5qs2": 1794068104272,
+  "item:xv3vy7n": 1794068104272,
+  "item:0dlopmn": 1794068104272,
+  "item:a4qc7eg": 1794068104272,
+  "item:7sb0i1d": 1794068104272,
+  "item:kw5y2xd": 1794068104272,
+  "item:glus9rl": 1794068104272,
+  "item:08sv55w": 1794068104272,
+  "item:hmp8e7z": 1794068104272,
+  "item:zb7drdz": 1794068104272,
+  "item:gnyhjw3": 1794068104272,
+  "item:if8gs10": 1794068104272,
+  "item:hhawuri": 1794068104272,
+  "item:yng8htr": 1794068104272,
+  "item:kc8q7wi": 1794068104272,
+  "item:eohwcos": 1794068104272
+ },
+ "listOrderU": 1794068104272,
+ "catOrderU": 1794068104272
 }

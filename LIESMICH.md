@@ -19,6 +19,62 @@ Listen gehen per Klick in die Bring!-App. Online unter https://pjatzkowski.githu
 2. 1–2 Minuten warten, App am PC mit **Strg + F5** neu laden, am Handy einmal ganz schließen und neu öffnen.
 3. Die App übernimmt die neue Struktur automatisch. Was du auf einem Gerät noch nicht hochgeladen hattest, bleibt erhalten.
 
+## Einkaufszettel (wie Bring)
+
+Unten auf **📝 Zettel** tippen (am PC links „Einkaufszettel“ oder Taste **Z**).
+- Oben eintippen und Enter – mehrere Artikel mit Komma trennen, Kategorie wird erkannt.
+- **📥 Aus Liste übernehmen** oder in einer Vorlage **📝 Auf den Einkaufszettel**: Artikel abwählen, die noch da sind.
+- Im Rezept: **📝 Zutaten auf Zettel**.
+- **Antippen = abhaken.** Abgehakte rutschen ausgegraut nach unten, in der Reihenfolge, in der sie abgehakt wurden.
+  Nochmal antippen holt sie zurück. **Erledigte entfernen** räumt auf.
+- Mit GitHub-Sync sehen Anika und du denselben Zettel; bei geöffnetem Zettel gleicht die App alle 20 Sekunden ab.
+
+## Mengen & Personen
+
+- Jeder Artikel kann Menge und Einheit haben (✏️ → Menge/Einheit, oder direkt „500 g Hackfleisch“ eintippen).
+- Listenmenü ⋯ → „Mengen gelten für … Personen“. Dann erscheint oben ein 👥-Regler, der alle Mengen umrechnet
+  (Gramm sinnvoll gerundet, Stück/Dosen aufgerundet). „Menge fest“ nimmt einen Artikel von der Umrechnung aus.
+- Rezepte mit Portionsangabe haben einen 🍽-Regler; Zettel, Bring und Druck übernehmen die umgerechneten Mengen.
+- Kommt ein Artikel mit gleicher Einheit nochmal auf den Zettel, wird die Menge addiert.
+
+## ✨ KI-Assistent, 🌱 Saisonal, „Passt jetzt“
+
+- **✨ Liste mit KI** (Startseite, in jeder Liste, Taste **I**): beschreiben, was gebraucht wird – Claude erstellt die
+  Liste (inkl. Mengen, Personen, Fleisch/Veggie-Gruppen) und zeigt sie zur Kontrolle, bevor sie angelegt wird.
+  In einer Liste auch „Zu … ergänzen“. Braucht einen eigenen Claude-API-Schlüssel (⚙️ → KI-Assistent,
+  console.anthropic.com, Abrechnung pro Nutzung, meist 1–5 Cent pro Anfrage). Ohne Schlüssel: „📋 Prompt kopieren“,
+  in der Claude-App einfügen, Antwort über „📥 Antwort einfügen“ importieren.
+- **🌱 Saisonal**: Saisonkalender (Deutschland, regional inkl. Lagerware) je Monat – antippen und auf Zettel/Liste legen.
+  Funktioniert ohne KI.
+- **Rezepte „✨ Passt jetzt“** (Standard-Sortierung): Bewertung + Jahreszeit + saisonale Zutaten, kürzlich Gekochtes
+  rutscht nach hinten. Funktioniert ohne KI.
+- **✨ Ideen** im Rezeptbuch: 5 neue Gerichte passend zu euren Bewertungen und der Saison, mit Zutaten,
+  „Ins Rezeptbuch“ und Suche bei Chefkoch/Google.
+
+## Personengruppen (z. B. Fleisch / Vegan-Vegetarisch)
+
+Listenmenü ⋯ → „Personengruppen“, z. B. `🥩 Fleisch 6, 🌱 Vegan/Vegetarisch 2`. Jede Gruppe bekommt einen eigenen
+Regler; Artikel werden per ✏️ → „Für“ einer Gruppe zugeordnet (sonst für alle). Im Textformat:
+`Gruppen: 🥩 Fleisch 6, 🌱 Vegan/Vegetarisch 2` und bei Artikeln `| für Fleisch`.
+Hinweis: Bring selbst kennt keine Gruppen – für getrennte Mengen den Einkaufszettel in bring+ nutzen.
+
+## Listen als Text importieren / teilen
+
+Neue Listen (z. B. von Claude im Chat erstellt) ohne GitHub übernehmen: Text kopieren →
+bring+ → ＋ Neue Liste → **📥 Fertige Liste aus Text importieren** → Einfügen → Importieren.
+Android: Text markieren → Teilen → bring+. Format:
+
+```
+bring+ Liste
+# 🧀 Raclette-Abend
+Art: Einkaufsliste            (oder Packliste / Baustein)
+Personen: 4                   (optional)
+## Milchprodukte
+- 800 g Raclettekäse | in Scheiben
+- 1 Pck. Raclette-Gewürz | fest
+```
+Gibt es schon eine Liste mit gleichem Namen, kann sie ersetzt werden. Umgekehrt: Listenmenü ⋯ → **📤 Als Text teilen**.
+
 ## Bausteine (Untergruppen)
 
 Ein Baustein ist eine Liste mit gemeinsamen Artikeln, die andere Listen **einbinden**.

@@ -172,6 +172,48 @@ aside.side{display:none}
 .item.packed .thumb{opacity:.5}
 .item.pk .ia{opacity:1}
 @media (hover:none){.item.pk .ia{display:flex}.item.pk .ia [data-act=copy],.item.pk .ia [data-act=del]{display:none}}
+.item .ccb{width:26px;height:26px;border-radius:50%;border:2px solid var(--accent);flex:none;display:grid;place-items:center;font-size:15px;color:#fff;background:var(--card)}
+.item.done .ccb{background:var(--muted);border-color:var(--muted)}
+.item.done{opacity:.55}
+.item.done .n{text-decoration:line-through}
+.item.ck .ia{opacity:1}
+@media (hover:none){.item.ck .ia{display:flex}.item.ck .ia [data-act=del]{display:none}}
+.gtag{font-size:13px;margin-left:4px}
+.guests .grow2{display:flex;flex-direction:column;gap:6px;width:100%}
+.guests .grow2 > div{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.toolrow{display:flex;gap:8px;margin:0 0 12px;flex-wrap:wrap}
+.toolrow .btn{flex:1;justify-content:center;min-width:140px}
+.btn.ai{background:linear-gradient(135deg,#7b5cff,#c76bff);color:#fff}
+.seasonnav{display:flex;align-items:center;justify-content:space-between;margin:0 0 10px}
+.seasonnav b{font-size:17px}
+.schips{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.schips button{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 12px;font-size:15px}
+.schips button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.idea{background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:12px 14px;margin:0 0 10px}
+.idea h3{margin:0 0 4px;font-size:17px}
+.idea .why{color:var(--muted);font-size:14px;margin:0 0 6px}
+.idea details{font-size:14px;margin:4px 0 8px}
+.idea .row{flex-wrap:wrap}
+.aistatus{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:14px;margin:6px 0 12px}
+.spin{width:18px;height:18px;border-radius:50%;border:3px solid var(--line);border-top-color:#7b5cff;animation:sp 1s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.badge-now{font-size:12px;background:var(--accent-soft);color:var(--ink);border-radius:999px;padding:1px 7px}
+.qty{font-weight:750;color:var(--accent);margin-right:2px;white-space:nowrap}
+.item.done .qty{color:inherit}
+.guests{display:flex;align-items:center;gap:10px;background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:8px 10px 8px 14px;margin:0 0 12px;flex-wrap:wrap}
+.guests .lbl{flex:1;min-width:150px;font-weight:650}
+.guests .lbl small{display:block;color:var(--muted);font-weight:500;font-size:12px}
+.stepper{display:flex;align-items:center;gap:4px}
+.stepper button{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-size:20px;font-weight:700}
+.stepper b{min-width:34px;text-align:center;font-size:20px}
+.qadd{display:flex;gap:8px;margin:4px 0 12px}
+.qadd input{flex:1;min-width:0;border:1px solid var(--line);background:var(--card);border-radius:12px;padding:12px;font-size:16px}
+.qadd input:focus{outline:2px solid var(--accent);border-color:transparent}
+.cartcard{display:flex;align-items:center;gap:14px;width:100%;border:0;text-align:left;background:var(--accent);color:var(--accent-ink);border-radius:var(--r);padding:16px 18px;box-shadow:var(--shadow);margin:0 0 6px}
+.cartcard .emo{font-size:34px}
+.cartcard b{font-size:18px;display:block}
+.donehead{display:flex;justify-content:space-between;align-items:center;margin:22px 4px 8px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700}
+nav.tabs button .cnt{position:absolute;margin:-6px 0 0 26px;background:var(--coral);color:#fff;border-radius:999px;font-size:10px;padding:1px 5px;line-height:1.4}
 .progress{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin:2px 0 14px}
 .progress span{display:block;height:100%;background:var(--accent);transition:width .2s}
 .inglist{margin:0 0 14px;padding:10px 12px 10px 30px;background:var(--card);border-radius:12px;box-shadow:var(--shadow)}
@@ -297,8 +339,9 @@ ol.steps{padding-left:20px;margin:6px 0 14px} ol.steps li{margin:4px 0}
 <div id="selslot"></div>
 <nav class="tabs" id="tabs">
   <button data-tab="listen" onclick="location.hash=''"><span>🛒</span>Listen</button>
+  <button data-tab="zettel" onclick="openCart()" style="position:relative"><span>📝</span>Zettel<i class="cnt" id="cartCnt" hidden></i></button>
   <button data-tab="rezepte" onclick="location.hash='#/rezepte'"><span>📖</span>Rezepte</button>
-  <button data-tab="einst" onclick="location.hash='#/einstellungen'"><span>⚙️</span>Einstellungen</button>
+  <button data-tab="einst" onclick="location.hash='#/einstellungen'"><span>⚙️</span>Mehr</button>
 </nav>
 <div class="scrim" id="scrim"></div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true"><div class="wrap"><div class="grab"></div><div id="sheetBody"></div></div></div>
@@ -345,7 +388,86 @@ const slug = s => (s||'liste').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'
 const isDesk = () => matchMedia('(min-width: 960px)').matches;
 const keyOf = s => String(s||'').trim().toLowerCase();
 const itemKey = it => keyOf(it.name) + '|' + keyOf(it.spec);
-const itemLine = it => it.spec ? `${it.name} (${it.spec})` : it.name;
+/* ---------- Mengen ---------- */
+const UNITS = ['g','kg','ml','l','Stück','Pck.','Dose','Glas','Flasche','Bund','Becher','Beutel','Netz','Kopf','Sack','Kasten','Scheiben','EL','TL','Prise','Rolle'];
+const UNIT_ALIAS = {stk:'Stück', 'stk.':'Stück', 'stück':'Stück', st:'Stück', pck:'Pck.', 'pck.':'Pck.', 'päckchen':'Pck.', pkg:'Pck.', packung:'Pck.', dose:'Dose', dosen:'Dose',
+  glas:'Glas', 'gläser':'Glas', flasche:'Flasche', flaschen:'Flasche', bund:'Bund', becher:'Becher', beutel:'Beutel', netz:'Netz', kopf:'Kopf', scheibe:'Scheiben', scheiben:'Scheiben',
+  el:'EL', tl:'TL', prise:'Prise', prisen:'Prise', rolle:'Rolle', rollen:'Rolle', g:'g', gr:'g', 'gr.':'g', kg:'kg', ml:'ml', l:'l', cl:'cl', zehe:'Zehe', zehen:'Zehe', handvoll:'Handvoll', tasse:'Tasse', tassen:'Tasse', 'köpfe':'Kopf', netze:'Netz', prisen:'Prise', sack:'Sack', 'säcke':'Sack', kasten:'Kasten', 'kästen':'Kasten'};
+const FRAC = {'½':.5, '¼':.25, '¾':.75, '⅓':1/3, '⅔':2/3, '⅛':.125};
+const num = t => { t = String(t).trim(); if (FRAC[t] != null) return FRAC[t]; const m = t.match(/^(\d+)\s*([½¼¾⅓⅔⅛])$/); if (m) return +m[1] + FRAC[m[2]];
+  if (/^\d+\/\d+$/.test(t)) { const [a, b] = t.split('/'); return +a / +b; } return parseFloat(t.replace(',', '.')); };
+/* „800 g Raclettekäse“ → {qty:800, unit:'g', name:'Raclettekäse'} */
+function parseQtyText(t){
+  t = String(t).trim();
+  const m = t.match(/^(?:ca\.\s*)?((?:\d+\s*)?[½¼¾⅓⅔⅛]|\d+(?:[.,]\d+)?(?:\/\d+)?)(?:\s*-\s*[\d.,]+)?\s*([A-Za-zÄÖÜäöüß]+\.?)?\s+(.+)$/);
+  if (!m) return {qty: 0, unit: '', name: t};
+  let unit = m[2] ? (UNIT_ALIAS[m[2].toLowerCase()] ?? null) : '';
+  let name = m[3];
+  if (unit === null) { name = m[2] + ' ' + m[3]; unit = ''; }          // „2 Paprika“: kein Einheitswort
+  return {qty: num(m[1]) || 0, unit, name: name.replace(/^von\s+/i, '').trim()};
+}
+const PLURAL = {Sack:'Säcke', Kasten:'Kästen', Dose:'Dosen', Flasche:'Flaschen', Glas:'Gläser', Netz:'Netze', Kopf:'Köpfe', Rolle:'Rollen', Tasse:'Tassen', Zehe:'Zehen', Prise:'Prisen'};
+const unitTxt = (u, q) => q > 1 && PLURAL[u] ? PLURAL[u] : u;
+function roundQty(q, unit){
+  const u = (unit || '').toLowerCase();
+  if (u === 'g' || u === 'ml') return q < 20 ? Math.round(q) : q < 300 ? Math.round(q / 5) * 5 : q < 1000 ? Math.round(q / 10) * 10 : Math.round(q / 50) * 50;
+  if (u === 'kg' || u === 'l') return Math.round(q * 10) / 10;
+  if (['el', 'tl', 'prise', 'tasse'].includes(u)) return Math.round(q * 2) / 2;
+  return Math.max(1, Math.ceil(q - 0.1));                                // Stück, Dose, Bund … → aufrunden
+}
+function fmtQty(q, unit){
+  if (!q) return '';
+  let u = unit || '';
+  if (u === 'g' && q >= 1000) { q /= 1000; u = 'kg'; } else if (u === 'ml' && q >= 1000) { q /= 1000; u = 'l'; }
+  const n = (Math.round(q * 100) / 100).toLocaleString('de-DE');
+  return u ? n + ' ' + unitTxt(u, q) : n + ' ×';
+}
+const qtyOf = (it, f = 1) => !it.qty ? 0 : (it.fix || f === 1) ? it.qty : roundQty(it.qty * f, it.unit);
+const qtyStr = (it, f = 1) => fmtQty(qtyOf(it, f), it.unit);
+function itemLineF(it, f = 1){
+  const q = qtyOf(it, f); if (!q) return it.spec ? `${it.name} (${it.spec})` : it.name;
+  const n = (Math.round(q * 100) / 100).toLocaleString('de-DE');
+  return (it.unit ? `${n} ${unitTxt(it.unit, q)} ` : `${n} `) + it.name + (it.spec ? ` (${it.spec})` : '');
+}
+const itemLine = it => itemLineF(it, 1);
+/* Personenzahl: Liste hat „servings“ (Mengen gelten für n Personen); gewählte Gästezahl je Gerät */
+const groupGuests = (l, gid) => { const g = l.groups?.find(x => x.id === gid); return g ? ((local.gg || {})[l.id]?.[gid] || g.n) : 0; };
+const guestsOf = l => l.groups?.length ? l.groups.reduce((s, g) => s + groupGuests(l, g.id), 0) : ((local.guests || {})[l.id] || l.servings || 0);
+function factorFor(l, from, it){
+  if (it?.grp && from?.groups) { const g = from.groups.find(x => x.id === it.grp); if (g) return (from === l ? groupGuests(l, g.id) : g.n) / g.n; }
+  const base = (from && from.servings) || 0; const g = l.servings ? guestsOf(l) : 0; return base && g ? g / base : 1;
+}
+function setGroupGuests(lid, gid, d){
+  const l = listById(lid); local.gg = local.gg || {}; local.gg[lid] = local.gg[lid] || {};
+  local.gg[lid][gid] = Math.max(0, Math.min(99, groupGuests(l, gid) + d)); saveLocal(); viewList(l);
+}
+const groupOf = (l, it) => it.grp ? l.groups?.find(g => g.id === it.grp) : null;
+function parseGroups(t){
+  return String(t || '').split(/\s*,\s*/).map(x => x.trim()).filter(Boolean).map(x => {
+    const m = x.match(/^(.*?)\s*[:=]?\s*(\d+)$/); const raw = m ? m[1] : x, n = m ? +m[2] : 1;
+    const icon = leadEmoji(raw) || (/fleisch/i.test(raw) ? '🥩' : /vegan|vegetar|veggie/i.test(raw) ? '🌱' : '👥');
+    const name = stripEmoji(raw) || 'Gruppe'; return {id: slug(name).slice(0, 20), name, icon, n: Math.max(1, n)};
+  });
+}
+const groupsText = l => (l.groups || []).map(g => `${g.icon} ${g.name} ${g.n}`).join(', ');
+function setGuests(lid, d){
+  const l = listById(lid); local.guests = local.guests || {};
+  local.guests[lid] = Math.max(1, Math.min(99, guestsOf(l) + d)); saveLocal(); viewList(l);
+}
+/* Zutaten-Text eines Rezepts skalieren: „200 g Mehl“ ×1,5 → „300 g Mehl“ */
+function scaleLine(str, f){
+  if (f === 1) return str;
+  const p = parseQtyText(str); if (!p.qty) return str;
+  const q = roundQty(p.qty * f, p.unit), n = (Math.round(q * 100) / 100).toLocaleString('de-DE');
+  return (p.unit ? `${n} ${unitTxt(p.unit, q)} ` : `${n} `) + p.name;
+}
+const portionsOf = r => (local.portions || {})[r.id] || r.servings || 0;
+const recipeFactor = r => r.servings && portionsOf(r) ? portionsOf(r) / r.servings : 1;
+function setPortions(id, d, view){
+  const r = recipeById(id); local.portions = local.portions || {};
+  local.portions[id] = Math.max(1, Math.min(50, portionsOf(r) + d)); saveLocal();
+  view === 'print' ? viewPrint(r) : showRecipe(id);
+}
 const host = u => { try { return new URL(u).hostname.replace(/^www\./,''); } catch(e) { return ''; } };
 const currentSeason = () => SEASONS.find(s => s.months.includes(new Date().getMonth()+1)).id;
 function toast(msg, ms=2600){ const t=$('#toast'); t.textContent=msg; t.classList.add('on'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),ms); }
@@ -357,12 +479,14 @@ function normalize(d){
   d.categories = (d.categories||[]).map(c => ({id:c.id||uid(), name:c.name||'Kategorie', icon:c.icon||'📦', u:U(c.u)}));
   d.lists = (d.lists||[]).map(l => ({
     id: l.id || slug(l.name)+'-'+uid().slice(0,3), name: l.name||'Liste', emoji: l.emoji||'🛒',
-    kind: ['base','pack'].includes(l.kind) ? l.kind : 'list',
+    kind: ['base','pack','cart'].includes(l.kind) ? l.kind : 'list',
     includes: Array.isArray(l.includes) ? l.includes : [], excludes: Array.isArray(l.excludes) ? l.excludes : [],
-    u: U(l.u),
+    u: U(l.u), ...(+l.servings > 0 ? {servings: +l.servings} : {}),
+    ...(Array.isArray(l.groups) && l.groups.length ? {groups: l.groups.filter(g => g && g.id).map(g => ({id: String(g.id), name: g.name || g.id, icon: g.icon || '👥', n: Math.max(1, +g.n || 1)}))} : {}),
     items: (l.items||[]).map(it => Array.isArray(it)
       ? {id:uid(), name:it[0], spec:it[1]||'', cat:it[2]||'', u:1}
-      : {id:it.id||uid(), name:it.name||'', spec:it.spec||'', cat:it.cat||'', u:U(it.u), ...(it.photo ? {photo:it.photo} : {})}).filter(it=>it.name)
+      : {id:it.id||uid(), name:it.name||'', spec:it.spec||'', cat:it.cat||'', u:U(it.u), ...(it.photo ? {photo:it.photo} : {}), ...(it.done ? {done:+it.done} : {}),
+          ...(+it.qty > 0 ? {qty:+it.qty, unit:String(it.unit||'')} : {}), ...(it.fix ? {fix:true} : {}), ...(it.grp ? {grp:String(it.grp)} : {})}).filter(it=>it.name)
   }));
   d.recipes = (d.recipes||[]).map(r => ({
     id: r.id||uid(), url: r.url||'', title: r.title||host(r.url)||'Rezept', image: r.image||'', desc: r.desc||'', source: r.source||host(r.url),
@@ -411,6 +535,81 @@ function migrate(){
   local.mig.dienstreise = true; saveLocal();
   return true;
 }
+const MIG_U2 = Date.UTC(2026, 10, 22);
+const DM_BABY = [
+  ['windeln','Windeln','Größe ans Gewicht anpassen','baby'], ['feuchttuecher','Feuchttücher','sensitiv, ohne Duft','baby'],
+  ['wundschutz','Wundschutzcreme','','baby'], ['pflegeoel','Pflegeöl','z. B. Mandelöl','baby'], ['waschlotion','Baby-Waschlotion','mild','baby'],
+  ['wattepads','Wattepads','für Augen & Gesicht','baby'], ['unterlagen','Einmal-Wickelunterlagen','','baby'], ['windelbeutel','Windelbeutel','','baby'],
+  ['nasenspray','Meerwasser-Nasenspray','für Babys','baby'], ['stilleinlagen','Stilleinlagen','falls Stillen','fuettern'],
+  ['pre','Pre-Nahrung','falls Fläschchen','fuettern'], ['waschmittel','Feinwaschmittel','sensitiv','haushalt'],
+];
+const WICKELTASCHE = [
+  ['windeln','Windeln','3–4 Stück','baby'], ['feucht','Feuchttücher','Reisepackung','baby'], ['unterlage','Wickelunterlage','faltbar','baby'],
+  ['creme','Wundschutzcreme','kleine Tube','baby'], ['beutel','Windelbeutel','','baby'], ['spuck','Spucktuch / Mulltuch','2 Stück','baby'],
+  ['schnuller','Schnuller','+ Ersatz','baby'], ['spielzeug','Kleines Spielzeug','z. B. Rassel','baby'],
+  ['body','Wechselkleidung','Body + Strampler','kleidung'], ['muetze','Mütze / Jacke','je nach Wetter','kleidung'],
+  ['flasche','Fläschchen + Pre-Pulver','falls Fläschchen','fuettern'], ['wasser','Abgekochtes Wasser / Thermoskanne','falls Fläschchen','fuettern'],
+  ['stilltuch','Stilltuch','falls Stillen','fuettern'], ['desinfekt','Desinfektionsgel','','haushalt'], ['taschentuch','Taschentücher','','haushalt'],
+];
+function migrateBaby(){
+  local.mig = local.mig || {};
+  if (local.mig.baby) return false;
+  const gone = k => (data.deleted[k] || 0) >= MIG_U2;
+  for (const [id, name, icon] of [['baby','Baby & Pflege','👶'], ['fuettern','Füttern','🍼']])
+    if (!catById(id) && !gone('cat:'+id)) data.categories.push({id, name, icon, u: MIG_U2});
+  const add = (id, name, emoji, kind, rows, pre) => { if (data.lists.some(l => l.id === id) || gone('list:'+id)) return;
+    data.lists.push({id, name, emoji, kind, includes:[], excludes:[], u: MIG_U2, items: rows.map(([i, n, sp, c]) => ({id: pre + i, name: n, spec: sp, cat: c, u: MIG_U2}))}); };
+  add('einkaufszettel', 'Einkaufszettel', '📝', 'cart', [], '');
+  add('dm-baby', 'DM-Einkauf Baby', '🍼', 'list', DM_BABY, 'dm-');
+  add('wickeltasche', 'Wickeltasche', '👜', 'pack', WICKELTASCHE, 'wt-');
+  local.mig.baby = true; saveLocal();
+  return true;
+}
+const MIG_U3 = Date.UTC(2026, 10, 23);
+const RACLETTE = [  // Mengen für 4 Personen
+  ['kaese', 800, 'g', 'Raclettekäse', 'in Scheiben', 'kuehl'], ['kaese-vegan', 200, 'g', 'Raclettekäse', 'vegan', 'kuehl'],
+  ['schinken', 200, 'g', 'Kochschinken', 'oder vegane Alternative', 'aufschnitt'], ['salami', 100, 'g', 'Salami', '', 'aufschnitt'],
+  ['kartoffeln', 1, 'kg', 'Kartoffeln', 'klein, festkochend', 'obst'], ['champignons', 400, 'g', 'Champignons', '', 'obst'],
+  ['paprika', 2, '', 'Paprika', 'rot & gelb', 'obst'], ['zucchini', 1, '', 'Zucchini', '', 'obst'], ['tomaten', 250, 'g', 'Kirschtomaten', '', 'obst'],
+  ['fruehlingszwiebeln', 1, 'Bund', 'Frühlingszwiebeln', '', 'obst'], ['mais', 1, 'Dose', 'Mais', '', 'vorrat'], ['ananas', 1, 'Dose', 'Ananas', 'Stücke', 'vorrat'],
+  ['gurken', 1, 'Glas', 'Gewürzgurken', '', 'vorrat'], ['silberzwiebeln', 1, 'Glas', 'Silberzwiebeln', '', 'vorrat'],
+  ['gewuerz', 1, 'Pck.', 'Raclette-Gewürz', 'oder Paprika & Pfeffer', 'vorrat', true], ['baguette', 2, '', 'Baguette', '', 'frueh'],
+  ['wein', 1, 'Flasche', 'Weißwein', 'trocken', 'getraenk'],
+];
+const MIG_U4 = Date.UTC(2026, 10, 24);
+const GRILL = [  // Basis: 6 Fleischesser + 2 Vegan/Vegetarisch
+  ['bratwurst', 9, '', 'Bratwürste', '', 'grillgut', 'fleisch'], ['nacken', 6, '', 'Nackensteaks', 'mariniert', 'grillgut', 'fleisch'],
+  ['vbratwurst', 3, '', 'Vegane Bratwürste', '', 'grillgut', 'veggie'], ['patties', 2, '', 'Vegane Burger-Patties', '', 'grillgut', 'veggie'],
+  ['halloumi', 250, 'g', 'Halloumi', 'vegetarisch – für Veganer weglassen', 'grillgut', 'veggie'], ['tofu', 200, 'g', 'Tofu', 'mariniert oder geräuchert', 'grillgut', 'veggie'],
+  ['mais', 4, '', 'Maiskolben', '', 'obst'], ['zucchini', 2, '', 'Zucchini', 'für Grillgemüse', 'obst'], ['paprika', 3, '', 'Paprika', 'für Grillgemüse', 'obst'],
+  ['champignons', 400, 'g', 'Champignons', 'für Spieße', 'obst'], ['kartoffeln', 1.5, 'kg', 'Kartoffeln', 'für Kartoffelsalat', 'obst'],
+  ['gurke', 1, '', 'Salatgurke', '', 'obst'], ['tomaten', 500, 'g', 'Tomaten', '', 'obst'], ['salat', 1, 'Kopf', 'Blattsalat', '', 'obst'],
+  ['baguette', 3, '', 'Baguette', '', 'frueh'], ['kraeuterbutter', 2, 'Becher', 'Kräuterbutter', 'vegan – passt für alle', 'kuehl'],
+  ['ketchup', 1, 'Flasche', 'Ketchup', '', 'vorrat', '', true], ['senf', 1, 'Glas', 'Senf', '', 'vorrat', '', true], ['grillsosse', 1, 'Flasche', 'Grillsoße', 'vegan', 'vorrat', '', true],
+  ['bier', 12, 'Flasche', 'Bier', 'auch alkoholfrei', 'getraenk'], ['sprudel', 4, 'Flasche', 'Sprudel', '1,5 l', 'getraenk'], ['schorle', 3, 'Flasche', 'Apfelschorle', '1,5 l', 'getraenk'],
+  ['kohle', 1, 'Sack', 'Grillkohle', '', 'haushalt'], ['anzuender', 1, 'Pck.', 'Grillanzünder', '', 'haushalt', '', true],
+  ['schalen', 1, 'Pck.', 'Grillschalen', 'Veggie-Grillgut getrennt vom Fleisch grillen', 'haushalt', '', true], ['servietten', 1, 'Pck.', 'Servietten', '', 'haushalt', '', true],
+];
+function migrateGrill(){
+  local.mig = local.mig || {};
+  if (local.mig.grill) return false;
+  if (!catById('grillgut') && !((data.deleted['cat:grillgut'] || 0) >= MIG_U4)) data.categories.push({id: 'grillgut', name: 'Grillgut', icon: '🔥', u: MIG_U4});
+  if (!data.lists.some(l => l.id === 'grillen-sommer') && !((data.deleted['list:grillen-sommer'] || 0) >= MIG_U4))
+    data.lists.push({id: 'grillen-sommer', name: 'Grillen im Sommer', emoji: '🔥', kind: 'list', includes: [], excludes: [], servings: 8, u: MIG_U4,
+      groups: [{id: 'fleisch', name: 'Fleisch', icon: '🥩', n: 6}, {id: 'veggie', name: 'Vegan/Vegetarisch', icon: '🌱', n: 2}],
+      items: GRILL.map(([id, qty, unit, name, spec, cat, grp, fix]) => ({id: 'gr-' + id, name, spec, cat, qty, unit, ...(grp ? {grp} : {}), ...(fix ? {fix: true} : {}), u: MIG_U4}))});
+  local.mig.grill = true; saveLocal();
+  return true;
+}
+function migrateRaclette(){
+  local.mig = local.mig || {};
+  if (local.mig.raclette) return false;
+  if (!data.lists.some(l => l.id === 'raclette') && !((data.deleted['list:raclette'] || 0) >= MIG_U3))
+    data.lists.push({id: 'raclette', name: 'Raclette-Abend', emoji: '🧀', kind: 'list', includes: [], excludes: [], servings: 4, u: MIG_U3,
+      items: RACLETTE.map(([id, qty, unit, name, spec, cat, fix]) => ({id: 'rc-' + id, name, spec, cat, qty, unit, ...(fix ? {fix: true} : {}), u: MIG_U3}))});
+  local.mig.raclette = true; saveLocal();
+  return true;
+}
 /* Käsesorten wieder als „Käse“ + Spezifikation (so kommen sie in Bring korrekt an) */
 function migrateCheese(){
   local.mig = local.mig || {};
@@ -435,7 +634,11 @@ const listById = id => data.lists.find(l=>l.id===id);
 const recipeById = id => data.recipes.find(r=>r.id===id);
 const visibleLists = () => data.lists.filter(l=>l.kind==='list');
 const packLists = () => data.lists.filter(l=>l.kind==='pack');
-const orderedLists = () => [...visibleLists(), ...packLists(), ...baseLists()];
+const cartLists = () => data.lists.filter(l=>l.kind==='cart');
+const cartList = () => cartLists()[0];
+const orderedLists = () => [...cartLists(), ...visibleLists(), ...packLists(), ...baseLists()];
+const openCount = l => l.items.filter(i=>!i.done).length;
+function openCart(){ const c = cartList(); location.hash = c ? '#/liste/' + encodeURIComponent(c.id) : ''; }
 const baseLists = () => data.lists.filter(l=>l.kind==='base');
 
 function save(opts = {}){
@@ -539,7 +742,7 @@ function bringPageHtml(l, base){
     '@context':'https://schema.org', '@type':'Recipe', name: l.name, url: pageUrl,
     author:{'@type':'Person', name:'bring+'}, publisher:{'@type':'Organization', name:'bring+'},
     description: 'Einkaufsvorlage aus bring+: ' + l.name, image: [img],
-    recipeCategory: 'Einkaufsliste', recipeYield: '1', prepTime: 'PT5M', totalTime: 'PT5M',
+    recipeCategory: 'Einkaufsliste', recipeYield: String(l.servings || 1), prepTime: 'PT5M', totalTime: 'PT5M',
     recipeIngredient: items.map(itemLine),
     recipeInstructions: [{'@type':'HowToStep', text:'Alle Artikel einkaufen.'}]
   };
@@ -579,7 +782,9 @@ async function openBringPage(url, want, onProblem){
       if (!confirm(msg)) { if (ghReady()) syncNow(); return; }
     }
   } catch(e) { /* offline / lokal geöffnet – trotzdem versuchen */ }
-  location.href = BRING_DEEPLINK + encodeURIComponent(url) + '&baseQuantity=1&requestedQuantity=1';
+  const l = data.lists.find(x => url.endsWith('listen/' + x.id + '.html'));
+  const base = l?.servings || 1, req = l?.servings ? guestsOf(l) : 1;
+  location.href = BRING_DEEPLINK + encodeURIComponent(url) + `&baseQuantity=${base}&requestedQuantity=${req}`;
 }
 function showNotOnline(l, url, why){
   openSheet(`<h2>Liste noch nicht bei Bring abrufbar</h2>
@@ -674,9 +879,10 @@ function viewPrint(r){
   const insta = /instagram\.com/.test(r.url), web = r.url && !insta;
   local.rc = local.rc || {};
   const c = local.rc[r.id];                                  // nur auf diesem Gerät zwischengespeichert, nicht veröffentlicht
-  const ing = r.ingredients.length ? r.ingredients : (c?.ingredients || []);
+  const f = r.ingredients.length ? recipeFactor(r) : 1;
+  const ing = (r.ingredients.length ? r.ingredients : (c?.ingredients || [])).map(x => scaleLine(x, f));
   const steps = r.steps ? r.steps.split('\n').map(x=>x.trim()).filter(Boolean) : (c?.steps || []);
-  const servings = r.servings || c?.servings || 0, time = r.time || c?.time || 0;
+  const servings = (r.servings && r.ingredients.length ? portionsOf(r) : 0) || r.servings || c?.servings || 0, time = r.time || c?.time || 0;
   const img = imgSrc(r) || c?.image || '';
   const po = local.po || {img: true, big: false};
   const v = avgRating(r);
@@ -693,6 +899,7 @@ function viewPrint(r){
     <div class="printopts noprint">
       <label><input type="checkbox" id="poImg" ${po.img?'checked':''}> Bild</label>
       <label><input type="checkbox" id="poBig" ${po.big?'checked':''}> Große Schrift</label>
+      ${r.servings && r.ingredients.length ? `<span class="stepper" style="margin-left:4px">🍽 <button onclick="setPortions(${jsq(r.id)},-1,'print')">−</button><b>${portionsOf(r)}</b><button onclick="setPortions(${jsq(r.id)},1,'print')">+</button></span>` : ''}
       ${web ? `<button class="btn small" onclick="reloadPrint(${jsq(r.id)})">↻ Neu laden</button>` : ''}
       <span id="pStatus">${loading ? '⏳ Lade Rezept von ' + esc(host(r.url)) + ' …' : ''}</span>
     </div>
@@ -739,7 +946,7 @@ async function pasteIntoPrint(id){
 function recipeToBring(id){
   const r = recipeById(id); if (!r) return;
   if (!r.ingredients.length) {
-    if (r.url && !/instagram\.com/.test(r.url)) { location.href = BRING_DEEPLINK + encodeURIComponent(r.url); return; }
+    if (r.url && !/instagram\.com/.test(r.url)) { location.href = BRING_DEEPLINK + encodeURIComponent(r.url) + (r.servings ? `&baseQuantity=${r.servings}&requestedQuantity=${portionsOf(r)}` : ''); return; }
     return toast('Erst Zutaten eintragen: ✏️ Bearbeiten → Zutaten', 3500);
   }
   const url = hostedBase() + 'rezepte/' + r.id + '.html';
@@ -783,7 +990,7 @@ function parseCaption(text){
 }
 
 async function shareText(l){
-  const lines = effItems(l).map(itemLine), text = lines.join('\n');
+  const lines = effItems(l).filter(i => !(l.kind === 'cart' && i.done)).map(itemLine), text = lines.join('\n');
   if (navigator.share && !isDesk()) { try { await navigator.share({title: l.name, text}); return; } catch(e) { if (e.name==='AbortError') return; } }
   try { await navigator.clipboard.writeText(text); toast('Liste kopiert ('+lines.length+' Artikel)'); }
   catch(e) { prompt('Zum Kopieren:', lines.join(', ')); }
@@ -851,7 +1058,7 @@ function exportJson(){ download(new Blob([dataText(data)], {type:'application/js
 function exportPackage(){
   const base = hostedBase(), {pub, files} = publishable();
   files.unshift({name:'daten.json', text: dataText(pub)});
-  for (const l of data.lists) if (l.kind !== 'pack') files.push({name:'listen/'+l.id+'.html', text: bringPageHtml(l, base)});
+  for (const l of data.lists) if (l.kind !== 'pack' && l.kind !== 'cart') files.push({name:'listen/'+l.id+'.html', text: bringPageHtml(l, base)});
   for (const r of data.recipes) if (r.ingredients.length) files.push({name:'rezepte/'+r.id+'.html', text: recipePageHtml(r, base)});
   download(makeZip(files), 'bringplus-veroeffentlichen.zip');
   toast('Paket erstellt – Inhalt in den GitHub-Ordner hochladen');
@@ -945,7 +1152,7 @@ async function syncNow(manual){
     // 3) Bring-Seiten der geänderten Listen
     const base = hostedBase(), dir = await ghDir('listen');
     for (const l of data.lists) {
-      if (l.kind === 'pack') continue;
+      if (l.kind === 'pack' || l.kind === 'cart') continue;
       const html = bringPageHtml(l, base), sha = await gitSha(html), name = l.id + '.html';
       if (sha && dir[name] === sha) continue;                       // unverändert → kein Commit
       await ghPut('listen/' + name, b64utf8(html), dir[name], 'bring+: Bring-Seite ' + l.name);
@@ -1011,10 +1218,10 @@ function route(soft){
   if (h === '#/einstellungen') { tab = 'einst'; viewSettings(); }
   else if (h.startsWith('#/druck/') && recipeById(decodeURIComponent(h.slice(8)))) { tab = 'rezepte'; viewPrint(recipeById(decodeURIComponent(h.slice(8)))); }
   else if (h.startsWith('#/rezepte')) { tab = 'rezepte'; viewRecipes(); }
-  else if (l) viewList(l);
+  else if (l) { viewList(l); if (l.kind === 'cart') tab = 'zettel'; }
   else viewHome();
   $$('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.tab === tab));
-  renderSide(); renderSyncBadge();
+  renderSide(); renderSyncBadge(); renderCartCount();
 }
 let lastHash = location.hash;
 window.addEventListener('hashchange', () => {
@@ -1032,6 +1239,8 @@ function renderSide(){
   $('#side').innerHTML = `<div class="brand"><img src="icon-192.png" alt="" onerror="this.style.display='none'"><span>bring<b>+</b></span></div>
     <button class="slink ${!h||h==='#'||h==='#/'?'on':''}" onclick="location.hash=''"><span class="e">🏠</span><span class="n">Übersicht</span></button>
     <button class="slink ${h.startsWith('#/rezepte')?'on':''}" onclick="location.hash='#/rezepte'"><span class="e">📖</span><span class="n">Rezeptbuch</span><span class="c">${data.recipes.length}</span><span class="k">R</span></button>
+    ${cartLists().map(c => `<button class="slink ${cur===c.id?'on':''}" data-drop="${esc(c.id)}" onclick="location.hash='#/liste/${encodeURIComponent(c.id)}'">
+      <span class="e">${esc(c.emoji)}</span><span class="n">${esc(c.name)}</span><span class="c">${openCount(c)} offen</span>${ordered.indexOf(c) < 9 ? `<span class="k">${ordered.indexOf(c)+1}</span>` : ''}</button>`).join('')}
     <div class="sgroup">Einkaufslisten</div>
     ${visibleLists().map(l => link(l, ordered.indexOf(l))).join('')}
     ${packLists().length ? `<div class="sgroup">Packlisten</div>${packLists().map(l => link(l, ordered.indexOf(l))).join('')}` : ''}
@@ -1040,6 +1249,8 @@ function renderSide(){
     <button class="slink" onclick="newList()"><span class="e">＋</span><span class="n">Neue Liste</span></button>
     <div class="sgroup">App</div>
     <button class="slink ${h==='#/einstellungen'?'on':''}" onclick="location.hash='#/einstellungen'"><span class="e">⚙️</span><span class="n">Einstellungen</span></button>
+    <button class="slink" onclick="aiDialog(currentList()?.id)"><span class="e">✨</span><span class="n">KI-Assistent</span><span class="k">I</span></button>
+    <button class="slink" onclick="seasonDialog(currentList()?.id)"><span class="e">🌱</span><span class="n">Saisonkalender</span></button>
     <button class="slink" onclick="showKeys()"><span class="e">⌨️</span><span class="n">Tastenkürzel</span><span class="k">?</span></button>
     <div class="sfoot"><span>Artikel auf eine Liste ziehen = kopieren<br>mit ⇧ Umschalt = verschieben</span></div>`;
   // Drag & Drop-Ziele
@@ -1052,6 +1263,150 @@ function renderSide(){
   });
 }
 
+/* =====================================================================
+   Einkaufszettel (wie Bring): abhaken → ausgegraut nach unten, zurückholbar
+   ===================================================================== */
+const QTY_RE = /^((?:ca\.\s*)?(?:\d+(?:[.,/]\d+)?|[½¼¾⅓⅔⅛])\s*(?:-\s*\d+\s*)?(?:g|kg|mg|ml|l|cl|el|tl|stk\.?|stück|pck\.?|päckchen|pkg|prise[n]?|dose[n]?|bund|zehe[n]?|becher|glas|gläser|scheibe[n]?|handvoll|tasse[n]?|cups?|tbsp|tsp|msp\.?)?\.?)\s+(.+)$/i;
+function splitIngredient(t){
+  const m = String(t).trim().match(QTY_RE);
+  return m ? {name: m[2].replace(/^(von\s+)/i,'').trim(), spec: m[1].trim()} : {name: String(t).trim(), spec: ''};
+}
+function guessCat(name){
+  const k = keyOf(name); let best = null, bl = 0;
+  for (const l of data.lists) for (const it of l.items) {
+    const n = keyOf(it.name); if (!it.cat || !n) continue;
+    if (n === k) return it.cat;
+    if ((k.includes(n) || n.includes(k)) && n.length > bl && n.length > 2) { best = it.cat; bl = n.length; }
+  }
+  return best || '';
+}
+/* Artikel auf den Zettel: Dubletten überspringen, bereits abgehakte wieder öffnen */
+function toCart(entries, cartId){
+  const c = listById(cartId) || cartList(); if (!c) return {added:0, reopened:0, skipped:0};
+  let added = 0, reopened = 0, skipped = 0, merged = 0;
+  for (const e of entries) {
+    const ex = c.items.find(i => itemKey(i) === itemKey(e));
+    if (ex) {
+      if (ex.done) { delete ex.done; if (e.qty) { ex.qty = e.qty; ex.unit = e.unit || ''; } touch(ex); reopened++; }
+      else if (e.qty && ex.qty && (ex.unit || '') === (e.unit || '')) { ex.qty = Math.round((ex.qty + e.qty) * 100) / 100; touch(ex); merged++; }
+      else skipped++;
+      continue;
+    }
+    c.items.push({id: uid(), name: e.name, spec: e.spec || '', cat: e.cat || guessCat(e.name), ...(e.photo ? {photo: e.photo} : {}),
+      ...(e.qty ? {qty: e.qty, unit: e.unit || ''} : {}), u: now()}); added++;
+  }
+  save(); return {added, reopened, skipped, merged, cart: c};
+}
+const cartMsg = r => `${r.added + r.reopened} Artikel auf „${r.cart.name}“` + (r.merged ? ` · bei ${r.merged} Menge erhöht` : '') + (r.skipped ? ` · ${r.skipped} standen schon drauf` : '');
+function toggleDone(cid, iid){
+  const c = listById(cid), it = c?.items.find(i => i.id === iid); if (!it) return;
+  if (it.done) delete it.done; else it.done = now();
+  touch(it); save(); viewList(c);
+}
+function clearDone(cid){
+  const c = listById(cid), d = c.items.filter(i => i.done); if (!d.length) return;
+  c.items = c.items.filter(i => !i.done); d.forEach(i => tomb('item', i.id)); save(); viewList(c); toast(d.length + ' erledigte Artikel entfernt');
+}
+function quickAdd(cid, text){
+  const parts = String(text).split(/\s*[,;\n]\s*/).map(x => x.trim()).filter(Boolean); if (!parts.length) return;
+  const r = toCart(parts.map(t => { const s = t.match(/^(.+?)\s*\((.+)\)$/); const q = parseQtyText(s ? s[1] : t);
+    return {name: q.name, spec: s ? s[2] : '', qty: q.qty, unit: q.unit}; }), cid);
+  viewList(r.cart); setTimeout(() => $('#qa')?.focus(), 30);
+  if (r.skipped) toast(r.skipped === parts.length ? 'Steht schon auf dem Zettel' : cartMsg(r));
+}
+/* Dialog: Artikel einer Vorlage auswählen und auf den Zettel legen */
+function toCartDialog(lid, keys){
+  const l = listById(lid); const carts = cartLists();
+  if (!carts.length) return toast('Kein Einkaufszettel vorhanden');
+  let ents = effective(l); if (keys?.length) ents = ents.filter(e => keys.includes(e.from.id + ':' + e.it.id));
+  const tgt = () => listById($('#tcCart')?.value) || carts[0];
+  const onCart = it => tgt().items.some(i => !i.done && itemKey(i) === itemKey(it));
+  // bereits offene Artikel ohne Menge nicht vorauswählen, mit Menge schon (Menge wird addiert)
+  openSheet(`<h2>Auf den Einkaufszettel</h2>
+    ${carts.length > 1 ? `<div class="field"><label>Zettel</label><select id="tcCart">${carts.map(c=>`<option value="${esc(c.id)}">${esc(c.emoji)} ${esc(c.name)}</option>`).join('')}</select></div>` : ''}
+    <p class="muted" style="margin-top:0">Abwählen, was noch im Haus ist.</p>
+    <div class="row" style="margin-bottom:8px"><button class="btn small" id="tcAll">Alle</button><button class="btn small" id="tcNone">Keine</button><span class="spacer"></span></div>
+    ${l.servings ? `<p class="muted" style="margin-top:-6px">👥 Mengen für <b>${l.groups?.length ? l.groups.map(g => groupGuests(l, g.id) + ' ' + g.icon).join(' + ') : guestsOf(l) + ' Personen'}</b></p>` : ''}
+    <div class="menu" id="tcList">${byCat(ents).map(g => g.es.map(({it, from}) => `<label><input type="checkbox" value="${esc(it.id)}" data-from="${esc(it.id)}" ${onCart(it)?'':'checked'}>
+      <span class="grow">${qtyStr(it, factorFor(l, from, it)) ? `<span class="qty">${esc(qtyStr(it, factorFor(l, from, it)))}</span> ` : ''}${groupOf(from, it) ? groupOf(from, it).icon + ' ' : ''}${esc(it.name)}${it.spec?` <small style="display:inline">· ${esc(it.spec)}</small>`:''}${onCart(it)?'<small>steht schon drauf – Menge wird ergänzt</small>':''}</span><span class="muted">${esc(g.c.icon)}</span></label>`).join('')).join('')}</div>
+    <div class="row"><button class="btn grow" onclick="closeSheet()">Abbrechen</button><button class="btn primary grow" id="tcOk">📝 Übernehmen</button></div>`, () => {
+    const upd = () => { $('#tcOk').textContent = '📝 ' + $$('#tcList input:checked').length + ' übernehmen'; };
+    upd(); $('#tcList').onchange = upd;
+    $('#tcAll').onclick = () => { $$('#tcList input').forEach(x => x.checked = true); upd(); };
+    $('#tcNone').onclick = () => { $$('#tcList input').forEach(x => x.checked = false); upd(); };
+    $('#tcOk').onclick = () => {
+      const ids = new Set($$('#tcList input:checked').map(x => x.value));
+      const r = toCart(ents.filter(e => ids.has(e.it.id)).map(e => ({...e.it, qty: qtyOf(e.it, factorFor(l, e.from, e.it)), unit: e.it.unit || ''})), tgt().id);
+      closeSheet(); ui.sel.clear(); toast(cartMsg(r)); route();
+    };
+  });
+}
+function pickTemplate(cid){
+  openSheet(`<h2>Aus Liste übernehmen</h2>
+    <div class="menu">${[...visibleLists(), ...baseLists()].map(l => `<button onclick="closeSheet();setTimeout(()=>toCartDialog(${jsq(l.id)}),60)">
+      <span style="font-size:22px">${esc(l.emoji)}</span><span class="grow">${esc(l.name)}<small>${effective(l).length} Artikel</small></span></button>`).join('')}</div>
+    <button class="btn" style="width:100%;justify-content:center" onclick="closeSheet()">Abbrechen</button>`);
+}
+function recipeToCart(id){
+  const r = recipeById(id); if (!r?.ingredients.length) return;
+  const f = recipeFactor(r);
+  const r2 = toCart(r.ingredients.filter(x => !/:$/.test(x)).map(x => { const q = parseQtyText(scaleLine(x, f)); return {name: q.name, spec: r.title.slice(0, 30), qty: q.qty, unit: q.unit}; }));
+  toast(cartMsg(r2), 3500);
+}
+function viewCart(l){
+  $('#topbar').innerHTML = `<button class="iconbtn" aria-label="Zurück" onclick="location.hash=''">←</button>
+    <span style="font-size:24px;padding:0 4px">${esc(l.emoji)}</span>
+    <input class="title-edit" value="${esc(l.name)}" aria-label="Name" onchange="renameList(${jsq(l.id)}, this.value)" onkeydown="if(event.key==='Enter'||event.key==='Escape')this.blur()">
+    ${syncBtn()}`;
+  const open = l.items.filter(i => !i.done), done = l.items.filter(i => i.done).sort((a, b) => a.done - b.done);
+  const groups = byCat(open.map(it => ({it, from: l})));
+  ui.rows = [];
+  const row = (it, isDone) => `<div class="item ck ${isDone?'done':''}" data-cid="${esc(l.id)}" data-iid="${esc(it.id)}">
+      <span class="ccb">${isDone?'✓':''}</span>
+      ${it.photo ? `<img class="thumb" src="${esc(it.photo)}" alt="" loading="lazy">` : ''}
+      <span class="txt"><span class="n">${it.qty ? `<span class="qty">${esc(qtyStr(it))}</span> ` : ''}${esc(it.name)}</span>${it.spec?`<br><span class="s">${esc(it.spec)}</span>`:''}</span>
+      <span class="ia"><button data-act="edit" title="Bearbeiten" aria-label="Bearbeiten">✏️</button><button data-act="del" title="Löschen" aria-label="Löschen">🗑</button></span></div>`;
+  const known = [...new Set(data.lists.flatMap(x => x.items.map(i => i.name)))].sort((a, b) => a.localeCompare(b, 'de'));
+  $('#main').innerHTML = `
+    <form class="qadd" id="qaForm"><input id="qa" placeholder="z. B. 2 kg Kartoffeln, Milch …" list="qaNames" autocomplete="off" enterkeyhint="done">
+      <button class="btn primary" type="submit" aria-label="Hinzufügen">＋</button></form>
+    <datalist id="qaNames">${known.map(n => `<option value="${esc(n)}">`).join('')}</datalist>
+    <div class="actions">
+      <button class="btn grow" onclick="pickTemplate(${jsq(l.id)})">📥 Aus Liste übernehmen</button>
+      <button class="btn" onclick="seasonDialog(${jsq(l.id)})">🌱 Saison</button>
+      <button class="btn" onclick="shareText(listById(${jsq(l.id)}))" title="Offene Artikel als Text">📋 Text</button>
+    </div>
+    <div class="rcount" style="margin:0 2px 6px"><span><b>${open.length}</b> offen${done.length ? ` · ${done.length} erledigt` : ''}</span><span>Antippen = abhaken</span></div>
+    ${groups.length ? groups.map(g => `<section class="cat"><h3>${esc(g.c.icon)} ${esc(g.c.name)} <span style="font-weight:500">· ${g.es.length}</span></h3>
+      <div class="items">${g.es.map(e => row(e.it, false)).join('')}</div></section>`).join('')
+      : `<div class="empty">${done.length ? 'Alles erledigt! 🎉' : 'Der Zettel ist leer.'}<br>Oben etwas eintippen oder „📥 Aus Liste übernehmen“.</div>`}
+    ${done.length ? `<div class="donehead"><span>✓ Erledigt · ${done.length}</span><button class="btn small" onclick="clearDone(${jsq(l.id)})">Erledigte entfernen</button></div>
+      <div class="items">${done.map(it => row(it, true)).join('')}</div>
+      <p class="muted" style="margin:8px 4px">Versehentlich abgehakt? Einfach nochmal antippen.</p>` : ''}`;
+  $('#qaForm').onsubmit = e => { e.preventDefault(); quickAdd(l.id, $('#qa').value); };
+  $$('#main .item[data-iid]').forEach(el => el.onclick = e => {
+    const act = e.target.closest('[data-act]')?.dataset.act, iid = el.dataset.iid;
+    if (act === 'edit') return editItem(l.id, iid);
+    if (act === 'del') return deleteItems([l.id + ':' + iid], l);
+    toggleDone(l.id, iid);
+  });
+  $('#fabslot').innerHTML = ''; $('#selslot').innerHTML = '';
+  startCartPoll();
+}
+/* Während der Zettel offen ist, regelmäßig abgleichen (gemeinsames Einkaufen) */
+let cartPoll = null;
+function startCartPoll(){
+  if (cartPoll || !ghReady()) return;
+  cartPoll = setInterval(() => {
+    if (currentList()?.kind !== 'cart') { clearInterval(cartPoll); cartPoll = null; return; }
+    if (document.visibilityState === 'visible' && !sheetOpen()) syncNow();
+  }, 20000);
+}
+function renderCartCount(){
+  const c = cartList(), el = $('#cartCnt'); if (!el) return;
+  const n = c ? openCount(c) : 0; el.hidden = !n; el.textContent = n;
+}
+
 /* ---------- Startseite ---------- */
 const packedCount = l => { const s = packedSet(l.id); return effective(l).filter(e => s.has(e.from.id+':'+e.it.id)).length; };
 function viewHome(){
@@ -1060,7 +1415,10 @@ function viewHome(){
   const card = l => `<button class="lcard ${l.kind==='base'?'base':''}" onclick="location.hash='#/liste/${encodeURIComponent(l.id)}'">
       <span class="emo">${esc(l.emoji)}</span><span class="nm">${esc(l.name)}</span>
       <span class="ct">${l.kind==='pack' ? packedCount(l) + ' / ' : ''}${effective(l).length} ${l.kind==='pack'?'eingepackt':'Artikel'}${l.includes.length ? ' · inkl. ' + l.includes.map(i=>listById(i)?.emoji||'').join('') : ''}${l.kind==='base' ? ' · in ' + usedBy(l.id).length + ' Listen' : ''}</span></button>`;
-  $('#main').innerHTML = `<p class="hint">Wähle ein Szenario und schick die Liste an Bring.</p>
+  $('#main').innerHTML = `${cartLists().map(c => `<button class="cartcard" onclick="location.hash='#/liste/${encodeURIComponent(c.id)}'">
+      <span class="emo">${esc(c.emoji)}</span><span style="flex:1"><b>${esc(c.name)}</b>${openCount(c) ? openCount(c) + ' Artikel offen' : 'nichts offen'}${c.items.length - openCount(c) ? ' · ' + (c.items.length - openCount(c)) + ' erledigt' : ''}</span><span style="font-size:22px">›</span></button>`).join('')}
+    <div class="toolrow"><button class="btn ai" onclick="aiDialog()">✨ Liste mit KI</button><button class="btn" onclick="seasonDialog()">🌱 Saisonal</button></div>
+    <p class="hint">Vorlage wählen → auf den Einkaufszettel oder an Bring.</p>
     <div class="lists">${visibleLists().map(card).join('')}<button class="lcard add" onclick="newList()">＋ Neue Liste</button></div>
     <div class="sec">🧳 Packlisten <span style="text-transform:none;letter-spacing:0;font-weight:500">– zum Abhaken beim Kofferpacken</span></div>
     <div class="lists">${packLists().map(card).join('')}<button class="lcard add" onclick="newList('pack')">＋ Neue Packliste</button></div>
@@ -1071,6 +1429,7 @@ function viewHome(){
 
 /* ---------- Liste ---------- */
 function viewList(l){
+  if (l.kind === 'cart') return viewCart(l);
   $('#topbar').innerHTML = `<button class="iconbtn" aria-label="Zurück" onclick="location.hash=''">←</button>
     <button class="iconbtn" aria-label="Symbol ändern" onclick="listMenu(${jsq(l.id)})" style="font-size:24px">${esc(l.emoji)}</button>
     <input class="title-edit" value="${esc(l.name)}" aria-label="Listenname" onchange="renameList(${jsq(l.id)}, this.value)" onkeydown="if(event.key==='Enter'||event.key==='Escape')this.blur()">
@@ -1087,7 +1446,7 @@ function viewList(l){
       <span class="cb" data-act="sel">${ui.sel.has(k)?'✓':''}</span>
       ${isPack ? `<span class="pcb">${packed.has(k)?'✓':''}</span>` : ''}
       ${it.photo ? `<img class="thumb" src="${esc(it.photo)}" alt="" loading="lazy" data-act="photo">` : isPack ? '' : '<span class="dot"></span>'}
-      <span class="txt"><span class="n">${esc(it.name)}</span>${it.spec?`<br><span class="s">${esc(it.spec)}</span>`:''}</span>
+      <span class="txt"><span class="n">${it.qty ? `<span class="qty">${esc(qtyStr(it, factorFor(l, from, it)))}</span> ` : ''}${esc(it.name)}${groupOf(from, it) ? `<span class="gtag" title="${esc(groupOf(from, it).name)}">${groupOf(from, it).icon}</span>` : ''}</span>${it.spec?`<br><span class="s">${esc(it.spec)}</span>`:''}</span>
       ${inh ? `<span class="from" title="aus Baustein – Bearbeiten ändert den Baustein">${esc(from.emoji)} ${esc(from.name)}</span>` : ''}
       <span class="ia">
         ${isPack ? `<button data-act="edit" title="Bearbeiten (Enter)" aria-label="Bearbeiten">✏️</button>` : ''}
@@ -1101,11 +1460,18 @@ function viewList(l){
       <div class="progress"><span style="width:${ui.rows.length ? Math.round(100*nPacked/ui.rows.length) : 0}%"></span></div>` : ''}
     <div class="actions">
       ${isPack ? `<button class="btn primary grow" onclick="resetPacked(${jsq(l.id)})">↺ Neu packen</button>`
-        : `<button class="btn primary grow" onclick="openInBring(listById(${jsq(l.id)}))">🛒 In Bring importieren</button>`}
+        : `<button class="btn primary grow" onclick="toCartDialog(${jsq(l.id)})">📝 Auf den Einkaufszettel</button>
+           <button class="btn" onclick="openInBring(listById(${jsq(l.id)}))" title="In Bring importieren (B)">🛒 Bring</button>`}
       <button class="btn" onclick="shareText(listById(${jsq(l.id)}))" title="Als Text teilen/kopieren">📋 Text</button>
       <button class="btn" onclick="dupList(${jsq(l.id)})" title="Liste duplizieren (D)">⧉ Duplizieren</button>
       <button class="btn" onclick="toggleSelMode()" id="selModeBtn" ${isDesk()?'hidden':''}>☑ Auswählen</button>
+      <button class="btn" onclick="aiDialog(${jsq(l.id)})" title="Mit KI ergänzen (I)">✨ KI</button>
+      ${isPack ? '' : `<button class="btn" onclick="seasonDialog(${jsq(l.id)})">🌱 Saison</button>`}
     </div>
+    ${l.groups?.length ? `<div class="guests"><div class="grow2"><span class="lbl">👥 Gäste: ${guestsOf(l)}<small>Mengen angelegt für ${l.groups.map(g => g.n + ' ' + esc(g.name)).join(' + ')}</small></span>
+      ${l.groups.map(g => `<div><span>${g.icon} ${esc(g.name)}</span><div class="stepper"><button onclick="setGroupGuests(${jsq(l.id)},${jsq(g.id)},-1)" aria-label="Weniger">−</button><b>${groupGuests(l, g.id)}</b><button onclick="setGroupGuests(${jsq(l.id)},${jsq(g.id)},1)" aria-label="Mehr">+</button></div></div>`).join('')}</div></div>`
+    : l.servings ? `<div class="guests"><span class="lbl">👥 Personen<small>Mengen angelegt für ${l.servings} · ${guestsOf(l) !== l.servings ? 'umgerechnet' : 'wie angelegt'}</small></span>
+      <div class="stepper"><button onclick="setGuests(${jsq(l.id)},-1)" aria-label="Weniger">−</button><b>${guestsOf(l)}</b><button onclick="setGuests(${jsq(l.id)},1)" aria-label="Mehr">+</button></div></div>` : ''}
     <div class="incl">Bausteine:
       ${l.includes.map(id => { const b = listById(id); return b ? `<span class="chip">${esc(b.emoji)} ${esc(b.name)} <button title="Baustein entfernen" onclick="toggleInclude(${jsq(l.id)}, ${jsq(id)})">✕</button></span>` : ''; }).join('')}
       <span class="chip add" onclick="includeMenu(${jsq(l.id)})">＋ Baustein einbinden</span>
@@ -1167,6 +1533,7 @@ function renderSelBar(l){
   $('#fabslot').hidden = true;
   $('#selslot').innerHTML = `<div class="selbar"><span class="cnt">${ui.sel.size}${isDesk() ? ' ausgewählt' : ' ✓'}</span>
     <button onclick="copyDialog([...ui.sel], currentList())">⧉ Kopieren${isDesk() ? ' nach …' : ''} <kbd>C</kbd></button>
+    ${currentList()?.kind !== 'pack' && cartList() ? `<button onclick="toCartDialog(currentList().id, [...ui.sel])">📝 Zettel <kbd>E</kbd></button>` : ''}
     <button onclick="copyDialog([...ui.sel], currentList(), 'move')">➜ Verschieben <kbd>V</kbd></button>
     <button onclick="deleteItems([...ui.sel], currentList())">🗑 <kbd>Entf</kbd></button>
     ${isDesk() ? '<button onclick="ui.sel.clear();refreshRows(currentList())">✕ <kbd>Esc</kbd></button>' : ''}</div>`;
@@ -1203,6 +1570,9 @@ function copyDialog(keys, fromList, mode = 'copy'){
 }
 function transfer(keys, targetIds, mode){
   const src = keys.map(resolve).filter(Boolean);
+  const carts = targetIds.filter(t => listById(t)?.kind === 'cart');
+  for (const cid of carts) { const r = toCart(src.map(s => s.it), cid); toast(cartMsg(r)); }
+  targetIds = targetIds.filter(t => !carts.includes(t)); if (!targetIds.length) { ui.sel.clear(); route(); return; }
   let added = 0, skipped = 0;
   for (const tid of targetIds) {
     const t = listById(tid); if (!t) continue;
@@ -1232,6 +1602,7 @@ function unhide(lid, iid){ const l = listById(lid); l.excludes = l.excludes.filt
 /* ---------- Listen-Aktionen ---------- */
 function newList(kind = 'list'){
   openSheet(`<h2>${kind==='base'?'Neuer Baustein':kind==='pack'?'Neue Packliste':'Neue Liste'}</h2>
+    <button class="btn" style="width:100%;justify-content:center;margin-bottom:14px" onclick="closeSheet();setTimeout(importListDialog,60)">📥 Fertige Liste aus Text importieren</button>
     <div class="field"><label>Name</label><input id="nlName" placeholder="${kind==='base'?'z. B. Frühstück Basis':kind==='pack'?'z. B. Skiurlaub packen':'z. B. Grillabend'}"></div>
     <div class="field"><label>Art</label><div class="chips txt" id="nlKind">
       <button type="button" data-v="list" class="${kind==='list'?'on':''}">🛒 Einkaufsliste</button>
@@ -1267,6 +1638,11 @@ function listMenu(id){
   openSheet(`<h2>${esc(l.emoji)} ${esc(l.name)}</h2>
     <div class="field"><label>Symbol</label><div class="chips" id="lmEmo">${EMOJIS.map(e=>`<button type="button" class="${e===l.emoji?'on':''}">${e}</button>`).join('')}</div></div>
     <div class="menu">
+      <label>👥 <span class="grow">Mengen gelten für<small>Personenzahl, für die die Mengen angelegt sind (leer = keine Umrechnung)</small></span>
+        <input type="number" min="1" max="99" inputmode="numeric" id="lmServ" value="${l.servings || ''}" style="width:72px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg)"></label>
+      <label>🥩🌱 <span class="grow">Personengruppen<small>z. B. „🥩 Fleisch 6, 🌱 Vegan/Vegetarisch 2“ – jede Gruppe bekommt einen eigenen Regler</small>
+        <input id="lmGrp" value="${esc(groupsText(l))}" placeholder="leer = keine Gruppen" style="width:100%;margin-top:6px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg)"></span></label>
+      <button onclick="shareListText(${jsq(id)})">📤 <span class="grow">Als Text teilen<small>zum Weitergeben oder als Sicherung – lässt sich wieder importieren</small></span></button>
       <button onclick="closeSheet();dupList(${jsq(id)})">⧉ <span class="grow">Liste duplizieren</span><span class="kbd">D</span></button>
       <button onclick="closeSheet();includeMenu(${jsq(id)})">🧩 <span class="grow">Bausteine einbinden …</span></button>
       ${[['list','🛒','Zur Einkaufsliste machen','mit Bring-Import'],['pack','🧳','Zur Packliste machen','zum Abhaken beim Packen'],['base','🧩','Zu Baustein machen','lässt sich in andere Listen einbinden']]
@@ -1276,6 +1652,11 @@ function listMenu(id){
       <button onclick="download(new Blob([bringPageHtml(listById(${jsq(id)}), hostedBase())],{type:'text/html'}),${jsq(id+'.html')})">🌐 <span class="grow">Bring-Seite herunterladen<small>gehört nach listen/${esc(id)}.html</small></span></button>
       <button class="danger" onclick="delList(${jsq(id)})">🗑 <span class="grow">${l.kind==='base'?'Baustein':l.kind==='pack'?'Packliste':'Liste'} löschen</span></button>
     </div>`, () => {
+    $('#lmGrp').onchange = e => { const gs = parseGroups(e.target.value);
+      if (gs.length) { l.groups = gs; l.servings = gs.reduce((a, g) => a + g.n, 0); } else delete l.groups;
+      if (local.gg) delete local.gg[l.id]; saveLocal(); touch(l); save(); if (currentList() === l) viewList(l); toast(gs.length ? 'Gruppen: ' + gs.map(g => g.icon + ' ' + g.n).join(' + ') : 'Keine Gruppen'); listMenu(id); };
+    $('#lmServ').onchange = e => { const v = +e.target.value; if (v > 0) l.servings = Math.min(99, v); else delete l.servings;
+      if (local.guests) delete local.guests[l.id]; saveLocal(); touch(l); save(); if (currentList() === l) viewList(l); toast(v > 0 ? 'Mengen gelten für ' + l.servings + ' Personen' : 'Keine Personen-Umrechnung'); };
     $('#lmEmo').onclick = e => { const b = e.target.closest('button'); if (!b) return; l.emoji = b.textContent; touch(l); save();
       [...$('#lmEmo').children].forEach(x=>x.classList.toggle('on', x===b)); route(true); if (currentList()===l) viewList(l); };
   });
@@ -1327,6 +1708,11 @@ function editItem(listId, itemId, viewListId){
     <div class="field"><label>Artikel</label><input id="iName" value="${esc(it?.name)}" placeholder="z. B. Äpfel" autocomplete="off" list="iNames"></div>
     <datalist id="iNames">${names.map(n=>`<option value="${esc(n)}">`).join('')}</datalist>
     <div class="field"><label>Spezifikation (optional)</label><input id="iSpec" value="${esc(it?.spec)}" placeholder="z. B. Elstar oder Pink Lady" autocomplete="off"></div>
+    <div class="row"><div class="field" style="flex:0 0 34%"><label>Menge</label><input id="iQty" inputmode="decimal" placeholder="z. B. 500" value="${it?.qty ? String(it.qty).replace('.', ',') : ''}"></div>
+      <div class="field"><label>Einheit</label><input id="iUnit" list="iUnits" placeholder="g, Stück, Dose …" value="${esc(it?.unit || '')}"></div></div>
+    <datalist id="iUnits">${UNITS.map(u=>`<option value="${esc(u)}">`).join('')}</datalist>
+    ${(it ? l : viewL || l)?.servings ? `<label class="muted" style="display:flex;gap:8px;align-items:center;margin:-6px 0 14px"><input type="checkbox" id="iFix" ${it?.fix?'checked':''} style="width:18px;height:18px;accent-color:var(--accent)"> Menge fest (nicht mit der Personenzahl umrechnen)</label>` : ''}
+    ${(it ? l : viewL || l)?.groups?.length ? `<div class="field"><label>Für</label><select id="iGrp"><option value="">👥 Alle</option>${(it ? l : viewL || l).groups.map(g => `<option value="${esc(g.id)}" ${it?.grp === g.id ? 'selected' : ''}>${g.icon} ${esc(g.name)}</option>`).join('')}</select></div>` : ''}
     <div class="field"><label>Kategorie</label><select id="iCat">${data.categories.map(c=>`<option value="${esc(c.id)}" ${(it?it.cat:lastCat)===c.id?'selected':''}>${esc(c.icon)} ${esc(c.name)}</option>`).join('')}</select></div>
     ${!it && baseLists().length && viewL ? `<div class="field"><label>Speichern in</label><select id="iTarget">
       <option value="${esc(viewL.id)}">${esc(viewL.emoji)} ${esc(viewL.name)} (nur diese Liste)</option>
@@ -1352,14 +1738,18 @@ function editItem(listId, itemId, viewListId){
       $('#iPick').textContent = '⏳ Foto wird verkleinert …';
       try { photo = await shrinkPhoto(f); } catch(err) { toast(err.message); } showPhoto(); };
     const commit = () => {
-      const name = $('#iName').value.trim(); if (!name) { $('#iName').focus(); return false; }
+      let name = $('#iName').value.trim(); if (!name) { $('#iName').focus(); return false; }
+      if (!$('#iQty').value.trim()) { const pq = parseQtyText(name); if (pq.qty && pq.name) { name = pq.name; $('#iQty').value = String(pq.qty).replace('.', ','); if (pq.unit) $('#iUnit').value = pq.unit; } }
       const vals = {name, spec: $('#iSpec').value.trim(), cat: $('#iCat').value};
+      const qv = num($('#iQty').value || '0'); if (qv > 0) { vals.qty = qv; vals.unit = UNIT_ALIAS[$('#iUnit').value.trim().toLowerCase()] || $('#iUnit').value.trim(); } else { vals.qty = 0; vals.unit = ''; }
+      vals.fix = !!$('#iFix')?.checked; vals.grp = $('#iGrp')?.value || '';
       local.lastCat = vals.cat; saveLocal();
       const tl = it ? l : listById($('#iTarget')?.value) || l;
       if (!it && effective(viewL || tl).some(e => itemKey(e.it) === itemKey(vals))) { toast(`„${itemLine(vals)}“ steht schon auf der Liste`); return false; }
       let target = it; if (!target) { target = {id:uid()}; tl.items.push(target); }
       const before = {...target};
-      Object.assign(target, vals); if (photo) target.photo = photo; else delete target.photo; touch(target);
+      Object.assign(target, vals); if (photo) target.photo = photo; else delete target.photo;
+      if (!target.qty) { delete target.qty; delete target.unit; } if (!target.fix) delete target.fix; if (!target.grp) delete target.grp; touch(target);
       if (!save()) { if (it) { Object.keys(target).forEach(k=>delete target[k]); Object.assign(target, before); } else tl.items = tl.items.filter(x=>x!==target); return false; }
       if (viewL) { ui.cur = (tl.id) + ':' + target.id; viewList(viewL); }
       return true;
@@ -1378,11 +1768,11 @@ function showKeys(){
   const K = (k, t) => `<span>${k.split(' ').map(x=>`<span class="kbd">${x}</span>`).join(' ')}</span><span>${t}</span>`;
   openSheet(`<h2>⌨️ Tastenkürzel</h2>
     <div class="sec" style="margin-top:0">Überall</div>
-    <div class="keys">${K('1 … 9','Liste öffnen (Reihenfolge wie links)')}${K('R','Rezeptbuch')}${K('H','Übersicht')}${K('S','Jetzt synchronisieren')}${K('?','Diese Hilfe')}${K('Esc','Dialog schließen / Auswahl aufheben')}</div>
+    <div class="keys">${K('1 … 9','Liste öffnen (Reihenfolge wie links)')}${K('Z','Einkaufszettel')}${K('I','KI-Assistent')}${K('R','Rezeptbuch')}${K('H','Übersicht')}${K('S','Jetzt synchronisieren')}${K('?','Diese Hilfe')}${K('Esc','Dialog schließen / Auswahl aufheben')}</div>
     <div class="sec">In einer Liste</div>
     <div class="keys">${K('↑ ↓','Artikel wählen (auch J / K)')}${K('Leertaste','Artikel markieren')}${K('⇧ ↑ ↓','Mehrere markieren')}${K('A','Alle markieren')}
       ${K('C','Kopieren nach … (markierte oder aktueller Artikel)')}${K('V','Verschieben nach …')}${K('Enter','Bearbeiten')}${K('N','Neuer Artikel')}
-      ${K('Entf','Löschen')}${K('D','Liste duplizieren')}${K('B','In Bring importieren')}${K('P','Packliste: abhaken')}</div>
+      ${K('Entf','Löschen')}${K('D','Liste duplizieren')}${K('E','Auf den Einkaufszettel')}${K('B','In Bring importieren')}${K('P','Packliste: abhaken')}</div>
     <div class="sec">Im Kopieren-Dialog</div>
     <div class="keys">${K('1 … 9','Zielliste an/aus')}${K('Enter','Kopieren')}${K('⇧ Enter','Verschieben')}</div>
     <p class="muted">Mit der Maus: Strg/⌘ + Klick markiert, ⇧ + Klick markiert einen Bereich. Artikel lassen sich auf eine Liste in der Seitenleiste ziehen (mit ⇧ = verschieben).</p>
@@ -1404,6 +1794,10 @@ document.addEventListener('keydown', e => {
   if (/^[1-9]$/.test(k) && ordered[+k-1]) { location.hash = '#/liste/' + encodeURIComponent(ordered[+k-1].id); return; }
   if (k === '?') { e.preventDefault(); return showKeys(); }
   if (k === 'r' || k === 'R') { location.hash = '#/rezepte'; return; }
+  if (k === 'z' || k === 'Z') { openCart(); return; }
+  if (k === 'i' || k === 'I') { e.preventDefault(); aiDialog(l?.id); return; }
+  if (l?.kind === 'cart') { if (k === 'n' || k === 'N' || k === '+') { e.preventDefault(); $('#qa')?.focus(); } return; }
+  if ((k === 'e' || k === 'E') && l && l.kind !== 'pack') { toCartDialog(l.id, ui.sel.size ? [...ui.sel] : null); return; }
   if (k === 'h' || k === 'H') { location.hash = ''; return; }
   if (k === 's' || k === 'S') { syncNow(true); return; }
   if (location.hash.startsWith('#/rezepte')) {
@@ -1453,7 +1847,7 @@ function recipeFilters(){
   + `<select class="fchip ${f.course?'on':''}" onchange="local.rf.course=this.value;saveLocal();viewRecipes()" aria-label="Gang">
       <option value="">Alle Gänge</option>${COURSES.map(c=>`<option value="${c.id}" ${f.course===c.id?'selected':''}>${c.name}</option>`).join('')}</select>
     <select class="fchip" onchange="local.rf.sort=this.value;saveLocal();viewRecipes()" aria-label="Sortierung">
-      ${[['rating','Sortierung: Bewertung'],['new','Neueste zuerst'],['az','A – Z'],['cooked','Am häufigsten gekocht'],['time','Schnellste zuerst']].map(([v,t])=>`<option value="${v}" ${ (f.sort||'rating')===v?'selected':''}>${t}</option>`).join('')}</select>`;
+      ${[['smart','✨ Passt jetzt'],['rating','Sortierung: Bewertung'],['new','Neueste zuerst'],['az','A – Z'],['cooked','Am häufigsten gekocht'],['time','Schnellste zuerst']].map(([v,t])=>`<option value="${v}" ${ (f.sort||'smart')===v?'selected':''}>${t}</option>`).join('')}</select>`;
 }
 function toggleRF(k){ local.rf[k] = !local.rf[k]; saveLocal(); viewRecipes(); }
 function filteredRecipes(){
@@ -1465,14 +1859,15 @@ function filteredRecipes(){
     (!f.quick || (r.time && r.time <= 30)) && (!f.top || avgRating(r) >= 4) && (!f.new || !r.cooked) &&
     (!seasons.length || !r.seasons.length || r.seasons.some(s => seasons.includes(s))) &&
     (!f.course || r.course === f.course));
-  const s = f.sort || 'rating';
+  const s = f.sort || 'smart';
+  if (s === 'smart') { const sc = new Map(rs.map(r => [r.id, smartScore(r)])); return rs.sort((a, b) => sc.get(b.id) - sc.get(a.id) || b.added - a.added); }
   rs.sort((a,b) => s==='az' ? a.title.localeCompare(b.title,'de') : s==='new' ? b.added - a.added : s==='cooked' ? b.cooked - a.cooked :
     s==='time' ? (a.time||999) - (b.time||999) : (avgRating(b) - avgRating(a)) || b.added - a.added);
   return rs;
 }
 function viewRecipes(){
   $('#topbar').innerHTML = `<div class="htitle">📖 Rezeptbuch</div><div class="spacer"></div>${syncBtn()}
-    <button class="btn primary small" onclick="editRecipe()">＋ Rezept</button>`;
+    <button class="btn ai small" onclick="recipeIdeas()">✨ Ideen</button><button class="btn primary small" onclick="editRecipe()">＋ Rezept</button>`;
   const rs = filteredRecipes(), active = Object.entries(local.rf).some(([k,v]) => v && !['sort','q'].includes(k)) || local.rf.q;
   $('#main').innerHTML = `
     <div class="rtools"><input class="search" id="rq" type="search" placeholder="Suchen … (Titel, Zutat, Notiz)" value="${esc(local.rf.q||'')}" autocomplete="off"></div>
@@ -1488,7 +1883,7 @@ function recipeCard(r){
   return `<button class="rcard" onclick="showRecipe(${jsq(r.id)})">
     ${imgSrc(r) ? `<img class="rimg" src="${esc(imgSrc(r))}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='<div class=rph>🍽️</div>'">` : '<div class="rph">🍽️</div>'}
     <div class="rbody"><div class="rtitle">${esc(r.title)}</div>
-      <div class="rmeta">${starsHtml(v, n)}</div>
+      <div class="rmeta">${starsHtml(v, n)}${fitsNow(r) ? '<span class="badge-now">' + SEASONS.find(x => x.id === currentSeason()).icon + ' jetzt</span>' : ''}</div>
       <div class="rmeta">${r.vegan ? '<span>🌱 vegan</span>' : r.veggie ? '<span>🥕 vegetarisch</span>' : ''}${r.time ? `<span>⏱ ${timeLabel(r.time)}</span>` : ''}
         ${r.seasons.length && r.seasons.length < 4 ? `<span>${r.seasons.map(s=>SEASONS.find(x=>x.id===s)?.icon||'').join('')}</span>` : ''}${r.kids ? '<span>🧒</span>' : ''}${r.ingredients.length ? '<span title="Zutaten hinterlegt">🧾</span>' : ''}</div>
       <div class="rsrc">${esc(r.source || host(r.url))}${r.cooked ? ' · ' + r.cooked + '× gekocht' : ''}</div></div></button>`;
@@ -1505,7 +1900,9 @@ function showRecipe(id){
       ${r.seasons.map(s => { const x = SEASONS.find(y=>y.id===s); return x ? `<span class="tag">${x.icon} ${x.name}</span>` : ''; }).join('')}${r.kids ? '<span class="tag">🧒 Kinder mögen’s</span>' : ''}</div>
     ${r.desc ? `<p style="margin:0 0 12px">${esc(r.desc)}</p>` : ''}
     ${r.note ? `<div class="banner">📝 ${esc(r.note)}</div>` : ''}
-    ${r.ingredients.length ? `<div class="flabel">Zutaten${r.servings ? ' für ' + r.servings : ''}</div><ul class="inglist">${r.ingredients.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>` :
+    ${r.ingredients.length ? `${r.servings ? `<div class="guests"><span class="lbl">🍽 Portionen<small>Rezept ist für ${r.servings} · Mengen ${portionsOf(r) !== r.servings ? 'umgerechnet' : 'wie im Rezept'}</small></span>
+        <div class="stepper"><button onclick="setPortions(${jsq(r.id)},-1)" aria-label="Weniger">−</button><b>${portionsOf(r)}</b><button onclick="setPortions(${jsq(r.id)},1)" aria-label="Mehr">+</button></div></div>`
+        : `<div class="flabel">Zutaten</div>`}<ul class="inglist">${r.ingredients.map(i=>`<li>${esc(scaleLine(i, recipeFactor(r)))}</li>`).join('')}</ul>` :
       /instagram\.com/.test(r.url) ? `<div class="banner">🧾 Noch keine Zutaten – <a href="#" onclick="event.preventDefault();editRecipe(${jsq(r.id)})">Screenshot der Caption einlesen</a>, dann gehen sie per Klick nach Bring.</div>` : ''}
     ${r.steps ? `<details style="margin-bottom:14px"><summary class="flabel" style="cursor:pointer">Zubereitung</summary><div class="steps-text" style="margin-top:8px">${esc(r.steps)}</div></details>` : ''}
     <div class="flabel">Deine Bewertung${me() ? ' (' + esc(me()) + ')' : ''}</div>
@@ -1513,6 +1910,7 @@ function showRecipe(id){
     ${people.length ? `<div class="ratings">${people.map(([who, x]) => `<div class="who"><b>${esc(who)}</b>${starsHtml(x.s,1)}</div>`).join('')}</div>` : '<div style="height:12px"></div>'}
     <div class="actions">
       ${r.url ? `<a class="btn primary grow" href="${esc(r.url)}" target="_blank" rel="noopener" style="text-decoration:none">↗ ${/instagram\.com/.test(r.url) ? 'Auf Instagram' : 'Rezept'} öffnen</a>` : ''}
+      ${r.ingredients.length && cartList() ? `<button class="btn grow" onclick="recipeToCart(${jsq(r.id)})">📝 Zutaten auf Zettel</button>` : ''}
       ${r.ingredients.length || (r.url && !/instagram\.com/.test(r.url)) ? `<button class="btn grow" onclick="recipeToBring(${jsq(r.id)})">🛒 Zutaten in Bring</button>` : ''}
     </div>
     <div class="menu">
@@ -1779,6 +2177,17 @@ function viewSettings(){
     <div class="row" style="margin-bottom:6px"><button class="btn primary grow" id="ghSave">Speichern & testen</button>${ghReady()?'<button class="btn danger" id="ghOff">Trennen</button>':''}</div>
     <p class="muted">Das Token bleibt nur auf diesem Gerät. Für Anikas Handy einfach dasselbe Token dort eintragen.</p>
 
+    <div class="sec">✨ KI-Assistent (Claude)</div>
+    ${aiReady() ? '<div class="banner">✅ KI ist eingerichtet – „✨ Liste mit KI“, „✨ Ideen“ im Rezeptbuch und Saison-Ideen sind aktiv.</div>' :
+      `<p class="muted" style="margin-top:0">Für die eingebaute KI braucht jedes Gerät einen Claude-API-Schlüssel (kostenpflichtig, abgerechnet pro Nutzung – meist 1–5 Cent pro Anfrage):</p>
+      <ol class="steps muted"><li>Auf <a href="https://console.anthropic.com" target="_blank" rel="noopener">console.anthropic.com</a> anmelden und unter <b>Billing</b> etwas Guthaben aufladen (z. B. 5 €).</li>
+        <li>Unter <b>Limits</b> ein monatliches Ausgabenlimit setzen.</li><li><b>API Keys → Create Key</b>, Schlüssel kopieren und hier einfügen.</li></ol>
+      <p class="muted">Ohne Schlüssel funktioniert alles andere weiter; Saisonkalender und „Passt jetzt“-Sortierung brauchen keine KI.</p>`}
+    <div class="field"><label for="aiKey">API-Schlüssel</label><input id="aiKey" type="password" autocomplete="off" placeholder="sk-ant-…" value="${esc(local.ai?.key || '')}"></div>
+    <div class="field"><label for="aiModel">Modell</label><select id="aiModel">${AI_MODELS.map(([v, t]) => `<option value="${v}" ${(local.ai?.model || 'claude-sonnet-5-5') === v ? 'selected' : ''}>${t}</option>`).join('')}</select></div>
+    <div class="row" style="margin-bottom:6px"><button class="btn primary grow" id="aiSave">Speichern & testen</button>${aiReady() ? '<button class="btn danger" id="aiOff">Entfernen</button>' : ''}</div>
+    <p class="muted">Der Schlüssel bleibt nur auf diesem Gerät und wird nicht synchronisiert.</p>
+
     <div class="sec">⭐ Rezepte</div>
     <div class="field"><label for="meName">Dein Name (für Bewertungen auf diesem Gerät)</label><input id="meName" value="${esc(me())}" placeholder="z. B. Philipp"></div>
 
@@ -1793,12 +2202,22 @@ function viewSettings(){
     <div class="sec">Daten sichern / übertragen</div>
     <div class="menu">
       <button onclick="exportJson()">⬇️ <span class="grow">Sicherung exportieren<small>daten.json mit allen Listen und Rezepten</small></span></button>
+      <button onclick="importListDialog()">📥 <span class="grow">Liste aus Text importieren<small>z. B. eine Liste, die Claude im Chat erstellt hat</small></span></button>
       <button onclick="$('#fileIn').click()">⬆️ <span class="grow">Sicherung importieren<small>zusammenführen oder ersetzen</small></span></button>
       <button onclick="exportPackage()">📦 <span class="grow">Veröffentlichungs-Paket (ohne Sync)<small>Zip zum manuellen Hochladen auf GitHub</small></span></button>
     </div>
     <p class="muted">Bring lädt die Listen von <code>${esc(hostedBase())}listen/…</code></p>
     <div class="menu"><button class="danger" onclick="resetAll()">↺ <span class="grow">Dieses Gerät zurücksetzen<small>lokale Daten verwerfen und Stand vom Server neu laden</small></span></button></div>`;
   $('#fabslot').innerHTML = ''; $('#selslot').innerHTML = '';
+  $('#aiModel').onchange = e => { local.ai = {...(local.ai || {}), model: e.target.value}; saveLocal(); };
+  $('#aiSave').onclick = async () => {
+    const key = $('#aiKey').value.trim(); if (!key) return toast('Bitte Schlüssel einfügen');
+    local.ai = {key, model: $('#aiModel').value}; saveLocal(); $('#aiSave').textContent = '⏳ Teste …';
+    try { await askClaude('Antworte nur mit OK.', 'Test', 400); toast('KI verbunden ✓'); }
+    catch(e) { toast('⚠️ ' + e.message, 5000); if (/ungültig/.test(e.message)) { delete local.ai.key; saveLocal(); } }
+    viewSettings();
+  };
+  if ($('#aiOff')) $('#aiOff').onclick = () => { if (confirm('API-Schlüssel von diesem Gerät entfernen?')) { local.ai = {model: local.ai?.model}; saveLocal(); viewSettings(); } };
   $('#meName').onchange = e => { local.me = e.target.value.trim(); saveLocal(); toast('Gemerkt'); };
   $('#ghAuto').onchange = e => { local.gh.auto = e.target.checked; saveLocal(); };
   $('#ghSave').onclick = async () => {
@@ -1833,10 +2252,322 @@ async function resetAll(){
   data = normalize(fresh || JSON.parse(JSON.stringify(SEED))); save({noSync:true}); location.hash = ''; route(); toast(fresh ? 'Stand vom Server geladen' : 'Grundbefüllung geladen');
 }
 
+/* =====================================================================
+   Listen als Text austauschen (z. B. von Claude im Chat erstellt → hier einfügen)
+   Format:
+     bring+ Liste
+     # 🧀 Raclette-Abend
+     Art: Einkaufsliste | Packliste | Baustein
+     Personen: 4
+     ## Milchprodukte
+     - 800 g Raclettekäse | in Scheiben
+     - 1 Pck. Raclette-Gewürz | oder Paprika & Pfeffer | fest
+   ===================================================================== */
+const KIND_NAMES = {list:'Einkaufsliste', pack:'Packliste', base:'Baustein'};
+function listToText(l){
+  const out = ['bring+ Liste', `# ${l.emoji} ${l.name}`, `Art: ${KIND_NAMES[l.kind] || 'Einkaufsliste'}`];
+  if (l.servings) out.push(`Personen: ${l.servings}`);
+  if (l.groups?.length) out.push(`Gruppen: ${groupsText(l)}`);
+  for (const g of byCat(l.items.map(it => ({it, from: l})))) {
+    out.push('', `## ${g.c.icon} ${g.c.name}`);
+    for (const {it} of g.es) out.push('- ' + (it.qty ? fmtQty(it.qty, it.unit).replace(' ×', '') + ' ' : '') + it.name + (it.spec ? ' | ' + it.spec : '') + (it.grp && groupOf(l, it) ? ' | für ' + groupOf(l, it).name : '') + (it.fix ? ' | fest' : ''));
+  }
+  return out.join('\n');
+}
+async function shareListText(id){
+  const t = listToText(listById(id));
+  if (navigator.share && !isDesk()) { try { await navigator.share({title: listById(id).name, text: t}); return; } catch(e) { if (e.name === 'AbortError') return; } }
+  try { await navigator.clipboard.writeText(t); toast('Liste als Text kopiert'); } catch(e) { prompt('Zum Kopieren:', t); }
+}
+const stripEmoji = s => String(s).replace(/^[\s\p{Extended_Pictographic}️‍]+/u, '').trim();
+const leadEmoji = s => (String(s).trim().match(/^[\p{Extended_Pictographic}️‍]+/u) || [''])[0];
+function parseListText(text){
+  const lines = String(text).replace(/\r/g, '').split('\n').map(x => x.trim());
+  const res = {name: '', emoji: '', kind: 'list', servings: 0, groups: [], items: [], newCats: []};
+  let cat = null;
+  for (const ln of lines) {
+    if (!ln || /^bring\+?\s*liste$/i.test(ln)) continue;
+    if (/^#\s/.test(ln) && !res.name) { const t = ln.slice(2).trim(); res.emoji = leadEmoji(t); res.name = stripEmoji(t); continue; }
+    if (/^art\s*:/i.test(ln)) { const v = ln.split(':')[1].toLowerCase(); res.kind = /pack/.test(v) ? 'pack' : /baustein/.test(v) ? 'base' : 'list'; continue; }
+    if (/^(personen|gäste|portionen)\s*:/i.test(ln)) { res.servings = parseInt(ln.split(':')[1]) || 0; continue; }
+    if (/^gruppen\s*:/i.test(ln)) { res.groups = parseGroups(ln.slice(ln.indexOf(':') + 1)); continue; }
+    if (/^##\s/.test(ln)) {
+      const raw = ln.slice(3).trim(), nm = stripEmoji(raw), ic = leadEmoji(raw);
+      const ex = data.categories.find(c => keyOf(c.name) === keyOf(nm)) || res.newCats.find(c => keyOf(c.name) === keyOf(nm));
+      cat = ex || {id: slug(nm) + '-' + uid().slice(0, 3), name: nm, icon: ic || '📦', u: now()};
+      if (!ex) res.newCats.push(cat);
+      continue;
+    }
+    const body = ln.replace(/^([-–•*▪]|\d+[.)])\s+/, ''); if (!body || /^[a-zäöü ]+:\s*$/i.test(body)) continue;
+    const parts = body.split(/\s*\|\s*/), fix = parts.slice(1).some(x => /^fest$/i.test(x));
+    const gp = parts.slice(1).find(x => /^für\s+/i.test(x)), gk = gp ? keyOf(stripEmoji(gp.replace(/^für\s+/i, ''))) : '';
+    const grp = gk ? res.groups.find(g => keyOf(g.name).startsWith(gk) || gk.startsWith(keyOf(g.name)) || keyOf(g.name).includes(gk.split(/[\s/]/)[0])) : null;
+    const spec = parts.slice(1).filter(x => !/^fest$/i.test(x) && x !== gp).join(', ');
+    const q = parseQtyText(parts[0]); if (!q.name) continue;
+    res.items.push({id: uid(), name: q.name, spec, cat: cat?.id || guessCat(q.name), ...(q.qty ? {qty: q.qty, unit: q.unit} : {}), ...(fix ? {fix: true} : {}), ...(grp ? {grp: grp.id} : {}), u: now()});
+  }
+  if (res.groups.length) res.servings = res.groups.reduce((a, g) => a + g.n, 0);
+  if (!res.name) res.name = 'Importierte Liste';
+  return res;
+}
+function importListDialog(prefill = ''){
+  openSheet(`<h2>📥 Liste importieren</h2>
+    <p class="muted" style="margin-top:0">Text der Liste einfügen (z. B. aus dem Chat mit Claude) oder eine .txt-Datei wählen.</p>
+    <div class="field"><textarea id="ilText" rows="9" placeholder="bring+ Liste&#10;# 🧀 Raclette-Abend&#10;Personen: 4&#10;## Milchprodukte&#10;- 800 g Raclettekäse">${esc(prefill)}</textarea></div>
+    <div class="row" style="margin-bottom:12px"><button class="btn grow small" id="ilPaste">📋 Einfügen</button><button class="btn grow small" id="ilFile">📄 Datei wählen</button></div>
+    <input type="file" id="ilIn" accept=".txt,text/plain,.json,application/json" hidden>
+    <div id="ilPrev"></div>
+    <div class="row"><button class="btn grow" onclick="closeSheet()">Abbrechen</button><button class="btn primary grow" id="ilOk" disabled>Importieren</button></div>`, () => {
+    let parsed = null;
+    const preview = () => {
+      const t = $('#ilText').value.trim(); parsed = t ? parseListText(t) : null;
+      $('#ilOk').disabled = !parsed?.items.length;
+      if (!parsed) { $('#ilPrev').innerHTML = ''; return; }
+      const ex = data.lists.find(l => keyOf(l.name) === keyOf(parsed.name));
+      $('#ilPrev').innerHTML = `<div class="banner" style="display:block">${esc(parsed.emoji || '🛒')} <b>${esc(parsed.name)}</b> · ${KIND_NAMES[parsed.kind]} · ${parsed.items.length} Artikel${parsed.groups.length ? ' · ' + parsed.groups.map(g => g.n + ' ' + g.icon).join(' + ') : parsed.servings ? ' · für ' + parsed.servings + ' Personen' : ''}
+        ${parsed.newCats.length ? `<br><small>Neue Kategorien: ${parsed.newCats.map(c => esc(c.icon + ' ' + c.name)).join(', ')}</small>` : ''}
+        ${ex ? `<br><label style="display:flex;gap:8px;align-items:center;margin-top:8px"><input type="checkbox" id="ilReplace" checked style="width:18px;height:18px;accent-color:var(--accent)"> Bestehende Liste „${esc(ex.name)}“ ersetzen (sonst als neue Liste)</label>` : ''}</div>`;
+    };
+    $('#ilText').oninput = preview; preview();
+    $('#ilPaste').onclick = async () => { try { $('#ilText').value = await navigator.clipboard.readText(); preview(); } catch(e) { $('#ilText').focus(); toast('Bitte lange ins Feld tippen → Einsetzen'); } };
+    $('#ilFile').onclick = () => $('#ilIn').click();
+    $('#ilIn').onchange = e => { const f = e.target.files[0]; if (!f) return; const rd = new FileReader();
+      rd.onload = () => { const t = String(rd.result); if (/^\s*\{/.test(t)) { closeSheet(); importJson(f); return; } $('#ilText').value = t; preview(); }; rd.readAsText(f); };
+    $('#ilOk').onclick = () => {
+      if (!parsed?.items.length) return;
+      for (const c of parsed.newCats) data.categories.push(c);
+      if (parsed.newCats.length) data.catOrderU = now();
+      const ex = $('#ilReplace')?.checked ? data.lists.find(l => keyOf(l.name) === keyOf(parsed.name)) : null;
+      let target;
+      if (ex) { ex.items.forEach(i => tomb('item', i.id)); Object.assign(ex, {items: parsed.items, kind: parsed.kind, emoji: parsed.emoji || ex.emoji});
+        if (parsed.servings) ex.servings = parsed.servings; else delete ex.servings;
+        if (parsed.groups.length) ex.groups = parsed.groups; else delete ex.groups; touch(ex); target = ex; }
+      else {
+        let id = slug(parsed.name); while (listById(id)) id = slug(parsed.name) + '-' + uid().slice(0, 3);
+        target = {id, name: parsed.name, emoji: parsed.emoji || (parsed.kind === 'pack' ? '🧳' : '🛒'), kind: parsed.kind, includes: [], excludes: [], u: now(), items: parsed.items,
+          ...(parsed.servings ? {servings: parsed.servings} : {}), ...(parsed.groups.length ? {groups: parsed.groups} : {})};
+        data.lists.push(target); data.listOrderU = now();
+      }
+      save(); closeSheet(); location.hash = '#/liste/' + encodeURIComponent(target.id);
+      toast(`„${target.name}“ importiert – ${parsed.items.length} Artikel`);
+    };
+  });
+}
+
+/* =====================================================================
+   Saisonkalender Deutschland (regional, inkl. Lagerware) – funktioniert ohne KI
+   ===================================================================== */
+const MONTHS = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+const SEASON_CAL = {
+  1:  {veg:'Grünkohl, Rosenkohl, Wirsing, Rotkohl, Weißkohl, Lauch, Pastinaken, Schwarzwurzeln, Topinambur, Rote Bete, Möhren, Knollensellerie, Steckrüben, Chicorée, Feldsalat, Kartoffeln, Zwiebeln', fruit:'Äpfel, Birnen', herbs:'Petersilie (Topf)'},
+  2:  {veg:'Grünkohl, Rosenkohl, Wirsing, Rotkohl, Weißkohl, Lauch, Pastinaken, Schwarzwurzeln, Topinambur, Rote Bete, Möhren, Knollensellerie, Chicorée, Feldsalat, Kartoffeln, Zwiebeln', fruit:'Äpfel, Birnen', herbs:'Kresse'},
+  3:  {veg:'Spinat, Feldsalat, Lauch, Chicorée, Pastinaken, Schwarzwurzeln, Rote Bete, Möhren, Knollensellerie, Rotkohl, Weißkohl, Kartoffeln, Zwiebeln', fruit:'Äpfel', herbs:'Bärlauch, Kresse'},
+  4:  {veg:'Spargel, Spinat, Radieschen, Frühlingszwiebeln, Rhabarber, Kopfsalat, Rucola, Lauch, Möhren, Kartoffeln, Zwiebeln', fruit:'Äpfel', herbs:'Bärlauch, Schnittlauch, Kresse'},
+  5:  {veg:'Spargel, Rhabarber, Radieschen, Kohlrabi, Spinat, Mangold, Frühlingszwiebeln, Kopfsalat, Rucola, Blumenkohl, Möhren', fruit:'Erdbeeren, Äpfel', herbs:'Bärlauch, Schnittlauch, Petersilie'},
+  6:  {veg:'Spargel, Erbsen, Dicke Bohnen, Zucchini, Kohlrabi, Blumenkohl, Brokkoli, Mangold, Radieschen, Kopfsalat, Eisbergsalat, Gurken, Frühkartoffeln, Möhren, Rhabarber, Spitzkohl', fruit:'Erdbeeren, Kirschen, Johannisbeeren, Stachelbeeren, Heidelbeeren', herbs:'Basilikum, Dill, Schnittlauch, Petersilie'},
+  7:  {veg:'Tomaten, Zucchini, Gurken, Paprika, Grüne Bohnen, Erbsen, Mais, Blumenkohl, Brokkoli, Kohlrabi, Fenchel, Mangold, Spitzkohl, Rote Bete, Möhren, Kartoffeln, Kopfsalat, Pfifferlinge', fruit:'Kirschen, Himbeeren, Johannisbeeren, Heidelbeeren, Aprikosen, Stachelbeeren, Brombeeren', herbs:'Basilikum, Dill, Minze, Petersilie'},
+  8:  {veg:'Tomaten, Paprika, Zucchini, Auberginen, Gurken, Mais, Grüne Bohnen, Fenchel, Brokkoli, Blumenkohl, Mangold, Spitzkohl, Rote Bete, Möhren, Kartoffeln, Kopfsalat, Pfifferlinge', fruit:'Zwetschgen, Pflaumen, Mirabellen, Brombeeren, Himbeeren, Heidelbeeren, Birnen, Äpfel', herbs:'Basilikum, Dill, Minze, Petersilie'},
+  9:  {veg:'Kürbis, Tomaten, Paprika, Zucchini, Auberginen, Mais, Grüne Bohnen, Brokkoli, Blumenkohl, Fenchel, Lauch, Rotkohl, Weißkohl, Wirsing, Rote Bete, Möhren, Kartoffeln, Pfifferlinge', fruit:'Äpfel, Birnen, Zwetschgen, Weintrauben, Brombeeren, Holunder, Quitten', herbs:'Petersilie, Schnittlauch'},
+  10: {veg:'Kürbis, Rosenkohl, Grünkohl, Rotkohl, Weißkohl, Wirsing, Chinakohl, Lauch, Pastinaken, Rote Bete, Knollensellerie, Steckrüben, Möhren, Kartoffeln, Fenchel, Brokkoli, Feldsalat', fruit:'Äpfel, Birnen, Quitten, Weintrauben, Walnüsse, Haselnüsse', herbs:'Petersilie'},
+  11: {veg:'Grünkohl, Rosenkohl, Rotkohl, Weißkohl, Wirsing, Chinakohl, Kürbis, Lauch, Pastinaken, Schwarzwurzeln, Topinambur, Rote Bete, Knollensellerie, Steckrüben, Möhren, Kartoffeln, Feldsalat, Chicorée', fruit:'Äpfel, Birnen, Quitten, Walnüsse', herbs:'Petersilie (Topf)'},
+  12: {veg:'Grünkohl, Rosenkohl, Rotkohl, Weißkohl, Wirsing, Lauch, Pastinaken, Schwarzwurzeln, Topinambur, Rote Bete, Knollensellerie, Steckrüben, Möhren, Kartoffeln, Feldsalat, Chicorée', fruit:'Äpfel, Birnen, Walnüsse', herbs:'Petersilie (Topf)'},
+};
+const seasonItems = m => { const c = SEASON_CAL[m]; const sp = t => t.split(/\s*,\s*/).filter(Boolean);
+  return {veg: sp(c.veg), fruit: sp(c.fruit), herbs: sp(c.herbs)}; };
+const nowMonth = () => new Date().getMonth() + 1;
+function seasonDialog(targetId, month){
+  month = month || nowMonth(); const si = seasonItems(month);
+  const targets = [...cartLists(), ...visibleLists(), ...baseLists()];
+  const def = targetId && listById(targetId)?.kind !== 'pack' ? targetId : cartList()?.id || targets[0]?.id;
+  const chips = (arr, k) => `<div class="schips" data-k="${k}">${arr.map(x => `<button type="button" data-v="${esc(x)}">${esc(x)}</button>`).join('')}</div>`;
+  openSheet(`<h2>🌱 Saisonal & regional</h2>
+    <div class="seasonnav"><button class="btn small" id="snPrev">‹</button><b>${MONTHS[month-1]}${month === nowMonth() ? ' (jetzt)' : ''}</b><button class="btn small" id="snNext">›</button></div>
+    <p class="muted" style="margin-top:0">Antippen zum Auswählen. Grundlage: deutscher Saisonkalender (Freiland und Lagerware).</p>
+    <div class="flabel">🥦 Gemüse & Salat</div>${chips(si.veg, 'veg')}
+    <div class="flabel">🍎 Obst & Nüsse</div>${chips(si.fruit, 'fruit')}
+    ${si.herbs.length ? `<div class="flabel">🌿 Kräuter</div>${chips(si.herbs, 'herbs')}` : ''}
+    <div class="field"><label>Hinzufügen zu</label><select id="snTarget">${targets.map(t => `<option value="${esc(t.id)}" ${t.id === def ? 'selected' : ''}>${esc(t.emoji)} ${esc(t.name)}</option>`).join('')}</select></div>
+    <div class="row" style="margin-bottom:10px"><button class="btn grow" onclick="closeSheet()">Schließen</button><button class="btn primary grow" id="snAdd" disabled>Hinzufügen</button></div>
+    <button class="btn ai" style="width:100%;justify-content:center" id="snIdeas">✨ Gerichte-Ideen mit Saison-Zutaten</button>`, () => {
+    const picked = () => $$('.schips button.on').map(b => b.dataset.v);
+    const upd = () => { const n = picked().length; $('#snAdd').disabled = !n; $('#snAdd').textContent = n ? `${n} hinzufügen` : 'Hinzufügen'; };
+    $$('.schips').forEach(c => c.onclick = e => { const b = e.target.closest('button'); if (b) { b.classList.toggle('on'); upd(); } });
+    $('#snPrev').onclick = () => seasonDialog($('#snTarget').value, month === 1 ? 12 : month - 1);
+    $('#snNext').onclick = () => seasonDialog($('#snTarget').value, month === 12 ? 1 : month + 1);
+    $('#snAdd').onclick = () => {
+      const t = listById($('#snTarget').value), cat = catById('obst') ? 'obst' : '';
+      const ents = picked().map(n => ({name: n.replace(/\s*\(.*\)$/, ''), spec: '', cat: guessCat(n) || cat}));
+      if (t.kind === 'cart') { const r = toCart(ents, t.id); toast(cartMsg(r)); }
+      else { let a = 0; for (const e of ents) if (!effective(t).some(x => itemKey(x.it) === itemKey(e))) { t.items.push({id: uid(), ...e, u: now()}); a++; }
+        save(); toast(`${a} Artikel zu „${t.name}“ hinzugefügt`); }
+      closeSheet(); route();
+    };
+    $('#snIdeas').onclick = () => { const p = picked(); closeSheet(); setTimeout(() => recipeIdeas('Saisonal im ' + MONTHS[month-1] + (p.length ? ', bitte mit: ' + p.join(', ') : '')), 60); };
+  });
+}
+
+/* =====================================================================
+   „Passt jetzt“: Rezepte nach Bewertung, Saison und saisonalen Zutaten sortieren
+   ===================================================================== */
+const seasonWords = () => { const si = seasonItems(nowMonth()); return [...si.veg, ...si.fruit, ...si.herbs].map(x => keyOf(x.replace(/\s*\(.*\)$/, '')).replace(/(n|e|en|s)$/, '')).filter(x => x.length > 3); };
+function seasonHits(r){
+  const words = seasonWords(), text = keyOf(r.title + ' ' + r.ingredients.join(' '));
+  return words.filter(w => text.includes(w)).length;
+}
+function smartScore(r){
+  const n = Object.values(r.ratings).filter(x => x.s).length;
+  let s = n ? avgRating(r) : 3.2;
+  const cs = currentSeason();
+  s += !r.seasons.length ? 0.3 : r.seasons.includes(cs) ? 1.2 : -1.5;
+  s += Math.min(1, seasonHits(r) * 0.25);
+  if (r.lastCooked) { const d = (now() - r.lastCooked) / 864e5; if (d < 10) s -= 1.2; else if (d < 30) s -= 0.4; }
+  return s;
+}
+const fitsNow = r => r.seasons.includes(currentSeason()) || seasonHits(r) >= 2;
+
+/* =====================================================================
+   KI-Assistent (Claude) – direkt aus dem Browser mit eigenem API-Schlüssel
+   ===================================================================== */
+const AI_MODELS = [['claude-sonnet-5-5', 'Claude Sonnet 5.5 – empfohlen'], ['claude-haiku-5-5', 'Claude Haiku 5.5 – günstiger, schneller'], ['claude-opus-5-5', 'Claude Opus 5.5 – gründlicher, teurer']];
+const aiReady = () => !!local.ai?.key;
+async function askClaude(system, prompt, maxTokens = 8000){
+  const r = await fetch('https://api.anthropic.com/v1/messages', {method: 'POST',
+    headers: {'x-api-key': local.ai.key, 'anthropic-version': '2023-06-01', 'content-type': 'application/json', 'anthropic-dangerous-direct-browser-access': 'true'},
+    body: JSON.stringify({model: local.ai.model || 'claude-sonnet-5-5', max_tokens: maxTokens, system, messages: [{role: 'user', content: prompt}]})});
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok) {
+    const m = j?.error?.message || '';
+    throw new Error(r.status === 401 ? 'API-Schlüssel ungültig' : /credit|balance|billing/i.test(m) ? 'Kein Guthaben auf dem API-Konto (console.anthropic.com → Billing)' :
+      r.status === 429 ? 'Zu viele Anfragen – bitte kurz warten' : r.status === 529 || /overload/i.test(m) ? 'Claude ist gerade ausgelastet – bitte gleich nochmal' : 'Fehler ' + r.status + (m ? ': ' + m : ''));
+  }
+  return (j.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
+}
+const aiSpinner = t => `<div class="aistatus"><span class="spin"></span>${esc(t)}</div>`;
+function aiListSystem(){
+  return `Du erstellst Einkaufslisten und Packlisten für die deutsche App „bring+“. Antworte AUSSCHLIESSLICH mit der Liste im folgenden Textformat – ohne Einleitung, ohne Erklärung, ohne Markdown-Codeblock:
+
+bring+ Liste
+# <ein passendes Emoji> <kurzer Listenname>
+Art: Einkaufsliste            (oder: Packliste / Baustein)
+Personen: <Zahl>              (nur wenn eine Personenzahl genannt wurde oder sinnvoll ist)
+Gruppen: 🥩 Fleisch <n>, 🌱 Vegan/Vegetarisch <m>   (nur wenn zwischen Fleischessern und Vegetariern/Veganern unterschieden werden soll; Summe = Personen)
+
+## <Emoji> <Kategorie>
+- <Menge> <Einheit> <Artikelname> | <Spezifikation> | für Fleisch | fest
+
+Regeln:
+- Artikelname kurz und so, wie man ihn im deutschen Supermarkt bzw. in der Bring!-App findet (z. B. „Paprika“, „Hafermilch“). Details wie Sorte, Marke, „bio“, „vegan“ in die Spezifikation nach „|“.
+- Mengen realistisch für die angegebene Personenzahl. Einheiten nur aus: g, kg, ml, l, Pck., Dose, Glas, Flasche, Bund, Becher, Beutel, Netz, Kopf, Sack, Kasten, Rolle. Für Stückzahlen nur die Zahl (z. B. „- 3 Paprika“). Artikel ohne sinnvolle Menge ohne Zahl.
+- „| fest“ bei Artikeln, die nicht mit der Personenzahl umgerechnet werden sollen (Gewürze, Saucen, Kohle, Servietten, Alufolie …).
+- Bei Gruppen: gruppenspezifische Artikel mit „| für Fleisch“ bzw. „| für Vegan/Vegetarisch“ kennzeichnen; Artikel für alle ohne Gruppe. Mengen der Gruppenartikel beziehen sich auf die Gruppengröße.
+- Kategorien möglichst aus dieser Liste verwenden: ${data.categories.map(c => c.icon + ' ' + c.name).join(', ')}. Eine neue Kategorie nur, wenn wirklich nötig.
+- Packlisten: „Art: Packliste“, Mengen nur wo sinnvoll.
+- Keine doppelten Artikel. Lieber kompakt und vollständig als ausufernd.
+- Heute ist ${new Date().toLocaleDateString('de-DE', {day: 'numeric', month: 'long', year: 'numeric'})}; berücksichtige die Saison.`;
+}
+function cleanAiList(t){ t = String(t).replace(/^```[a-z]*\s*|```\s*$/gim, ''); const i = t.search(/bring\+?\s*liste/i); return (i >= 0 ? t.slice(i) : t).trim(); }
+function aiDialog(fromListId, preset = ''){
+  const fl = fromListId && listById(fromListId) && listById(fromListId).kind !== 'cart' ? listById(fromListId) : null;
+  const ex = ['Grillabend für 10 Personen, 3 davon vegan', 'Kindergeburtstag mit 8 Kindern, Motto Piraten', 'Wocheneinkauf vegetarisch für 2 Erwachsene und 2 Kinder', 'Packliste Skiurlaub mit Baby', 'Frühstücksbuffet für 12 Personen'];
+  openSheet(`<h2>✨ Liste mit KI erstellen</h2>
+    <div class="field"><textarea id="aiPrompt" rows="4" placeholder="Was brauchst du? z. B. „Grillabend für 10 Personen, 3 davon vegan“">${esc(preset)}</textarea></div>
+    <div class="schips" id="aiEx">${ex.map(x => `<button type="button">${esc(x)}</button>`).join('')}</div>
+    ${fl ? `<div class="chips txt" id="aiMode" style="margin-bottom:12px"><button type="button" data-v="new" class="on">🆕 Neue Liste</button><button type="button" data-v="add">➕ Zu „${esc(fl.name)}“ ergänzen</button></div>` : ''}
+    <div id="aiOut"></div>
+    ${aiReady() ? `<div class="row"><button class="btn grow" onclick="closeSheet()">Abbrechen</button><button class="btn ai grow" id="aiGo">✨ Erstellen</button></div>
+      <p class="muted" style="font-size:12px;margin:10px 0 0">Läuft über deinen Claude-API-Schlüssel (${esc((AI_MODELS.find(m => m[0] === (local.ai.model || 'claude-sonnet-5-5')) || AI_MODELS[0])[1].split(' –')[0])}); meist ca. 1–5 Cent pro Liste.</p>`
+    : `<div class="banner" style="display:block">Für die eingebaute KI brauchst du einen eigenen Claude-API-Schlüssel (⚙️ → KI-Assistent). <b>Ohne Schlüssel:</b> Prompt kopieren, in der Claude-App einfügen, Antwort kopieren und hier importieren.</div>
+      <div class="row"><button class="btn grow" id="aiCopy">📋 Prompt kopieren</button><button class="btn grow" onclick="closeSheet();setTimeout(importListDialog,60)">📥 Antwort einfügen</button></div>
+      <button class="btn" style="width:100%;justify-content:center;margin-top:8px" onclick="closeSheet();location.hash='#/einstellungen'">⚙️ API-Schlüssel einrichten</button>`}`, () => {
+    $('#aiEx').onclick = e => { const b = e.target.closest('button'); if (b) { $('#aiPrompt').value = b.textContent; $('#aiPrompt').focus(); } };
+    $('#aiMode') && ($('#aiMode').onclick = e => { const b = e.target.closest('button'); if (b) [...$('#aiMode').children].forEach(x => x.classList.toggle('on', x === b)); });
+    if (!aiReady()) { $('#aiCopy').onclick = async () => { const q = $('#aiPrompt').value.trim(); if (!q) return toast('Bitte erst beschreiben, was du brauchst');
+      const t = aiListSystem() + '\n\nAufgabe: ' + q; try { await navigator.clipboard.writeText(t); toast('Prompt kopiert – jetzt in der Claude-App einfügen'); } catch(e) { prompt('Kopieren:', t); } }; return; }
+    $('#aiGo').onclick = async () => {
+      const q = $('#aiPrompt').value.trim(); if (!q) return $('#aiPrompt').focus();
+      const mode = $('#aiMode .on')?.dataset.v || 'new';
+      const ctx = mode === 'add' ? `\n\nErgänze die bestehende Liste „${fl.name}“. Sie enthält bereits: ${effItems(fl).map(itemLine).join('; ')}. Gib NUR die zusätzlichen Artikel aus (gleicher Listenname, gleiches Format).` : '';
+      $('#aiGo').disabled = true; $('#aiOut').innerHTML = aiSpinner('Claude erstellt die Liste …');
+      try {
+        const txt = cleanAiList(await askClaude(aiListSystem(), q + ctx));
+        const parsed = parseListText(txt); if (!parsed.items.length) throw new Error('Die Antwort enthielt keine Artikel – bitte anders formulieren');
+        if (mode === 'add') { closeSheet(); setTimeout(() => aiAddPreview(fl.id, parsed), 60); }
+        else { closeSheet(); setTimeout(() => importListDialog(txt), 60); }
+      } catch(e) { $('#aiOut').innerHTML = `<div class="banner" style="background:var(--coral-soft)">⚠️ ${esc(e.message)}</div>`; $('#aiGo').disabled = false; }
+    };
+    $('#aiPrompt').focus();
+  });
+}
+function aiAddPreview(lid, parsed){
+  const l = listById(lid), has = it => effective(l).some(e => itemKey(e.it) === itemKey(it));
+  openSheet(`<h2>✨ Vorschläge für „${esc(l.name)}“</h2>
+    <div class="menu" id="apList">${parsed.items.map((it, i) => `<label><input type="checkbox" value="${i}" ${has(it) ? '' : 'checked'}>
+      <span class="grow">${it.qty ? `<span class="qty">${esc(fmtQty(it.qty, it.unit))}</span> ` : ''}${esc(it.name)}${it.spec ? ` <small style="display:inline">· ${esc(it.spec)}</small>` : ''}${has(it) ? '<small>steht schon drauf</small>' : ''}</span></label>`).join('')}</div>
+    <div class="row"><button class="btn grow" onclick="closeSheet()">Abbrechen</button><button class="btn primary grow" id="apOk">➕ Hinzufügen</button></div>`, () => {
+    $('#apOk').onclick = () => {
+      const pick = $$('#apList input:checked').map(x => parsed.items[+x.value]);
+      for (const c of parsed.newCats) if (pick.some(i => i.cat === c.id)) data.categories.push(c);
+      for (const it of pick) { if (it.grp && !l.groups?.some(g => g.id === it.grp)) delete it.grp; if (!has(it)) l.items.push({...it, id: uid(), u: now()}); }
+      save(); closeSheet(); viewList(l); toast(pick.length + ' Artikel ergänzt');
+    };
+  });
+}
+
+/* KI-Rezeptideen passend zu euren Bewertungen und der Saison */
+function recipeIdeas(wish = ''){
+  openSheet(`<h2>✨ Neue Rezeptideen</h2>
+    <p class="muted" style="margin-top:0">Vorschläge passend zu euren Bewertungen und zur Saison (${MONTHS[nowMonth()-1]}) – Gerichte, die noch nicht im Rezeptbuch stehen.</p>
+    <div class="field"><input id="riWish" value="${esc(wish)}" placeholder="Wunsch (optional): z. B. schnell, für Kinder, mit Kürbis" style="border:1px solid var(--line);background:var(--card);border-radius:12px;padding:11px 12px"></div>
+    <div class="schips" id="riEx">${['schnell unter 30 Min', 'kinderfreundlich', 'vegan', 'Meal-Prep', 'für Gäste'].map(x => `<button type="button">${esc(x)}</button>`).join('')}</div>
+    <div id="riOut"></div>
+    ${aiReady() ? `<button class="btn ai" style="width:100%;justify-content:center" id="riGo">✨ 5 Vorschläge holen</button>`
+      : `<div class="banner" style="display:block">Für Rezeptideen brauchst du einen Claude-API-Schlüssel (⚙️ → KI-Assistent). Alternativ den Prompt kopieren und in der Claude-App fragen.</div>
+         <button class="btn" style="width:100%;justify-content:center" id="riCopy">📋 Prompt für die Claude-App kopieren</button>`}`, () => {
+    $('#riEx').onclick = e => { const b = e.target.closest('button'); if (b) $('#riWish').value = ($('#riWish').value ? $('#riWish').value + ', ' : '') + b.textContent; };
+    const build = () => {
+      const rated = data.recipes.map(r => ({r, v: avgRating(r)})).filter(x => x.v);
+      const fmt = x => `${x.r.title} (${x.v.toFixed(1)}★${x.r.vegan ? ', vegan' : x.r.veggie ? ', vegetarisch' : ''}${x.r.kids ? ', Kinder mögen es' : ''})`;
+      return {sys: `Du bist ein Koch-Berater für eine Familie in Deutschland. Schlage genau 5 Gerichte vor, die NICHT schon im Rezeptbuch stehen, gut zu den hoch bewerteten Gerichten passen, schlecht bewertete Richtungen meiden und zur Jahreszeit passen (saisonale, regionale Zutaten). Antworte AUSSCHLIESSLICH mit einem JSON-Array, ohne Codeblock, ohne Text davor oder danach. Jedes Element: {"title": string, "why": string (1 Satz, warum es passt), "vegan": bool, "vegetarisch": bool, "kids": bool, "time": Minuten, "course": einer von ${COURSES.map(c => '"' + c.id + '"').join(', ')}, "seasons": Teilmenge von ["fruehling","sommer","herbst","winter"], "servings": Zahl, "ingredients": [Strings mit Menge, z. B. "400 g Kürbis"], "steps": [kurze Schritte], "search": kurzer Suchbegriff für Rezeptseiten}.`,
+        user: `Monat: ${MONTHS[nowMonth()-1]}. Saisonal gerade: ${seasonItems(nowMonth()).veg.slice(0, 12).join(', ')}.
+Gut bewertet: ${rated.filter(x => x.v >= 4).map(fmt).join('; ') || 'noch keine Bewertungen'}.
+Weniger gemocht: ${rated.filter(x => x.v <= 2.5).map(fmt).join('; ') || '–'}.
+Schon im Rezeptbuch (nicht vorschlagen): ${data.recipes.map(r => r.title).join('; ') || '–'}.
+${$('#riWish').value.trim() ? 'Wunsch: ' + $('#riWish').value.trim() : ''}`};
+    };
+    if (!aiReady()) { $('#riCopy').onclick = async () => { const b = build(); const t = b.sys.replace(/Antworte AUSSCHLIESSLICH.*?Codeblock, ohne Text davor oder danach\.\s*Jedes Element:.*$/s, 'Gib zu jedem Gericht kurz an, warum es passt, Zeit und die Zutaten.') + '\n\n' + b.user;
+      try { await navigator.clipboard.writeText(t); toast('Prompt kopiert – in der Claude-App einfügen'); } catch(e) { prompt('Kopieren:', t); } }; return; }
+    $('#riGo').onclick = async () => {
+      const b = build(); $('#riGo').disabled = true; $('#riOut').innerHTML = aiSpinner('Claude sucht passende Gerichte …');
+      try {
+        const t = await askClaude(b.sys, b.user);
+        const ideas = JSON.parse(t.slice(t.indexOf('['), t.lastIndexOf(']') + 1));
+        window._ideas = ideas;
+        $('#riOut').innerHTML = ideas.map((x, i) => `<div class="idea"><h3>${esc(x.title)}</h3><p class="why">${esc(x.why || '')}</p>
+          <div class="rmeta">${x.vegan ? '<span>🌱 vegan</span>' : x.vegetarisch ? '<span>🥕 vegetarisch</span>' : ''}${x.time ? `<span>⏱ ${timeLabel(+x.time)}</span>` : ''}${x.kids ? '<span>🧒</span>' : ''}${x.servings ? `<span>🍽 ${x.servings}</span>` : ''}</div>
+          <details><summary>Zutaten & Zubereitung</summary><ul class="inglist" style="margin-top:6px">${(x.ingredients || []).map(z => `<li>${esc(z)}</li>`).join('')}</ul>${(x.steps || []).length ? `<ol>${x.steps.map(z => `<li>${esc(z)}</li>`).join('')}</ol>` : ''}</details>
+          <div class="row"><button class="btn small primary" onclick="saveIdea(${i}, this)">💾 Ins Rezeptbuch</button>
+            <a class="btn small" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.chefkoch.de/rs/s0/${encodeURIComponent(x.search || x.title)}/Rezepte.html">🔎 Chefkoch</a>
+            <a class="btn small" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.google.com/search?q=${encodeURIComponent('Rezept ' + (x.search || x.title))}">🔎 Google</a></div></div>`).join('');
+        $('#riGo').disabled = false; $('#riGo').textContent = '✨ Andere Vorschläge';
+      } catch(e) { $('#riOut').innerHTML = `<div class="banner" style="background:var(--coral-soft)">⚠️ ${esc(e instanceof SyntaxError ? 'Antwort nicht lesbar – bitte nochmal versuchen' : e.message)}</div>`; $('#riGo').disabled = false; }
+    };
+  });
+}
+function saveIdea(i, btn){
+  const x = window._ideas?.[i]; if (!x) return;
+  const cs = ['fruehling','sommer','herbst','winter'];
+  data.recipes.push({id: slug(x.title).slice(0, 30) + '-' + uid().slice(0, 4), url: '', title: x.title, image: '', desc: x.why || '', source: 'Idee von Claude',
+    vegan: !!x.vegan, veggie: !!(x.vegetarisch || x.vegan), kids: !!x.kids, seasons: (x.seasons || []).filter(z => cs.includes(z)),
+    course: COURSES.some(c => c.id === x.course) ? x.course : '', time: +x.time || 0, ratings: {}, note: '', cooked: 0, lastCooked: null, added: now(), u: now(),
+    ingredients: (x.ingredients || []).map(String), steps: (x.steps || []).map((z, k) => (k + 1) + '. ' + z).join('\n'), servings: +x.servings || 0});
+  save(); btn.disabled = true; btn.textContent = '✓ Gespeichert'; if (location.hash.startsWith('#/rezepte')) viewRecipes();
+}
+
 /* ---------- Teilen-Ziel (Android: „Teilen → bring+“) ---------- */
 function handleShareTarget(){
   const p = new URLSearchParams(location.search);
   const txt = [p.get('url'), p.get('text'), p.get('title')].filter(Boolean).join(' ');
+  if (/bring\+?\s*liste/i.test(p.get('text') || '')) { history.replaceState(null, '', location.pathname + '#/'); route(); importListDialog(p.get('text')); return; }
   const url = (txt.match(/https?:\/\/\S+/)||[])[0];
   if (!url) return;
   history.replaceState(null, '', location.pathname + '#/rezepte');
@@ -1845,7 +2576,7 @@ function handleShareTarget(){
 
 /* ---------- Start ---------- */
 if (firstRun) save({noSync:true});
-if (migrate() | migrateCheese()) save();
+if (migrate() | migrateCheese() | migrateBaby() | migrateRaclette() | migrateGrill()) save();
 route();
 handleShareTarget();
 if (ghReady()) syncNow(); else pullFromPages();
