@@ -1325,10 +1325,11 @@
     },
     {
      "cat": "obst",
+     "done": 1795374297086,
      "id": "c9b7m3k",
      "name": "Salat",
      "spec": "",
-     "u": 1795374293635
+     "u": 1795374297086
     },
     {
      "cat": "frueh",
@@ -1346,10 +1347,11 @@
     },
     {
      "cat": "haushalt",
+     "done": 1795374299901,
      "id": "1by1ygg",
      "name": "Toilettenpapier",
      "spec": "",
-     "u": 1795374293635
+     "u": 1795374299901
     },
     {
      "cat": "kuehl",
@@ -2154,6 +2156,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795374296469,
+ "updatedAt": 1795374300025,
  "version": 2
 }
