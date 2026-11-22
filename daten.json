@@ -1297,31 +1297,35 @@
    "items": [
     {
      "cat": "haushalt",
+     "done": 1795374301018,
      "id": "a7ly1jq",
      "name": "Müllbeutel",
      "spec": "25 und 35 Liter",
-     "u": 1795374293635
+     "u": 1795374301018
     },
     {
      "cat": "aufschnitt",
+     "done": 1795374304768,
      "id": "bck9zqd",
      "name": "Schinken Spicker",
      "spec": "vegan",
-     "u": 1795374293635
+     "u": 1795374304768
     },
     {
      "cat": "haushalt",
+     "done": 1795374300500,
      "id": "i9sjk9r",
      "name": "Shampoo",
      "spec": "",
-     "u": 1795374293635
+     "u": 1795374300500
     },
     {
      "cat": "kuehl",
+     "done": 1795374307034,
      "id": "3snnoxx",
      "name": "Ofenkäse",
      "spec": "",
-     "u": 1795374293635
+     "u": 1795374307034
     },
     {
      "cat": "obst",
@@ -1333,17 +1337,19 @@
     },
     {
      "cat": "frueh",
+     "done": 1795374303869,
      "id": "x3u5ffw",
      "name": "Müsli",
      "spec": "",
-     "u": 1795374293635
+     "u": 1795374303869
     },
     {
      "cat": "vorrat",
+     "done": 1795374302529,
      "id": "4n0vs5e",
      "name": "Kaffee",
      "spec": "Bohnen",
-     "u": 1795374293635
+     "u": 1795374302529
     },
     {
      "cat": "haushalt",
@@ -1355,17 +1361,19 @@
     },
     {
      "cat": "kuehl",
+     "done": 1795374306468,
      "id": "3bn5qit",
      "name": "Butter",
      "spec": "vegan",
-     "u": 1795374293635
+     "u": 1795374306468
     },
     {
      "cat": "getraenk",
+     "done": 1795374301915,
      "id": "xoomof5",
      "name": "Nüsse",
      "spec": "Nussmix",
-     "u": 1795374293635
+     "u": 1795374301915
     }
    ],
    "kind": "cart",
@@ -2156,6 +2164,6 @@
    "veggie": false
   }
  ],
- "updatedAt": 1795374300025,
+ "updatedAt": 1795374309418,
  "version": 2
 }
