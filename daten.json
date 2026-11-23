@@ -116,6 +116,7 @@
   "item:eohwcos": 1794068104272,
   "item:glus9rl": 1794068104272,
   "item:gnyhjw3": 1794068104272,
+  "item:guic7ws": 1795458611968,
   "item:hhawuri": 1794068104272,
   "item:hmp8e7z": 1794068104272,
   "item:hwphimb": 1794068104272,
@@ -646,13 +647,6 @@
      "id": "zap6gou",
      "name": "Kaffee",
      "spec": "Bohnen",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "guic7ws",
-     "name": "Toilettenpapier",
-     "spec": "",
      "u": 1
     },
     {
@@ -2148,6 +2142,6 @@
    "veggie": true
   }
  ],
- "updatedAt": 1795458602087,
+ "updatedAt": 1795458614843,
  "version": 2
 }
