@@ -543,6 +543,13 @@
      "name": "Toilettenpapier",
      "spec": "",
      "u": 1
+    },
+    {
+     "cat": "vorrat",
+     "id": "cj71xc5",
+     "name": "Hühnchen vegan",
+     "spec": "Rügenwalder",
+     "u": 1795458598147
     }
    ],
    "kind": "list",
@@ -2141,6 +2148,6 @@
    "veggie": true
   }
  ],
- "updatedAt": 1795374706520,
+ "updatedAt": 1795458602087,
  "version": 2
 }
