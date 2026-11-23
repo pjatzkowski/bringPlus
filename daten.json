@@ -107,6 +107,7 @@
   "item:3snnoxx": 1795374312303,
   "item:3zn31nd": 1794068104272,
   "item:4n0vs5e": 1795374312303,
+  "item:50dfwim": 1795458622132,
   "item:7sb0i1d": 1794068104272,
   "item:a4qc7eg": 1794068104272,
   "item:a7ly1jq": 1795374312303,
@@ -458,13 +459,6 @@
      "cat": "frueh",
      "id": "y16ne0d",
      "name": "Toastbrot",
-     "spec": "",
-     "u": 1
-    },
-    {
-     "cat": "haushalt",
-     "id": "50dfwim",
-     "name": "Toilettenpapier",
      "spec": "",
      "u": 1
     },
@@ -2142,6 +2136,6 @@
    "veggie": true
   }
  ],
- "updatedAt": 1795458614843,
+ "updatedAt": 1795458624979,
  "version": 2
 }
