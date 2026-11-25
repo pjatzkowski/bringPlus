@@ -2194,18 +2194,21 @@
    "lastCooked": null,
    "note": "",
    "ratings": {},
-   "seasons": [],
+   "seasons": [
+    "fruehling",
+    "sommer"
+   ],
    "servings": 0,
    "source": "Chefkoch",
    "steps": "",
    "time": 0,
    "title": "Stockbrot",
-   "u": 1795606083234,
+   "u": 1795606105943,
    "url": "https://www.chefkoch.de/rezepte/1060121211293150/Stockbrot.html",
    "vegan": false,
    "veggie": false
   }
  ],
- "updatedAt": 1795606086192,
+ "updatedAt": 1795606108813,
  "version": 2
 }
