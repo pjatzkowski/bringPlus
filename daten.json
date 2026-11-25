@@ -2157,8 +2157,31 @@
    "url": "https://www.chefkoch.de/rezepte/279041105901002/Creme-brulee.html",
    "vegan": false,
    "veggie": false
+  },
+  {
+   "added": 1795605841586,
+   "cooked": 0,
+   "course": "haupt",
+   "desc": "Chili sin Carne. Über 990 Bewertungen und für köstlich befunden. Mit ► Portionsrechner ► Kochbuch ► Video-Tipps! Jetzt entdecken und ausprobieren!",
+   "id": "chili-sin-carne-bestes-vergeta-7lxp",
+   "image": "https://img.chefkoch-cdn.de/rezepte/595441159189225/bilder/1502491/crop-960x540/chili-sin-carne.jpg",
+   "ingredients": [],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [],
+   "servings": 0,
+   "source": "Chefkoch",
+   "steps": "",
+   "time": 0,
+   "title": "Chili sin Carne - bestes vergetarisches Rezept",
+   "u": 1795605841586,
+   "url": "https://www.chefkoch.de/rezepte/595441159189225/Chili-sin-Carne.html",
+   "vegan": false,
+   "veggie": false
   }
  ],
- "updatedAt": 1795605801211,
+ "updatedAt": 1795605844527,
  "version": 2
 }
