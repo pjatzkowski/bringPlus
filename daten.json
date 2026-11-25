@@ -2180,8 +2180,31 @@
    "url": "https://www.chefkoch.de/rezepte/595441159189225/Chili-sin-Carne.html",
    "vegan": false,
    "veggie": false
+  },
+  {
+   "added": 1795605907608,
+   "cooked": 0,
+   "course": "",
+   "desc": "",
+   "id": "chefkochde-r5ed",
+   "image": "",
+   "ingredients": [],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [],
+   "servings": 0,
+   "source": "chefkoch.de",
+   "steps": "",
+   "time": 0,
+   "title": "chefkoch.de",
+   "u": 1795605907608,
+   "url": "https://www.chefkoch.de/rezepte/1060121211293150/Stockbrot.html",
+   "vegan": false,
+   "veggie": false
   }
  ],
- "updatedAt": 1795605844527,
+ "updatedAt": 1795605910464,
  "version": 2
 }
