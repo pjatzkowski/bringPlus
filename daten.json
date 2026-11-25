@@ -2134,8 +2134,31 @@
    "url": "https://www.chefkoch.de/rezepte/2229471357211459/Rote-Bete-Carpaccio.html",
    "vegan": true,
    "veggie": true
+  },
+  {
+   "added": 1795605798376,
+   "cooked": 0,
+   "course": "",
+   "desc": "Himmlische Crème Brûlée: Das ultimative Rezept für perfekte Karamellkruste und samtige Füllung. Gelingt sicher mit diesen Tipps!",
+   "id": "creme-brulee-original-rezept-a-rm8s",
+   "image": "https://img.chefkoch-cdn.de/rezepte/279041105901002/bilder/1616495/crop-960x540/creme-brulee.jpg",
+   "ingredients": [],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [],
+   "servings": 0,
+   "source": "Chefkoch",
+   "steps": "",
+   "time": 0,
+   "title": "Crème Brûlée: Original-Rezept aus Frankreich",
+   "u": 1795605798376,
+   "url": "https://www.chefkoch.de/rezepte/279041105901002/Creme-brulee.html",
+   "vegan": false,
+   "veggie": false
   }
  ],
- "updatedAt": 1795458624979,
+ "updatedAt": 1795605801211,
  "version": 2
 }
