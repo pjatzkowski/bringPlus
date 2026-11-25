@@ -2181,8 +2181,31 @@
    "url": "https://www.chefkoch.de/rezepte/595441159189225/Chili-sin-Carne.html",
    "vegan": false,
    "veggie": false
+  },
+  {
+   "added": 1795606062449,
+   "cooked": 0,
+   "course": "backen",
+   "desc": "Stockbrot. Über 330 Bewertungen und für sehr lecker befunden. Mit ► Portionsrechner ► Kochbuch ► Video-Tipps! Jetzt entdecken und ausprobieren!",
+   "id": "leckeres-grundrezept-schnell-e-eddw",
+   "image": "https://img.chefkoch-cdn.de/rezepte/1060121211293150/bilder/1618367/crop-960x540/stockbrot.jpg",
+   "ingredients": [],
+   "kids": false,
+   "lastCooked": null,
+   "note": "",
+   "ratings": {},
+   "seasons": [],
+   "servings": 0,
+   "source": "Chefkoch",
+   "steps": "",
+   "time": 0,
+   "title": "Leckeres Grundrezept schnell & einfach - Stockbrot",
+   "u": 1795606062449,
+   "url": "https://www.chefkoch.de/rezepte/1060121211293150/Stockbrot.html",
+   "vegan": false,
+   "veggie": false
   }
  ],
- "updatedAt": 1795605968220,
+ "updatedAt": 1795606065296,
  "version": 2
 }
